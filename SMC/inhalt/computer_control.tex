@@ -1,0 +1,251 @@
+\section{Computer Control}
+\subsection{Communication Settings}
+In order to remote control the \productName ~from a computer, it needs to be connected to the computer via the USB cable. The \productName ~will show up as a new Virtual COM Port (VCP). In some cases it might be necessary to install some drivers. They can be found here:\\
+\url{http://www.ftdichip.com/Drivers/VCP.htm}\\
+Once the Virtual COM Port has been installed successfully, the \productName ~can be controlled by sending commands via a serial terminal. A list of all available commands can be found in section~\ref{section_instruction_set}. The serial terminal needs to be configured as follows:
+\begin{itemize}
+\item 57600 Baud
+\item 8 bit character size
+\item no parity bit
+\item 1 stop bit
+\item no flow control
+\end{itemize}
+
+\subsection{Instruction set}
+\label{section_instruction_set}
+\lstMakeShortInline[language=sh,basicstyle=\ttfamily]@
+
+The \productName ~has the following commands which can be used. Note, that the command parser is case sensitive. The command parameters, denoted by @<xxx>@, must be separated by either @SPACE@ or ``,'' or ``;'' or @TAB@. The command is completed by sending a  Carriage Return + Line Feed (@CRLF@) or Line Feed (@LF@).
+\def \vdistace {3ex}
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @*RST@\\
+Function: & Resets the \productName ~to the initial state.\\
+Example: & @*RST@
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @*IDN?@\\
+Function: & Returnes the identification name of the \productName.\\
+Example: & @*IDN?@
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @*IDN <driver_idn>@\\
+Function: & Sets the identification of the \productName.\\
+Note: & The maximum number of characters is 20.\\
+Example: & @*IDN NewName@\\
+		& Sets the string ``NewName'' as IDN.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @GETMOTSTATE <mot>@\\
+Function: & Returns whether motor @<mot>@ is turned on or off.\\
+Example: & @GETMOTSTATE 3@\\
+		& Returns 1 if motor 3 is turned on or 0 if motor 3 is turned off.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @MOVEABS <mot> <pos> <unit>@\\
+Function: & Moves motor @<mot>@ to the absolute position @<pos> <unit>@.\\
+		& The units can be steps, degree or radians.\\
+Note: & The units must be written in lower case letters.\\
+Example: & @MOVEABS 0 0 deg@\\
+		& @MOVEABS 0 0 pi@\\
+		& @MOVEABS 0 0 steps@\\
+		& The examples do the same in different units.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @MOVEREL <mot> <pos> <unit>@\\
+Function: & Moves motor @<mot>@ relative to the current position.\\
+		& The units can be steps, degree or radians.\\
+Note: & The units must be written in lower case letters.\\
+Example: & @MOVEREL 2 22.5 deg@\\
+		& @MOVEREL 2 0.125 pi@\\
+		& Both examples do the same in different units.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @ZERORUN <mot>@\\
+Function: & Finds the mechanical zero position of the motor.\\
+Note: & During motor zero run no communication or usage\\
+		& of the \productName ~is allowed.\\
+Example: & @ZERORUN 1@\\
+		& Finds the mechanical zero position of motor 1.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @ENABLE <mot> <on/off>@\\
+Function: & Turns motor @<mot>@ on (1) or off (0).\\
+Note: & Both for enabeling and disabeling of a motor the same command is used.\\
+Example: & @ENABLE 2 1@\\
+		& Turns motor 2 on.\\
+		& @ENABLE 2 0@\\
+		& Turns motor 2 off.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @GETPOS <mot> <unit>@\\
+Function: & Returns the actual motor position in the given unit.\\
+Example: & @GETPOS 1 deg@\\
+		& Returns the current position of motor 1 in degree.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SAVECONF@\\
+Function: & Saves all current configurations for all motors.\\
+Note: & The driver configuration is stored in an EEPROM.\\
+		& Maximum write cycles are 100000.\\
+Example: & @SAVECONF@
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @LOADCONF@\\
+Function: & Loads all saved configurations for all motors.\\
+Example: & @LOADCONF@\\
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @GETOPTZEROPOS <mot>@\\
+Function: & Returns the optical zero position of motor @<mot>@.\\
+Example: & @GETOPTZEROPOS 3@\\
+		& Returns the optical zero position of motor 3.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SETOPTZEROPOS <mot>@\\
+Function: & Set the optical zero position for motor @<mot>@.\\
+Note: & For the optical zero position the unit is always steps.\\
+Example: & @SETOPTZEROPOS 3 574@\\
+		& Sets the optical zero position of motor 3 to 574 steps.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @GETWAITTIME <mot>@\\
+Function: & Returns the wait time between two steps of a motor.\\
+Example: & @GETWAITTIME 0@\\
+		& Returns the wait time between two steps of motor 0.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SETWAITTIME <mot> <time>@\\
+Function: & Sets the wait time between two steps to @<time>@ milliseconds\\
+		& for motor @<mot>@.\\
+Note: & The wait time must be an integer. The unit for the wait time\\
+		& is always milliseconds.\\
+Example: & @SETWAITTIME 1 5@\\
+		& Sets the wait time of motor 1 to 5 milliseconds.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @STOPALL@\\
+Function: & Stops all motor movements immediately.\\
+Example: & @STOPALL@\\
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @FACTORYRESET@\\
+Function: & Resets the \productName ~to factory state.\\
+Example: & @FACTORYRESET@\\
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @ISMOVING <mot>@\\
+Function: & Returns the motor moving state.\\
+		& 1: motor @<mot>@ is moving.\\
+		& 0: motor @<mot>@ doesn't move.\\
+Example: & @ISMOVING 0@\\
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SETCONSTSPEED <mot> <dir> <time>@\\
+Function: & Enables motor @<mot>@ to move infinite in direction @<dir>@. Possible\\
+		& values for @<dir>@ are clock wise @CW@ or counter clock wise @CCW@.\\
+		& @<time>@ specifies the time for one full rotation.\\
+Example: & @SETCONSTSPEED 1 CW 10.0@\\
+		& Moves motor 1 infinite in clockwise direction.\\
+		& One full rotation takes 10 seconds.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SETFORBZONE <mot> <start> <stop>@\\
+Function: & Defines a forbidden zone for motor @<mot>@. The motor will not move\\
+		& into this zone. @<start>@ must be always smaller than @<stop>@. The unit\\
+		& for @<start>@ and @<stop>@ is always steps.\\
+Example: & @SETFORBZONE 0 148 1333@\\
+		& Defines a forbidden zone for motor 0 between step 148 and step 1333.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @ENABFORBZONE <mot> <val>@\\
+Function: & Enables @<val=1>@ or disables @<val=0>@ the defined forbidden zone\\
+		& for motor @<mot>@\\
+Example: & @ENABFORBZONE 0 1@\\
+		& Enables the forbidden zone for motor 0.\\
+		& @ENABFORBZONE 3 0@\\
+		& Disables the forbidden zone for motor 3.
+\end{tabular}
+
+\vspace{\vdistace}
+
+\begin{tabular}{ll}
+Command: & @SETPROGSTEP <step> <posMot0> <posMot1> <posMot2> <posMot3> <mode>@\\
+Function: & Defines an internal program step for all four motors. @<step>@ is the program\\
+		& sequence number. The position of all motors @<posMot0...4>@ must be given\\
+		& in steps. The mode defines if the movement is to an absolute position @<mode=ABS>@\\
+		& or if the movement is relative to the current motor position @<mode=REL>@.\\
+Example: & @SETPROGSTEP 0 112 294 0 12 ABS@\\
+		& Defines the internal program step 0 so that motor 0 moves to step 112,\\
+		& motor 1 moves to step 294, motor 2 moves to step 0 and motor 3 moves to step 12.\\
+		& @SETPROGSTEP 1 10 10 -10 -10 REL@\\
+		& Defines the internal program step 1 so that motor 0 and motor 1 move\\
+		& 10 steps forward relative to the actual position and motor 2 and 3 move\\
+		& 10 steps backwards from the actual position.
+\end{tabular}
+
+\lstDeleteShortInline@
+
+\newpage
+

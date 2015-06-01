@@ -1,0 +1,158 @@
+%------------------
+% General Settings
+%------------------
+\def \docTitle      {User Manual}
+\def \docSubTitle   {SMC2242/SMC4242}
+\def \productNumber {SMCx242}
+\def \productName   {Stepper Motor Controller}
+\def \docAuthor     {LK-Instruments}
+\def \docSubject    {\docAuthor \docTitle \docSubTitle}
+\def \docKeywords   {LK-Instruments, Stepper Motor Controller, SMC2242, SMC4242}
+
+\documentclass[a4paper, final, 12pt, oneside]{scrartcl}
+
+%----------
+% Packages
+%----------
+\usepackage{etex}
+\reserveinserts{30}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc} % erlaubt Umlaute in der tex-Datei
+
+\usepackage{slantsc}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage[T1]{fontenc}
+
+\usepackage[english]{babel}              % For the hyphenations in different languages
+\usepackage[intlimits]{amsmath}          % math symbols
+\usepackage{braket}                      % Dirac braket notation
+\usepackage{graphicx}                    % include pictures
+\usepackage{color}
+\usepackage[shell]{gnuplottex}           % gnuplot in latex
+\usepackage{pstricks}                    % post script tricks
+\usepackage{listings}                    % enter programming code
+\usepackage{fancyhdr}                    % make quite nice header/footer
+\usepackage[version=3]{mhchem}           % chemistry stuff
+\usepackage{relsize}
+\usepackage{afterpage}
+\usepackage{gensymb}
+\usepackage{textcomp}
+
+\usepackage{pgfplots}
+\usepackage{tikz}                        % beautiful plots
+\pgfplotsset{compat = newest}
+\usepackage{units}                       % easy to use number-unit-package
+\usepackage[section]{placeins}           % Float barrier for sections.
+
+\usepackage{lcd}						             % Character LCD
+
+\usetikzlibrary{shapes.geometric, arrows}	% Flow chart
+
+\usepackage{listings}					% erlaubt Quellcode mit Zeilenumbr�chen
+
+%----------------
+% PDF properties
+%----------------
+\usepackage[
+  pdftitle={\docAuthor~\docSubTitle~\docTitle}
+ ,pdfsubject={\docSubject}
+ ,pdfauthor={\docAuthor}
+ ,pdfkeywords={\docKeywords}
+ ,pdfcreator={\docAuthor}
+ ,pdfstartview=Fit                       % startseite ganz anzeigen
+ ,pdfborder={0 0 0}                      % links ohne umrandungen
+ ,pdfdisplaydoctitle=true                % pdftitle statt dateinamen anzeigen
+ ,pdfcenterwindow=true                   % position pdf in center of the screen
+ ,setpagesize=true
+]{hyperref}
+
+%-------------------
+% Header und Footer
+%-------------------
+\pagestyle{fancy}
+\fancyhf{}        % clear all header/footer
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}}
+\fancyhead[LE,RO]{\textbf{\thepage}}
+\fancyhead[CE]{\footnotesize{\textit{\nouppercase{\rightmark}}}}
+\fancyhead[CO]{\footnotesize{\scshape{\nouppercase{\leftmark}}}}
+
+% number equations with sections before equation-index
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+
+%---------------------
+% My code definitions
+%---------------------
+
+\newtheorem{envdefinition}{Definition}[section]
+\newtheorem{envsatz}{Satz}
+
+% special numbers and letters
+\renewcommand{\i}{\mathrm{i}}                  % complex i
+\newcommand{\e}{\mathrm{e}}                    % Eulers number
+\renewcommand{\phi}{\varphi}                   % nicer phi
+\renewcommand{\epsilon}{\varepsilon}           % nicer epsilon
+\renewcommand{\theta}{\vartheta}               % nicer theta
+\renewcommand{\rho}{\varrho}                   % nicer rho
+%\newcommand{\degree}{^{\circ}}                 % degree-circle
+
+% vectors and matrices
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\Vek}[3]{\left(\begin{array}{c}#1\\#2 
+\ifthenelse{\equal{#3}{}}{}{\\#3}\end{array}\right)}
+
+% integral and derivative stuff:
+\renewcommand{\d}[1]{\;\mathrm{d}#1}           % integeration d
+% total derivative
+\newcommand{\td}[1]{\frac{\mathrm{d}}{\mathrm{d}#1}\,}
+\newcommand{\pd}[1]{\partial_{#1}\,}             % partial derivative
+
+% Braket notation
+\renewcommand{\bra}{\Bra}
+\renewcommand{\ket}{\Ket}
+\renewcommand{\braket}{\Braket}
+\renewcommand{\set}{\Set}
+
+% plus-minus with braces
+\newcommand{\PM}{\ensuremath{\substack{+\\[-0.25em]-}\,}}
+\renewcommand{\pm}{\PM}
+\newcommand{\pmp}{\ensuremath{\substack{\mathsmaller{(}+\mathsmaller{)}\\[-0.25em]-}\,}}
+\newcommand{\pmm}{\ensuremath{\substack{+\\[-0.25em]\mathsmaller{(}-\mathsmaller{)}}\,}}
+
+%---------------------
+% LCD
+%---------------------
+
+\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgrey}{rgb}{0.2,0.2,0.2}
+\definecolor{black}{rgb}{0,0,0}
+
+\LCDcolors{black}{lightgrey}
+
+
+%----------------------------------------------------------
+% let the party start
+%----------------------------------------------------------
+\begin{document}
+
+\input{../general/title}
+\input{../general/notices}
+\input{../general/tech_assistance}
+
+\pagenumbering{roman}   % small roman page numbering
+\tableofcontents
+\newpage
+\pagenumbering{arabic}  % now arabic page numbering
+                        % for the rest of the document
+
+\input{inhalt/preface}
+\input{inhalt/general_information}
+\input{inhalt/manual_operation}
+\input{inhalt/computer_control}
+\input{inhalt/specifications}
+
+\end{document}
