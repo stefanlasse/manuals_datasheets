@@ -9,7 +9,8 @@
 \def \docSubject    {\docAuthor \docTitle \docSubTitle}
 \def \docKeywords   {LK-Instruments, Stepper Motor Controller, SMC2242, SMC4242}
 
-\documentclass[a4paper, final, 12pt, oneside]{scrartcl}
+%\documentclass[a4paper, final, 12pt, twoside]{scrartcl}
+\documentclass[a4paper, final, 12pt, oneside]{refart}
 
 %----------
 % Packages
@@ -33,11 +34,15 @@
 \usepackage{pstricks}                    % post script tricks
 \usepackage{listings}                    % enter programming code
 \usepackage{fancyhdr}                    % make quite nice header/footer
-\usepackage[version=3]{mhchem}           % chemistry stuff
+%\usepackage[version=3]{mhchem}           % chemistry stuff
 \usepackage{relsize}
 \usepackage{afterpage}
 \usepackage{gensymb}
 \usepackage{textcomp}
+\usepackage{listings}					           % erlaubt Quellcode mit Zeilenumbruechen
+\usepackage{makeidx}                     % create index
+\usepackage{lcd}						             % Character LCD
+%\usepackage[paperheight=210mm,paperwidth=210mm,margin=20mm,heightrounded]{geometry}
 
 \usepackage{pgfplots}
 \usepackage{tikz}                        % beautiful plots
@@ -45,11 +50,13 @@
 \usepackage{units}                       % easy to use number-unit-package
 \usepackage[section]{placeins}           % Float barrier for sections.
 
-\usepackage{lcd}						             % Character LCD
+
 
 \usetikzlibrary{shapes.geometric, arrows}	% Flow chart
 
-\usepackage{listings}					% erlaubt Quellcode mit Zeilenumbr�chen
+\newfont{\ce}{cerm}                      
+\def\CE#1{{\font\ce=#1\ce CE}}
+
 
 %----------------
 % PDF properties
