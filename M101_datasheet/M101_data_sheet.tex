@@ -214,7 +214,7 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noticed.
     Min & Typ & Max &\\
     \toprule
     Current &  & 0.1 & 1.3 & 1.33 & 0.1 & 1.65 & 1.68 & A/Phase\\ \midrule
-    Holding torque & Microst.=1, Curr.=1.33A & & 66 & & & 132 & & Ncm \\ \midrule
+    Holding torque & Microst.=1, Curr.=Max & & 66 & & & 132 & & Ncm \\ \midrule
     Step angle & Microst.=1 & & 0.3 & & & 0.3 & & deg \\ \midrule
     Step angle accuracy &  & & 1.7 & & & 1.7 & & \% \\ \midrule
     Backlash &  & & 0.1 & & & 0.1 & & deg \\ \midrule
@@ -222,7 +222,7 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noticed.
     Velocity & Microst.=1, 2 ms/step & & 150 & & & 150 & & deg/s \\ \midrule
     Load capacity & radial/axial & &  & 5/2.5 & &  & 5/2.5 & kg \\ \midrule
     Weight &  & & 0.504 & & & 0.634 & & kg \\ \midrule
-    Temperature range &  & 5 &  & 50 & 5 &  & 50 & $^{\circ}$C \\
+    Temperature range &  & 0 &  & 40 & 0 &  & 40 & $^{\circ}$C \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -255,7 +255,7 @@ and M101B rotation stages the decrease is shown in the diagrams below.
   
       \pgfplotstableread{holding_torque.csv} \datatableA
   
-      \addplot [mark=+, only marks,
+      \addplot [mark=o, only marks,
                % error bars/.cd,
                % x dir=none,
                % y dir=both, y explicit
@@ -287,7 +287,7 @@ and M101B rotation stages the decrease is shown in the diagrams below.
   
       \pgfplotstableread{holding_torque.csv} \datatableB
   
-      \addplot [mark=+, only marks,
+      \addplot [mark=o, only marks,
                % error bars/.cd,
                % x dir=none,
                % y dir=both, y explicit
