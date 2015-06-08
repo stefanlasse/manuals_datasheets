@@ -21,7 +21,7 @@
 %\usepackage[latin1]{inputenc} % erlaubt Umlaute in der tex-Datei
 
 \usepackage{slantsc}
-\usepackage[urw-garamond]{mathdesign}
+%\usepackage[urw-garamond]{mathdesign}
 \usepackage{garamondx}
 \usepackage[T1]{fontenc}
 
@@ -34,7 +34,7 @@
 \usepackage{pstricks}                    % post script tricks
 \usepackage{listings}                    % enter programming code
 \usepackage{fancyhdr}                    % make quite nice header/footer
-\usepackage[version=3]{mhchem}           % chemistry stuff
+%\usepackage[version=3]{mhchem}           % chemistry stuff
 \usepackage{relsize}
 \usepackage{afterpage}
 \usepackage{gensymb}
@@ -163,8 +163,8 @@
 \subsection*{Description}
 The LK-Instruments M101 is a robust and ball bearing mounted rotation
 stage designed for carrying optical elements. It can be mounted to the
-experimental setup from any axis with standard M6 screws, headless screws,
-posts and post holders. 
+experimental setup in any orientation utilizing standard M6 screws, set screws,
+posts and post holders.
 \end{multicols}
 \noindent\rule{\textwidth}{0.4pt}
 \vspace*{0.5cm}
@@ -198,7 +198,7 @@ posts and post holders.
 
 \newpage
 \subsection*{Specifications}
-$T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noticed.
+$T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noted.
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \begin{table}[!htp]
   \centering
@@ -228,8 +228,8 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noticed.
 \end{table}
 \vfill
 \paragraph{Microstepping.} A physical property of stepper motors is that the holding
-torque decreases heavily with the amount of adjusted microsteps. For the M101A
-and M101B rotation stages the decrease is shown in the diagrams below.
+torque decreases heavily with the number of microsteps. For the M101A
+and M101B rotation stages the holding torque vs. the number of microsteps is shown in the following diagrams.
 \begin{figure}[!hbp]
 \centering
   \begin{subfigure}{.5\textwidth}
@@ -300,11 +300,12 @@ and M101B rotation stages the decrease is shown in the diagrams below.
 \end{figure}
 \FloatBarrier
 
-\subsection*{Outline Dimensions}
-All dimensions in millimeters.
+\subsection*{Outer Dimensions}
+All dimensions in millimeters.\\
+With $A = \unit[33.5]{mm}$ for M101A and $A = \unit[47]{mm}$ for M101B.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[angle=0,origin=c,width=0.7\textwidth]{./drawings/M101_outline_dimensions.pdf}
+  \includegraphics[angle=0,origin=c,width=0.69\textwidth]{./drawings/M101_outline_dimensions.pdf}
 \end{figure}
 %\vfill
 \FloatBarrier
