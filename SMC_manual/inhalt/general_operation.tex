@@ -14,7 +14,7 @@ selected menu the values correspond to different quantities. Where
 \begin{itemize}
   \item the upper left value accompanies to Motor 1
   \item the upper right value accompanies to Motor 2
-  \item the lower left value accompanies to Motor 3 and
+  \item the lower left value accompanies to Motor 3
   \item the lower right value accompanies to Motor 4
 \end{itemize}
 
@@ -214,7 +214,7 @@ firmware version will be displayed.
 Firmware updates are available at \url{http://www.lk-instruments.com} on
 the corresponding product website.
 
-\subsection{Change motor position}
+\subsection{Motor position}
 \label{menu_motor_pos}
 \index{change!position}
 This menu displays the current motor positions. The position of any motor can be
@@ -254,7 +254,7 @@ and motor 3 are in fast moving mode, motor 2 and 4 are in normal moving mode.
 \end{center}
 
 
-\subsection{Set step multiplier}
+\subsection{Step multiplier}
 \index{step multiplier}
 Step multipliers give the possibility to let the motors move in different
 step widths by turning the rotary button one click. It is also possible
@@ -277,7 +277,7 @@ allowed as well. This will result in counter direction movements.
              |{rarrow}2.0x    1.0x|
 \end{center}
 
-\subsection{Change step unit}
+\subsection{Step unit}
 \label{chp:change_step_unit}
 \index{change!unit}
 In this menu one can choose the unit of the displayed position. There
@@ -293,7 +293,8 @@ are three possible choices for each motor:
 \end{center}
 
 
-\subsection{Define optical zero position}
+\subsection{Optical zero position}
+\index{optical zero position}
 In this menu one can define the optical zero position. This is
 necessary due to a mostly unknown placement of the optical element
 mounted to the motor. Here one can once adjust the desired optical
@@ -305,45 +306,52 @@ After adjustment it is recommended to save this configuration
 When performing a zero calibration, as explained in \ref{menu_zero_cal},
 the zero position will be the defined optical zero position.
 \begin{center}
-  \LCD{2}{16}|{rarrow}0st     0st|
+  \LCD{2}{16}|{rarrow}122st   0st|
              | 0st     0st|
 \end{center}
 
 
-\subsection{Run internal program}
-This menu allows the user to step through the internal program list.
-This function is available only if a program has previously been
+\subsection{Internal programs}
+\index{internal programs}
+This menu allows the user to step through the internal program list
+with the rotary button.
+This function is only available if a program has previously been
 defined (see \ref{section_instruction_set}).
+Internal programs are also saved to the device when the current
+configuration is saved, see \ref{menu_save}.
 \begin{center}
   \LCD{2}{16}|Program running|
              |Step 0|
 \end{center}
 
 
-\subsection{Set constant angular speed}
+\subsection{Constant angular speed}
 Here the motors can be set into an infinite moving state in clockwise
 (CW) or counter clockwise (CCW) direction. To get the motors moving
 with different velocities one needs to change the wait times between
 two steps (see \ref{menu_step_wait_time}).
+STOP means that the motor is not moving. Constant angular speed for a
+certain motor can not be activated if a forbidden zone is configured to
+this motor (see \ref{chp:forbidden_zone}).
 \begin{center}
   \LCD{2}{16}|{rarrow}CW     {rarrow}CCW|
              | STOP    STOP|
 \end{center}
 
 
-\subsection{Change step wait time}
+\subsection{Step wait time}
 \label{menu_step_wait_time}
 \index{change!step wait time}
 Here the wait time between two steps can be changed. This results in
 faster or slower motor movements. The default value is 3 milliseconds.
-We do not recommend to use shorter wait times, even if this works.
+We do not recommend to use shorter wait times as 3 milliseconds.
 \begin{center}
-  \LCD{2}{16}|{rarrow}3 ms   {rarrow}3 ms|
-             |{rarrow}3 ms    3 ms|
+  \LCD{2}{16}|{rarrow}3 ms   {rarrow}5 ms|
+             |{rarrow}18 ms   3 ms|
 \end{center}
 
 
-\subsection{Change motor substeps}
+\subsection{Motor substeps}
 \index{change!substeps}
 \index{change!microstepping}
 In this menu one can change the motor substeps. Possible values are 1,
@@ -352,6 +360,8 @@ In this menu one can change the motor substeps. Possible values are 1,
   \LCD{2}{16}|{rarrow}1      {rarrow}2|
              | 4      {rarrow}8|
 \end{center}
+This adjustments result in a finer angular resolution. Values above
+16 are not recommended.
 
 
 \paragraph{A note on microstepping.}
@@ -364,11 +374,12 @@ the incremental tourque $\tau_{\text{inc}}$ is
 \end{equation*}
 where $\tau_{\text{H}}$ is the holding torque per full step (without
 microstepping) and $\mu$ is the number of microsteps per full step.
-the incremental torque $\tau_{\text{H}}$ for $N$ microsteps then is
+the incremental torque $\tau_{\text{N}}$ for $N$ microsteps then is
 \begin{equation*}
   \tau_{\text{N}} = \tau_{\text{H}} \cdot \sin \left( \frac{90\cdot N}{\mu} \right).
 \end{equation*}
-So, the holding torque per microstep decreases as shown in the table below.
+So, the holding torque per microstep decreases as shown in
+table \ref{tab:microstepping_holding_torque}.
 \begin{table}
   \centering
   \begin{tabular}{cc}
@@ -385,6 +396,7 @@ So, the holding torque per microstep decreases as shown in the table below.
   \end{tabular}
   \caption{Decrease of motor holding torque in dependence of the number of
            adjusted microsteps.}
+  \label{tab:microstepping_holding_torque}
 \end{table}
 
 
@@ -392,19 +404,21 @@ So, the holding torque per microstep decreases as shown in the table below.
 % zusaetzliche Menues hier einfuegen!
 %----------------------------------------------------------------------
 
-\subsection{Save current configurations}
+\subsection{Save current configuration}
 \label{menu_save}
 To save the current \productName ~configurations enter this menu and
 turn the rotary encoder in any direction. The menu will be automatically
 leaved when saving is finished.\\
-Note: The configurations for all motors will be saved.
+Note, that always the configurations for all motors will be saved. It is not
+possible to save the configuration for a single motor.
 \begin{center}
   \LCD{2}{16}|Save all current|
              |configurations|
 \end{center}
 
 
-\subsection{Load last configuration}
+\subsection{Load configuration}
+\label{chp:menu_load}
 To load the last saved \productName ~configurations enter this menu
 and turn the rotary encoder in any direction. The menu will be leaved
 automatically when loading has
@@ -418,7 +432,7 @@ Note: There is just one memory space for a configuration.
 \end{center}
 
 
-\subsection{Run zero calibration}
+\subsection{Zero calibration}
 \label{menu_zero_cal}
 \index{motor!zero calibration}
 Here one can calibrate the motor zero position for each motor. To
@@ -434,10 +448,11 @@ leaved when calibration is finished.
 \end{center}
 
 
-\subsection{Defining forbidden zones}
+\subsection{Forbidden zones}
+\label{chp:forbidden_zone}
 
-\subsection{Define positioning procedure}
-
+\subsection{Positioning procedures}
+\label{chp:positioning_procedure}
 
 
 
