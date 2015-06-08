@@ -41,8 +41,11 @@
 \usepackage{textcomp}
 \usepackage{listings}					           % erlaubt Quellcode mit Zeilenumbruechen
 \usepackage{makeidx}                     % create index
+  \makeindex
 \usepackage{lcd}						             % Character LCD
 %\usepackage[paperheight=210mm,paperwidth=210mm,margin=20mm,heightrounded]{geometry}
+\usepackage{multirow,booktabs,colortbl,tabularx}
+
 
 \usepackage{pgfplots}
 \usepackage{tikz}                        % beautiful plots
@@ -137,8 +140,12 @@
 \definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
 \definecolor{darkgrey}{rgb}{0.2,0.2,0.2}
 \definecolor{black}{rgb}{0,0,0}
-
 \LCDcolors{black}{lightgrey}
+
+
+%---------------------
+% Index
+%---------------------
 
 
 %----------------------------------------------------------
@@ -151,15 +158,50 @@
 \input{../general/tech_assistance}
 
 \pagenumbering{roman}   % small roman page numbering
+
 \tableofcontents
 \newpage
+
+\listoffigures
+\listoftables
+\newpage
+
 \pagenumbering{arabic}  % now arabic page numbering
                         % for the rest of the document
 
-\input{inhalt/preface}
-\input{inhalt/general_information}
-\input{inhalt/manual_operation}
-\input{inhalt/computer_control}
+
+Thank you for purchasing the \productNumber ~\productName. This user
+manual will explain you how to operate the \productName. Please take
+some time to read it carefully before operating the device. Keep the
+instructions in a safe place for future reference.
+\newpage
+
+
+\input{inhalt/introduction}
+\input{inhalt/basic_setup}
+\input{inhalt/general_operation}
+\input{inhalt/remote_programming}
 \input{inhalt/specifications}
 
+
+
+
+\newpage
+\printindex
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
