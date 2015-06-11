@@ -5,7 +5,7 @@
 %------------------
 
 \def \docTitle {Angebot}
-\def \quoteNumber {4025-15-001}
+\def \quoteNumber {AN4052-15-01}
 \def \docAuthor {LK-Instruments}
 
 \documentclass[DIN,
@@ -48,6 +48,7 @@
 \usepackage{graphicx}            	      % include pictures
 \usepackage[rgb]{xcolor}
 \usepackage{lastpage}
+\usepackage{tabularx}
 
 %----------------
 % PDF properties
@@ -153,9 +154,9 @@
 \setkomavar{customer}{ }
 \setkomavar{invoice}[Angebot]{\quoteNumber}
 %\setkomavar{date}{04.09.2002}
-\setkomavar{signature}{Kim Kafenda}
-\setkomavar{title}{Angebot}
-%\setkomavar{subject}{Betreff}
+\setkomavar{signature}{Kim D. Kafenda}
+%\setkomavar{title}{Angebot}
+\setkomavar{subject}{Angebot}
 
 \begin{letter}{Universität Stuttgart\\
                3. Physikalisches Institut\\
@@ -164,24 +165,42 @@
                70569 Stuttgart}
                
 \opening{Sehr geehrter Herr Wrachtrup,}
-gerne unterbreiten wir Ihnen folgendes Angebot:
-Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
-von Mikrowellenresonanzen in Diamantproben. Enthalten sind dabei
-folgende Leistungen:
-\begin{itemize}
-  \setlength\itemsep{-3mm}
-  \item mechanischer Aufbau des Messaufbaus
-  \item Justage der optischen Bauelemente
-  \item ausgiebige Funktionstests
-  \item Erstellen der Messsoftware
-  \item Einrichtung eines Messcomputers
-  \item Aufbau und Inbetriebnahme beim Kunden
-\end{itemize}
-Für weitere Fragen zu diesem Angebot stehe ich gerne zur Verfügung.
-Über die Annahme und die Durchführung des Auftrags würde ich mich sehr freuen.
+gerne unterbreiten wir Ihnen freibleibend das nachfolgende Angebot:
+
+
+{\small
+%\footnotesize
+\begin{tabular}{|r|p{7.5cm}|r|r|r|}
+\hline 
+\textbf{Pos.} & \textbf{Artikel/Bezeichnung} & \textbf{Menge} & \textbf{Einzelpreis} & \textbf{Betrag} \\ 
+\hline 
+1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
+von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
+ & Enthalten sind dabei folgende Leistungen: & & & \\
+ & - mechanischer Aufbau des Messaufbaus & & & \\
+ & - Justage der optischen Bauelemente & & & \\
+ & - ausgiebige Funktionstests & & & \\
+ & - Erstellen der Messsoftware & & & \\
+ & - Einrichtung eines Messcomputers & & & \\
+ & - Inbetriebnahme beim Kunden & & & \\
+\hline 
+\end{tabular}
+} 
+
+\begin{tabularx}{\textwidth}{@{}lX}
+Angebotsgültigkeit: & 30 Tage\\
+Preisstellung: & Die angebotenen Preise verstehen sich in Euro zzgl. der gesetzlichen Mehrwertsteuer.\\
+Lieferzeit: & ca. 8 Wochen nach Auftragseingang\\
+Zahlungsbedingungen: & zahlbar innerhalb von 14 Tagen nach Rechnungsstellung
+\end{tabularx}
+
+Es gelten unsere Allgemeinen Geschäftsbedingungen, die in der jeweils gültigen Fassung auf unserer Internetseite www.lk-instruments.com eingesehen werden können und Ihnen auf Anforderung auch übersandt werden.
+
+Für weitere Fragen zu diesem Angebot stehen wir Ihnen gerne zur Verfügung.
+Über die Annahme und Durchführung des Auftrags würden wir uns sehr freuen.
 \closing{Mit freundlichen Grüßen}
 %\encl{Anlage 1 \\ Anlage 2}
-\ps{Es gelten unsere allgemeinen Verkaufsbedingungen.}
+%\ps{}
 
 
 \end{letter}
