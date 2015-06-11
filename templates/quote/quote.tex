@@ -4,7 +4,8 @@
 % General Settings
 %------------------
 
-\def \docTitle {Titel des Dokuments}
+\def \docTitle {Angebot}
+\def \quoteNumber {4025-15-001}
 \def \docAuthor {LK-Instruments}
 
 \documentclass[DIN,
@@ -52,7 +53,7 @@
 % PDF properties
 %----------------
 \usepackage[
-  pdftitle={\docTitle}
+  pdftitle={\docTitle~\quoteNumber}
  ,pdfsubject={not specified}
  ,pdfauthor={\docAuthor}
  ,pdfkeywords={}
@@ -150,7 +151,7 @@
 \setkomavar{yourmail}{}
 \setkomavar{myref}{ }
 \setkomavar{customer}{ }
-%\setkomavar{invoice}{1234}
+\setkomavar{invoice}[Angebot]{\quoteNumber}
 %\setkomavar{date}{04.09.2002}
 \setkomavar{signature}{Kim Kafenda}
 \setkomavar{title}{Angebot}
@@ -165,10 +166,10 @@
 \opening{Sehr geehrter Herr Wrachtrup,}
 gerne unterbreiten wir Ihnen folgendes Angebot:
 Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
-von Mikrowellenresonanzen in Diamantproben.
-
-Enthalten sind dabei folgende Leistungen:
+von Mikrowellenresonanzen in Diamantproben. Enthalten sind dabei
+folgende Leistungen:
 \begin{itemize}
+  \setlength\itemsep{-3mm}
   \item mechanischer Aufbau des Messaufbaus
   \item Justage der optischen Bauelemente
   \item ausgiebige Funktionstests
@@ -178,11 +179,9 @@ Enthalten sind dabei folgende Leistungen:
 \end{itemize}
 Für weitere Fragen zu diesem Angebot stehe ich gerne zur Verfügung.
 Über die Annahme und die Durchführung des Auftrags würde ich mich sehr freuen.
-
-
 \closing{Mit freundlichen Grüßen}
-
 %\encl{Anlage 1 \\ Anlage 2}
+\ps{Es gelten unsere allgemeinen Verkaufsbedingungen.}
 
 
 \end{letter}
