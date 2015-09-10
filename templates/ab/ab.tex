@@ -1,0 +1,209 @@
+
+
+%------------------
+% General Settings
+%------------------
+
+\def \docTitle {Auftragsbestätigung}
+\def \abNumber {AB4052-15-01}
+\def \docAuthor {LK-Instruments}
+
+\documentclass[DIN,
+               paper=a4,
+               fontsize=11pt,
+               enlargefirstpage,
+               foldmarks=on,
+               pagenumber=off,
+               firsthead=on,
+               firstfoot=on,
+               parskip=full,
+               addrfield=on,
+               fromalign=right,
+            %   fromfax=true,
+               fromemail=true,
+               fromphone=true,
+               fromurl=true,
+               fromlogo=on,
+               fromrule=off,
+               numericaldate=off,
+            %   subject=titled
+              ]{scrlttr2}
+
+%----------
+% Packages
+%----------
+\usepackage{etex}
+\reserveinserts{30}
+\usepackage[utf8]{inputenc}
+
+\usepackage{slantsc}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage{microtype}
+\usepackage[a4paper]{geometry}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}                    % math symbols
+\usepackage{graphicx}            	      % include pictures
+\usepackage[rgb]{xcolor}
+\usepackage{lastpage}
+\usepackage{tabularx}
+
+%----------------
+% PDF properties
+%----------------
+\usepackage[
+  pdftitle={\docTitle~\abNumber}
+ ,pdfsubject={not specified}
+ ,pdfauthor={\docAuthor}
+ ,pdfkeywords={}
+ ,pdfcreator={TeXlive on GNU/Linux}
+ ,pdfstartview=Fit 					        % startseite ganz anzeigen
+ ,pdfborder={0 0 0} 				        % links ohne umrandungen
+ ,pdfdisplaydoctitle 				        % pdftitle statt dateinamen anzeigen
+]{hyperref}
+
+%----------------
+% header/footer
+%----------------
+\makeatletter
+\@addtoplength{firstheadvpos}{8mm}
+\@addtoplength{firstfootvpos}{-8mm}
+\makeatother
+
+\firsthead{
+  \begin{minipage}[c]{0.35\textwidth}
+     \usekomavar{fromname}
+     \usekomavar{fromaddress}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.15\textwidth}
+    \includegraphics[width=2.5cm]{../../general/logo_black.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.35\textwidth}
+    \begin{flushright}
+      \usekomavar*{fromphone}\usekomavar{fromphone}\\
+      \usekomavar{fromemail}\\
+      \usekomavar{fromurl}
+    \end{flushright}
+  \end{minipage}
+}
+
+\firstfoot{% 
+  \parbox[t]{\textwidth}{\footnotesize
+  \begin{tabular}[t]{l@{}}%
+    \multicolumn{1}{@{}l@{}}{TTI GmbH - Zentrale}\\
+                             Nobelstraße 15\\
+                             D-70569 Stuttgart
+  \end{tabular}%
+  \hfill
+  \begin{tabular}[t]{l@{}}%
+    \multicolumn{1}{@{}l@{}}{Geschäftsführung:}\\
+      Prof. Dr.-Ing. Bernd Bertsche\\
+      Dipl.-Ing., MBA Peter Heinke
+  \end{tabular}%
+  \ifkomavarempty{frombank}{}{%
+  \hfill
+  \begin{tabular}[t]{l@{}}%
+    \multicolumn{1}{@{}l@{}}{\usekomavar*{frombank}:}\\
+      \usekomavar{frombank}
+  \end{tabular}%  
+  }%
+  \hfill  
+  \begin{tabular}[t]{r@{}}%
+    \multicolumn{1}{@{}r@{}}{Amtsgericht Stuttgart}\\
+      HRB 19455\\
+      USt-IdNr. DE 194532993\\
+      Steuer-Nr. 99039/02378
+  \end{tabular}
+}%
+}
+
+
+%----------------------------------------------------------
+\begin{document}
+%----------------
+% KOMA variables
+%----------------
+\setkomavar{fromname}{}
+
+\setkomavar{fromaddress}{TTI GmbH\\
+                         TGU LK-Instruments\\
+                         Unterbrüdener Str. 14\\
+                         71549 Auenwald}
+\setkomavar{backaddress}{\textbf{LK}-Instruments\\
+                         Unterbrüdener Str. 14\\
+                         71549 Auenwald}
+\setkomavar{fromphone}{+49 (0)7191 59120}
+\setkomavar{fromfax}{}
+\setkomavar{fromemail}{info@lk-instruments.com}
+\setkomavar{fromurl}{www.lk-instruments.com}
+
+\setkomavar{frombank}{BW-Bank Stuttgart\\
+                      BIC SOLADEST\\
+                      IBAN DE91 600501017871504477}
+
+%----------------
+% to be edited
+%----------------
+\setkomavar{yourref}[Ihre Bestellung]{T3-5563}
+%\setkomavar{yourmail}{}
+%\setkomavar{myref}{ }
+\setkomavar{customer}{10001}
+\setkomavar{invoice}[Auftragsbestätigung]{\abNumber}
+%\setkomavar{date}{04.09.2002}
+\setkomavar{signature}{Kim D. Kafenda}
+%\setkomavar{title}{Angebot}
+\setkomavar{subject}{Auftragsbestätigung}
+
+\begin{letter}{Universität Stuttgart\\
+               3. Physikalisches Institut\\
+               Prof. Dr. Jörg Wrachtrup\\               
+               Pfaffenwaldring 57\\
+               70569 Stuttgart}
+               
+\opening{Sehr geehrter Herr Wrachtrup,}
+vielen Dank für Ihren Auftrag, den wir wie folgt bestätigen:
+
+{\small
+%\footnotesize
+\begin{tabular}{|r|p{7.5cm}|r|r|r|}
+\hline 
+\textbf{Pos.} & \textbf{Artikel/Bezeichnung} & \textbf{Menge} & \textbf{Einzelpreis} & \textbf{Betrag} \\ 
+\hline 
+1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
+von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
+ & Enthalten sind dabei folgende Leistungen: & & & \\
+ & - mechanischer Aufbau des Messaufbaus & & & \\
+ & - Justage der optischen Bauelemente & & & \\
+ & - ausgiebige Funktionstests & & & \\
+ & - Erstellen der Messsoftware & & & \\
+ & - Einrichtung eines Messcomputers & & & \\
+ & - Inbetriebnahme beim Kunden & & & \\
+\hline 
+\end{tabular}
+} 
+
+\begin{flushright}
+\begin{tabular}{l r}
+\textbf{Total ohne MwSt.} & \textbf{9 000,00 €}\\
+19 \% MwSt. & 1 710,00 €\\
+\textbf{Total mit MwSt.} & \textbf{10 710,00 €}
+\end{tabular}
+\end{flushright}
+
+\begin{tabularx}{\textwidth}{@{}lX}
+%Preisstellung: & Die Preise verstehen sich in Euro zzgl. der gesetzlichen Mehrwertsteuer.\\
+Liefertermin: & ca. KW42\\
+Zahlungsbedingungen: & zahlbar innerhalb von 14 Tagen nach Rechnungsstellung
+\end{tabularx}
+
+Es gelten unsere Allgemeinen Geschäftsbedingungen, die in der jeweils gültigen Fassung auf unserer Internetseite www.lk-instruments.com eingesehen werden können und Ihnen auf Anforderung auch übersandt werden.
+\closing{Mit freundlichen Grüßen}
+%\encl{Anlage 1 \\ Anlage 2}
+%\ps{}
+
+\end{letter}
+\end{document}
