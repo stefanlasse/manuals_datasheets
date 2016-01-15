@@ -11,7 +11,8 @@
 \documentclass[DIN,
                paper=a4,
                fontsize=11pt,
-               enlargefirstpage,
+               addrfield=on,
+               enlargefirstpage=on,
                foldmarks=on,
                pagenumber=off,
                firsthead=on,
@@ -26,7 +27,7 @@
                fromlogo=on,
                fromrule=off,
                numericaldate=off,
-            %   subject=titled
+            %   subject=titled,
               ]{scrlttr2}
 
 %----------
@@ -40,6 +41,7 @@
 \usepackage[urw-garamond]{mathdesign}
 \usepackage{garamondx}
 \usepackage{microtype}
+\usepackage{lmodern}
 \usepackage[a4paper]{geometry}
 \usepackage[T1]{fontenc}
 
@@ -48,7 +50,8 @@
 \usepackage{graphicx}            	      % include pictures
 \usepackage[rgb]{xcolor}
 \usepackage{lastpage}
-\usepackage{tabularx}
+\usepackage{multirow,booktabs,colortbl,tabularx,array}
+
 
 %----------------
 % PDF properties
@@ -69,10 +72,15 @@
 %----------------
 \makeatletter
 \@addtoplength{firstheadvpos}{8mm}
-\@addtoplength{firstfootvpos}{-8mm}
+\@addtoplength{firstfootvpos}{-5mm}
+\@setplength{firstheadwidth}{\paperwidth}
+\@addtoplength{firstheadwidth}{-36mm}
+\@setplength{firstfootwidth}{\useplength{firstheadwidth}}
 \makeatother
 
-\firsthead{
+% Information in the header
+\newcommand*{\headbox}{
+\usekomafont{pagenumber}
   \begin{minipage}[c]{0.35\textwidth}
      \usekomavar{fromname}
      \usekomavar{fromaddress}
@@ -90,36 +98,51 @@
     \end{flushright}
   \end{minipage}
 }
+\firsthead{\headbox}
 
-\firstfoot{% 
-  \parbox[t]{\textwidth}{\footnotesize
+% Information in the footer
+\newcommand*{\footbox}{
+\usekomafont{pagenumber}%
+\parbox[t]{\textwidth}{\footnotesize%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{TTI GmbH - Zentrale}\\
-                             Nobelstraße 15\\
-                             D-70569 Stuttgart
+    TTI GmbH - Zentrale\\%
+    Nobelstraße 15\\%
+    D-70569 Stuttgart%
   \end{tabular}%
-  \hfill
+  \hspace*{0.7cm}%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{Geschäftsführung:}\\
-      Prof. Dr.-Ing. Bernd Bertsche\\
-      Dipl.-Ing., MBA Peter Heinke
+    Geschäftsführung:\\%
+    Prof. Dr.-Ing. Bernd Bertsche\\%
+    Dipl.-Ing., MBA Peter Heinke%
   \end{tabular}%
-  \ifkomavarempty{frombank}{}{%
-  \hfill
+  \hspace*{0.7cm}%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{\usekomavar*{frombank}:}\\
-      \usekomavar{frombank}
-  \end{tabular}%  
-  }%
-  \hfill  
+    \usekomavar*{frombank}:\\%
+    \usekomavar{frombank}%
+  \end{tabular}%
+  \hspace*{0.5cm}%
   \begin{tabular}[t]{r@{}}%
-    \multicolumn{1}{@{}r@{}}{Amtsgericht Stuttgart}\\
-      HRB 19455\\
-      USt-IdNr. DE 194532993\\
-      Steuer-Nr. 99039/02378
-  \end{tabular}
+      Amtsgericht Stuttgart\\%
+      HRB 19455\\%
+      USt-IdNr. DE 194532993\\%
+      Steuer-Nr. 99039/02378%
+  \end{tabular}%
 }%
-}
+}%
+\firstfoot{\footbox}
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+  align=tl,
+  hoffset=\dimexpr.5\paperwidth-.5\useplength{firstfootwidth}\relax,
+  voffset=\useplength{firstfootvpos},
+  width=\useplength{firstfootwidth},
+  height=\dimexpr\paperheight-\useplength{firstfootvpos},
+  foreground,
+  contents={\parbox{\layerwidth}{\usekomavar{firstfoot}}}
+]{TTIfooter}
+\DeclarePageStyleByLayers{LKletter}{TTIfooter}
+\pagestyle{LKletter}
 
 
 %----------------------------------------------------------
@@ -138,8 +161,8 @@
                          71549 Auenwald}
 \setkomavar{fromphone}{+49 (0)7191 59120}
 \setkomavar{fromfax}{}
-\setkomavar{fromemail}{info@lk-instruments.com}
-\setkomavar{fromurl}{www.lk-instruments.com}
+\setkomavar{fromemail}{\href{mailto:info@lk-instruments.com}{info@lk-instruments.com}}
+\setkomavar{fromurl}{\href{http://www.lk-instruments.com}{www.lk-instruments.com}}
 
 \setkomavar{frombank}{BW-Bank Stuttgart\\
                       BIC SOLADEST\\
@@ -156,51 +179,42 @@
 \setkomavar{date}{03.12.2015}
 \setkomavar{signature}{Kim D. Kafenda}
 %\setkomavar{title}{Angebot}
-\setkomavar{subject}{Rechnung}
-%
+\setkomavar{subject}{\docTitle}
+
 \begin{letter}{Universität Stuttgart\\
-               3. Physikalisches Institut\\
-               %Prof. Dr. Jörg Wrachtrup\\               
+               3. Physikalisches Institut\\             
                Pfaffenwaldring 57\\
                70569 Stuttgart}
-               
 \opening{Sehr geehrter Herr Prof. Wrachtrup,}
 wir erlauben uns wie folgt in Rechnung zu stellen:
 
-{\small
-%\footnotesize
-\begin{tabular}{|r|p{7.5cm}|r|r|r|}
-\hline 
-\textbf{Pos.} & \textbf{Artikel/Bezeichnung} & \textbf{Menge} & \textbf{Einzelpreis} & \textbf{Betrag} \\ 
-\hline 
-1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
-von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
- & Enthalten sind dabei folgende Leistungen: & & & \\
- & - mechanischer Aufbau des Messaufbaus & & & \\
- & - Justage der optischen Bauelemente & & & \\
- & - ausgiebige Funktionstests & & & \\
- & - Erstellen der Messsoftware & & & \\
- & - Einrichtung eines Messcomputers & & & \\
-% & - Inbetriebnahme beim Kunden & & & \\
-\hline 
+\begin{tabular}{rp{7.5cm}rrr}
+  \toprule
+  \textbf{Pos.}&\textbf{Artikel/Bezeichnung}&\textbf{Menge}&\textbf{Einzelpreis}&\textbf{Betrag}\\
+  \toprule
+  1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
+	    von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
+	  & Enthalten sind dabei folgende Leistungen: & & & \\
+	  & - mechanischer Aufbau des Messaufbaus & & & \\
+	  & - Justage der optischen Bauelemente & & & \\
+	  & - ausgiebige Funktionstests & & & \\
+	  & - Erstellen der Messsoftware & & & \\
+	  & - Einrichtung eines Messcomputers & & & \\
+  \bottomrule
+	  & & & & \\
+	  & & \multicolumn{2}{l}{\textbf{Nettobetrag:}} & \textbf{9 000,00 €}\\
+	  & & \multicolumn{2}{l}{MwSt. 19 \%:} & 1 710,00 €\\
+	  & & \multicolumn{2}{l}{\textbf{Rechnungsbetrag:}} & \textbf{10 710,00 €}\\
 \end{tabular}
-} 
-%
-\begin{flushright}
-\begin{tabular}{l r}
-\textbf{Total ohne MwSt.} & \textbf{9 000,00 €}\\
-19 \% MwSt. & 1 710,00 €\\
-\textbf{Total mit MwSt.} & \textbf{10 710,00 €}
-\end{tabular}
-\end{flushright}
-%
+
 Bitte überweisen Sie den Rechnungsbetrag unter Angabe der Rechnungsnummer innerhalb von 14 Tagen auf das unten angegebene Konto.\\
-\\
-Wir danken für Ihren Auftrag und hoffen auf weitere gute Zusammenarbeit.
-%
+
+Wir danken für Ihren Auftrag und hoffen auf weitere gute Zusammenarbeit.\\
+
+
 %\closing{Mit freundlichen Grüßen}
 %\encl{Anlage 1 \\ Anlage 2}
 %\ps{}
-%
+
 \end{letter}
 \end{document}
