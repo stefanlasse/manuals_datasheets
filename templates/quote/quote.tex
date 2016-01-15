@@ -5,13 +5,14 @@
 %------------------
 
 \def \docTitle {Angebot}
-\def \quoteNumber {AN4052-15-01}
+\def \quoteNumber {AN4052-16-01}
 \def \docAuthor {LK-Instruments}
 
 \documentclass[DIN,
                paper=a4,
                fontsize=11pt,
-               enlargefirstpage,
+               addrfield=on,
+               enlargefirstpage=on,
                foldmarks=on,
                pagenumber=off,
                firsthead=on,
@@ -26,7 +27,7 @@
                fromlogo=on,
                fromrule=off,
                numericaldate=off,
-            %   subject=titled
+            %   subject=titled,
               ]{scrlttr2}
 
 %----------
@@ -40,6 +41,7 @@
 \usepackage[urw-garamond]{mathdesign}
 \usepackage{garamondx}
 \usepackage{microtype}
+\usepackage{lmodern}
 \usepackage[a4paper]{geometry}
 \usepackage[T1]{fontenc}
 
@@ -48,7 +50,8 @@
 \usepackage{graphicx}            	      % include pictures
 \usepackage[rgb]{xcolor}
 \usepackage{lastpage}
-\usepackage{tabularx}
+\usepackage{multirow,booktabs,colortbl,tabularx,array}
+
 
 %----------------
 % PDF properties
@@ -69,10 +72,15 @@
 %----------------
 \makeatletter
 \@addtoplength{firstheadvpos}{8mm}
-\@addtoplength{firstfootvpos}{-8mm}
+\@addtoplength{firstfootvpos}{-5mm}
+\@setplength{firstheadwidth}{\paperwidth}
+\@addtoplength{firstheadwidth}{-36mm}
+\@setplength{firstfootwidth}{\useplength{firstheadwidth}}
 \makeatother
 
-\firsthead{
+% Information in the header
+\newcommand*{\headbox}{
+\usekomafont{pagenumber}
   \begin{minipage}[c]{0.35\textwidth}
      \usekomavar{fromname}
      \usekomavar{fromaddress}
@@ -90,36 +98,51 @@
     \end{flushright}
   \end{minipage}
 }
+\firsthead{\headbox}
 
-\firstfoot{% 
-  \parbox[t]{\textwidth}{\footnotesize
+% Information in the footer
+\newcommand*{\footbox}{
+\usekomafont{pagenumber}%
+\parbox[t]{\textwidth}{\footnotesize%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{TTI GmbH - Zentrale}\\
-                             Nobelstraße 15\\
-                             D-70569 Stuttgart
+    TTI GmbH - Zentrale\\%
+    Nobelstraße 15\\%
+    D-70569 Stuttgart%
   \end{tabular}%
-  \hfill
+  \hspace*{0.7cm}%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{Geschäftsführung:}\\
-      Prof. Dr.-Ing. Bernd Bertsche\\
-      Dipl.-Ing., MBA Peter Heinke
+    Geschäftsführung:\\%
+    Prof. Dr.-Ing. Bernd Bertsche\\%
+    Dipl.-Ing., MBA Peter Heinke%
   \end{tabular}%
-  \ifkomavarempty{frombank}{}{%
-  \hfill
+  \hspace*{0.7cm}%
   \begin{tabular}[t]{l@{}}%
-    \multicolumn{1}{@{}l@{}}{\usekomavar*{frombank}:}\\
-      \usekomavar{frombank}
-  \end{tabular}%  
-  }%
-  \hfill  
+    \usekomavar*{frombank}:\\%
+    \usekomavar{frombank}%
+  \end{tabular}%
+  \hspace*{0.5cm}%
   \begin{tabular}[t]{r@{}}%
-    \multicolumn{1}{@{}r@{}}{Amtsgericht Stuttgart}\\
-      HRB 19455\\
-      USt-IdNr. DE 194532993\\
-      Steuer-Nr. 99039/02378
-  \end{tabular}
+      Amtsgericht Stuttgart\\%
+      HRB 19455\\%
+      USt-IdNr. DE 194532993\\%
+      Steuer-Nr. 99039/02378%
+  \end{tabular}%
 }%
-}
+}%
+\firstfoot{\footbox}
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+  align=tl,
+  hoffset=\dimexpr.5\paperwidth-.5\useplength{firstfootwidth}\relax,
+  voffset=\useplength{firstfootvpos},
+  width=\useplength{firstfootwidth},
+  height=\dimexpr\paperheight-\useplength{firstfootvpos},
+  foreground,
+  contents={\parbox{\layerwidth}{\usekomavar{firstfoot}}}
+]{TTIfooter}
+\DeclarePageStyleByLayers{LKletter}{TTIfooter}
+\pagestyle{LKletter}
 
 
 %----------------------------------------------------------
@@ -138,8 +161,8 @@
                          71549 Auenwald}
 \setkomavar{fromphone}{+49 (0)7191 59120}
 \setkomavar{fromfax}{}
-\setkomavar{fromemail}{info@lk-instruments.com}
-\setkomavar{fromurl}{www.lk-instruments.com}
+\setkomavar{fromemail}{\href{mailto:info@lk-instruments.com}{info@lk-instruments.com}}
+\setkomavar{fromurl}{\href{http://www.lk-instruments.com}{www.lk-instruments.com}}
 
 \setkomavar{frombank}{BW-Bank Stuttgart\\
                       BIC SOLADEST\\
@@ -163,45 +186,42 @@
                Prof. Dr. Jörg Wrachtrup\\               
                Pfaffenwaldring 57\\
                70569 Stuttgart}
-               
-\opening{Sehr geehrter Herr Wrachtrup,}
-gerne unterbreiten wir Ihnen freibleibend das nachfolgende Angebot:
+\opening{Sehr geehrter Herr Prof. Wrachtrup,}
+gerne unterbreiten wir Ihnen freibleibend das nachfolgende Angebot.
 
-
-{\small
-%\footnotesize
-\begin{tabular}{|r|p{7.5cm}|r|r|r|}
-\hline 
-\textbf{Pos.} & \textbf{Artikel/Bezeichnung} & \textbf{Menge} & \textbf{Einzelpreis} & \textbf{Betrag} \\ 
-\hline 
-1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
-von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
- & Enthalten sind dabei folgende Leistungen: & & & \\
- & - mechanischer Aufbau des Messaufbaus & & & \\
- & - Justage der optischen Bauelemente & & & \\
- & - ausgiebige Funktionstests & & & \\
- & - Erstellen der Messsoftware & & & \\
- & - Einrichtung eines Messcomputers & & & \\
- & - Inbetriebnahme beim Kunden & & & \\
-\hline 
+\begin{tabular}{rp{7.5cm}rrr}
+  \toprule
+  \textbf{Pos.}&\textbf{Artikel/Bezeichnung}&\textbf{Menge}&\textbf{Einzelpreis}&\textbf{Betrag}\\
+  \toprule
+  1 & Aufbau und Inbetriebnahme eines Prototypen zur optischen Messung
+	    von Mikrowellenresonanzen in Diamantproben. & 1 & 9 000,00 € & 9 000,00 € \\
+	  & Enthalten sind dabei folgende Leistungen: & & & \\
+	  & - mechanischer Aufbau des Messaufbaus & & & \\
+	  & - Justage der optischen Bauelemente & & & \\
+	  & - ausgiebige Funktionstests & & & \\
+	  & - Erstellen der Messsoftware & & & \\
+	  & - Einrichtung eines Messcomputers & & & \\
+  \bottomrule
 \end{tabular}
-} 
-
-\begin{tabularx}{\textwidth}{@{}lX}
-Angebotsgültigkeit: & 30 Tage\\
-Preisstellung: & Die angebotenen Preise verstehen sich in Euro zzgl. der gesetzlichen Mehrwertsteuer.\\
-Lieferzeit: & ca. 8 Wochen nach Auftragseingang\\
-Zahlungsbedingungen: & zahlbar innerhalb von 14 Tagen nach Rechnungsstellung
-\end{tabularx}
-
-Es gelten unsere Allgemeinen Geschäftsbedingungen, die in der jeweils gültigen Fassung auf unserer Internetseite www.lk-instruments.com eingesehen werden können und Ihnen auf Anforderung auch übersandt werden.
+\begin{tabbing}
+Zahlungsbedingungen: \= Mitte \kill
+Angebotsgültigkeit: \> 30 Tage\\
+Preisstellung:       \>Die angebotenen Preise verstehen sich in Euro zzgl. \\
+\> der gesetzlichen Mehrwertsteuer.\\
+Lieferzeit:         \>ca. 8 Wochen nach Auftragseingang\\
+Zahlungsbedingungen:\> zahlbar innerhalb von 14 Tagen nach Rechnungsstellung\\
+\end{tabbing}
+Es gelten unsere Allgemeinen Geschäftsbedingungen, die in der jeweils
+gültigen Fassung auf unserer Internetseite
+\href{http://www.lk-instruments.com}{www.lk-instruments.com}
+eingesehen werden können und Ihnen auf Anforderung auch übersandt werden.
 
 Für weitere Fragen zu diesem Angebot stehen wir Ihnen gerne zur Verfügung.
 Über die Annahme und Durchführung des Auftrags würden wir uns sehr freuen.
-\closing{Mit freundlichen Grüßen}
+\closing{Mit freundlichen Grüßen,}
+
 %\encl{Anlage 1 \\ Anlage 2}
 %\ps{}
-
 
 \end{letter}
 \end{document}
