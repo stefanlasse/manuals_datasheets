@@ -1,0 +1,274 @@
+%------------------
+% General Settings
+%------------------
+\def \docTitle      {Allgemeine Gesch\"aftsbedingungen (AGB)}
+\def \docSubTitle   {}
+\def \productNumber {}
+\def \productName   {}
+\def \docAuthor     {LK-Instruments}
+\def \docRevision   {AGB}
+\def \docSubject    {\docAuthor \docTitle \docSubTitle}
+\def \docKeywords   {\docAuthor, \docTitle}
+
+\documentclass[a4paper, final, 11pt, oneside]{scrartcl}
+
+%----------
+% Packages
+%----------
+\usepackage{etex}
+\reserveinserts{30}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc} % erlaubt Umlaute in der tex-Datei
+
+\usepackage{slantsc}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}              % For the hyphenations in different languages
+\usepackage[intlimits]{amsmath}          % math symbols
+\usepackage{braket}                      % Dirac braket notation
+\usepackage{graphicx}                    % include pictures
+\usepackage{color}
+\usepackage[shell]{gnuplottex}           % gnuplot in latex
+\usepackage{pstricks}                    % post script tricks
+\usepackage{listings}                    % enter programming code
+\usepackage{fancyhdr}                    % make quite nice header/footer
+%\usepackage[version=3]{mhchem}           % chemistry stuff
+\usepackage{relsize}
+\usepackage{afterpage}
+\usepackage{gensymb}
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{multirow,booktabs,colortbl,tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{lastpage}
+
+\usepackage{pgfplots}
+\usepackage{tikz}                        % beautiful plots
+\pgfplotsset{compat = newest}
+\usepackage{units}                       % easy to use number-unit-package
+\usepackage[section]{placeins}           % Float barrier for sections.
+
+
+\usepackage{listings}					% erlaubt Quellcode mit Zeilenumbruechen
+
+\usepackage{parskip}                    % keine Einrückung nach Absatz
+
+%----------------
+% PDF properties
+%----------------
+\usepackage[
+  pdftitle={\docAuthor~\docSubTitle~\docTitle}
+ ,pdfsubject={\docSubject}
+ ,pdfauthor={\docAuthor}
+ ,pdfkeywords={\docKeywords}
+ ,pdfcreator={\docAuthor}
+ ,pdfstartview=Fit                       % startseite ganz anzeigen
+ ,pdfborder={0 0 0}                      % links ohne umrandungen
+ ,pdfdisplaydoctitle=true                % pdftitle statt dateinamen anzeigen
+ ,pdfcenterwindow=true                   % position pdf in center of the screen
+ ,setpagesize=true
+]{hyperref}
+
+%-------------------
+% Header und Footer
+%-------------------
+
+% Information in the header
+\fancyhead{
+  \begin{minipage}[l]{0.125\textwidth}
+    \includegraphics[width=0.8\textwidth]{../general/logo_black.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[r]{0.8\textwidth}
+    {\LARGE \textbf{\textsf{\docTitle}}}
+  \end{minipage}
+  \vspace{5pt}
+}
+
+% Information in the footer
+\newcommand*{\footbox}{
+\usekomafont{pagenumber}%
+\hspace*{-8mm}
+\parbox[t]{\textwidth}{\scriptsize %\footnotesize
+  \begin{tabular}[t]{l@{}}%
+    TTI GmbH - Zentrale\\%
+    Nobelstraße 15\\%
+    D-70569 Stuttgart%
+  \end{tabular}%
+  \hspace*{0.6cm}%
+  \begin{tabular}[t]{l@{}}%
+    Geschäftsführung:\\%
+    Prof. Dr.-Ing. Bernd Bertsche\\%
+    Dipl.-Ing., MBA Peter Heinke%
+  \end{tabular}%
+  \hspace*{0.6cm}%
+  \begin{tabular}[t]{l@{}}%
+    Bankverbindung:\\
+    BW-Bank Stuttgart\\
+    BIC SOLADEST\\
+    IBAN DE91 600501017871504477
+  \end{tabular}%
+  \hspace*{0.5cm}%
+  \begin{tabular}[t]{r@{}}%
+      Amtsgericht Stuttgart\\%
+      HRB 19455\\%
+      USt-IdNr. DE 194532993\\%
+      Steuer-Nr. 99039/02378%
+  \end{tabular}%
+}%
+}%
+%\firstfoot{\footbox}
+\fancyfoot[C]{\footbox}
+
+
+\pagestyle{fancy}
+
+
+%---------------------
+% My code definitions
+%---------------------
+
+\newtheorem{envdefinition}{Definition}[section]
+\newtheorem{envsatz}{Satz}
+
+% special numbers and letters
+\renewcommand{\i}{\mathrm{i}}                  % complex i
+\newcommand{\e}{\mathrm{e}}                    % Eulers number
+\renewcommand{\phi}{\varphi}                   % nicer phi
+\renewcommand{\epsilon}{\varepsilon}           % nicer epsilon
+\renewcommand{\theta}{\vartheta}               % nicer theta
+\renewcommand{\rho}{\varrho}                   % nicer rho
+%\newcommand{\degree}{^{\circ}}                 % degree-circle
+
+% vectors and matrices
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\Vek}[3]{\left(\begin{array}{c}#1\\#2 
+\ifthenelse{\equal{#3}{}}{}{\\#3}\end{array}\right)}
+
+% integral and derivative stuff:
+\renewcommand{\d}[1]{\;\mathrm{d}#1}           % integeration d
+% total derivative
+\newcommand{\td}[1]{\frac{\mathrm{d}}{\mathrm{d}#1}\,}
+\newcommand{\pd}[1]{\partial_{#1}\,}             % partial derivative
+
+% Braket notation
+\renewcommand{\bra}{\Bra}
+\renewcommand{\ket}{\Ket}
+\renewcommand{\braket}{\Braket}
+\renewcommand{\set}{\Set}
+
+% plus-minus with braces
+\newcommand{\PM}{\ensuremath{\substack{+\\[-0.25em]-}\,}}
+\renewcommand{\pm}{\PM}
+\newcommand{\pmp}{\ensuremath{\substack{\mathsmaller{(}+\mathsmaller{)}\\[-0.25em]-}\,}}
+\newcommand{\pmm}{\ensuremath{\substack{+\\[-0.25em]\mathsmaller{(}-\mathsmaller{)}}\,}}
+
+\setlength{\columnsep}{40.0pt}
+
+%----------------------------------------------------------
+% let the party start
+%----------------------------------------------------------
+\begin{document}
+
+%\vspace*{4mm}
+\vspace*{1pt}
+
+  \begin{minipage}[l]{0.6\textwidth}
+    \hspace*{-3.5mm}
+    \footnotesize
+    \begin{tabular}[t]{l@{}}
+      TTI GmbH\\
+      Technologie-Transfer-Initiative\\
+      an der Universität Stuttgart\\
+      \\
+      \\
+      Stand: 08/2013\\
+      \\
+      \\
+    \end{tabular}
+    \footnotesize    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.3\textwidth}
+    \begin{flushright}
+      \footnotesize
+      \begin{tabular}[t]{l@{}}
+      TTI GmbH\\
+      TGU LK-Instruments\\
+      Unterbrüdener Str. 14\\
+      71549 Auenwald\\
+      \\
+      Tel.: +49 (0)7191 59120\\
+      \href{mailto:info@lk-instruments.com}{info@lk-instruments.com}\\
+      \href{http://www.lk-instruments.com}{www.lk-instruments.com}\\
+    \end{tabular}
+    \end{flushright}
+  \end{minipage}
+  
+%\vspace*{4mm}
+\vspace*{1pt}
+
+\begin{multicols}{2}
+\section{Allgemeine Vorschriften}
+Die TTI GmbH TGU LK-Instruments erbringt ihre Leistungen ausschließlich gemäß den nachfolgenden allgemeinen Geschäftsbedingungen, soweit nicht in einem schriftlichen Vertrag etwas anderes vereinbart ist. Anderslautenden Bedingungen des Auftraggebers wird hiermit widersprochen.
+
+\section{Auftragserteilung}
+Die Erteilung eines Auftrags an die TTI GmbH TGU LK-Instruments sowie jede Form des Vertragsschlusses bedarf der Schriftform.\\
+Ergänzungen oder Änderungen jeder Art eines Angebots der TTI GmbH TGU LK-Instruments oder eines bereits bestehenden Vertrages bedürfen der Schriftform. Mündlich, fernmündlich oder fernschriftlich erteilte Auskünfte und Zusagen sind unverbindlich.
+
+\section{Vergütung}
+Der im Angebot oder im Vertrag angeführte Preis ist ein Festpreis, soweit nichts anderes schriftlich vereinbart ist.\\
+Sollte der vereinbarte Preis nicht ausreichen, um ein optimales Ergebnis zu erreichen, dann wird die TTI GmbH TGU LK-Instruments den Vertragspartner hierüber unterrichten und Vorschläge über das weitere Vorgehen unterbreiten.
+
+Die jeweils vertraglich vereinbarten Zahlungen müssen innerhalb von 14 Tagen nach Eingang der Rechnung der TTI GmbH TGU LK-Instruments beim Auftraggeber oder entsprechend der vertraglich vereinbarten Zahlungstermine auf das von der TTI GmbH TGU LK-Instruments benannte Konto eingezahlt werden.\\
+Die Mehrwertsteuer wird gesondert in Rechnung gestellt und vergütet.\\
+Die TTI GmbH TGU LK-Instruments kann erst mit der Ausführung des Auftrags beginnen, wenn fällige Vorauszahlungen auf dem Konto eingegangen sind.
+
+\section{Arbeitsergebnisse / Erfindungen}
+Es gilt die im Angebot oder im Vertrag vereinbarte Regelung.
+
+Sollte dort keine gesonderte Regelung enthalten sein, gilt folgendes: Der Auftraggeber erhält an den entstandenen Ergebnisses ein unwiderrufliches nichtausschließliches Nutzungsrecht. An den Kosten für die Anmeldung, Aufrechterhaltung und Verteidigung von Schutzrechten, die im Rahmen des Vertrages entstanden sind, erstattet der Auftraggeber der TTI GmbH TGU LK-Instruments ein noch zu vereinbarendes Entgelt. Sollte der Auftraggeber das Schutzrecht benutzen, so ist er auch zur Erstattung der Arbeitnehmererfindervergütung anteilsmäßig verpflichtet.
+
+\section{Geheimhaltung / Veröffentlichung}
+Die TTI GmbH TGU LK-Instruments wird alle vom Auftraggeber aufgrund dieses Vertrages erhaltenen Informationen technischer und geschäftlicher Art Dritten gegenüber geheim halten, und zwar auch über die Dauer dieses Vertrages hinaus, solange und soweit diese Informationen nicht auf andere Weise allgemein bekannt geworden sind oder der Auftraggeber schriftlich auf die Geheimhaltung verzichtet hat.\\
+Mit Rücksicht auf die wissenschaftlichen Pflichten des TGU-Leiters ist dieser berechtigt, die im Rahmen dieses Vertrages erzielten Arbeitsergebnisse in wissenschaftlich üblicher Form nach vorheriger Abstimmung mit dem Auftraggeber zu veröffentlichen.
+
+Der Auftraggeber ist ebenfalls zur Veröffentlichung nach Abstimmung mit der TTI GmbH TGU LK-Instruments berechtigt. Dabei kann eine beabsichtigte Veröffentlichung die erforderliche Zeit zurückgestellt werden, wenn Dissertationen, Diplomarbeiten oder Schutzrechtsanmeldungen betroffen sein können.
+
+Diese Regelung gilt bis 2 Jahre nach Ende des Projekts.
+
+\section{Haftung / Gewährleistung}
+Die Haftung der TTI GmbH TGU LK-Instruments, ihrer gesetzlichen Vertreter und Erfüllungsgehilfen aus Vertragsverletzungen oder aus Delikt wird beschränkt auf Fälle von Vorsatz, grober Fahrlässigkeit, Fehlen einer zugesicherten Eigenschaft und Verletzung einer Pflicht, bei deren Nichteinhaltung der Vertragszweck gefährdet wäre. Die Haftung wird für nachgewiesene Schäden auf die Höhe der Vertragsvergütung beschränkt, für Folgeschäden wird keine Haftung übernommen.
+
+Die TTI GmbH TGU LK-Instruments gewährleistet die Anwendung wissenschaftlicher Sorgfalt sowie die Einhaltung der anerkannten Regeln der Technik, nicht aber das tatsächliche Erreichen des Forschungs- und Entwicklungszieles.\\
+Sie wird geeignete Mitarbeiter mit der Durchführung von Arbeiten im Rahmen dieses Vertrages betrauen und wird diese, soweit rechtlich zulässig, zur Einhaltung der Bestimmungen dieses Vertrages verpflichten.\\
+Die TTI GmbH TGU LK-Instruments ist berechtigt, auftretende Mängel nachzubessern. Bei Fehlschlagen der Nachbesserung ist der Auftraggeber berechtigt, nach seiner Wahl Herabsetzung der Vergütung oder Rückgängigmachung des Vertrages zu verlangen. Weitergehende Gewährleistungsansprüche sind ausgeschlossen.\\
+Die Gewährleistung wird begrenzt auf sechs Monate nach Übergabe des Forschungs- und Entwicklungsergebnisses. Dies gilt auch für Gewährleistungsansprüche, die nicht den gesetzlichen Gewährleistungspflichten unterliegen.
+
+\section{Schutzrechte Dritter}
+Sollten einem mit der Durchführung der Arbeiten eingesetzten Mitarbeiter Schutzrechte bekannt sein oder werden, die im Zusammenhang mit den Arbeiten im Rahmen dieses Vertrages von Bedeutung sein könnten, so wird der diesen Mitarbeiter beschäftigende Vertragspartner dies dem anderen Vertragspartner unverzüglich mitteilen. Eine Verpflichtung zur Durchführung von Recherchen besteht nicht.
+
+\section{Kündigung}
+Dieser Vertrag kann vorzeitig mit einer Frist von 3 Monaten gekündigt werden,
+\begin{itemize}
+\item wenn erkennbar wird, dass das erwartete Ergebnis nicht oder nicht ohne wesentliche Überschreitung der vorgesehenen Kosten oder Bearbeitungsdauer erreicht wird, oder
+\item wenn außergewöhnliche Umstände eintreten, aufgrund deren die Fortführung dieses Vertrages nicht zugemutet werden kann.
+\end{itemize}
+Bei einer vorzeitigen Vertragsbeendigung werden sich die Vertragspartner über eine etwa noch erforderliche Restabwicklung abstimmen. Die bis zu diesem Zeitpunkt bei der TTI GmbH TGU LK-Instruments bereits angefallenen Kosten wird der Auftraggeber entsprechend Ziffer 3 zahlen.
+
+\section{Sonstiges}
+Nebenabreden, Änderungen und Ergänzungen bedürfen der Schriftform.\\
+Erfüllungsort ist Stuttgart. Als Gerichtsstand wird -- soweit rechtlich zulässig -- Stuttgart vereinbart.\\
+Es gilt das Recht der Bundesrepublik Deutschland.
+
+\end{multicols}
+
+
+\end{document}

@@ -1,0 +1,291 @@
+%------------------
+% General Settings
+%------------------
+\def \docTitle      {Allgemeine Lieferbedingungen f\"ur Erzeugnisse und Leistungen}
+\def \docSubTitle   {}
+\def \productNumber {}
+\def \productName   {}
+\def \docAuthor     {LK-Instruments}
+\def \docRevision   {AGB}
+\def \docSubject    {\docAuthor \docTitle \docSubTitle}
+\def \docKeywords   {\docAuthor, \docTitle}
+
+\documentclass[a4paper, final, 11pt, oneside]{scrartcl}
+
+%----------
+% Packages
+%----------
+\usepackage{etex}
+\reserveinserts{30}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc} % erlaubt Umlaute in der tex-Datei
+
+\usepackage{slantsc}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}              % For the hyphenations in different languages
+\usepackage[intlimits]{amsmath}          % math symbols
+\usepackage{braket}                      % Dirac braket notation
+\usepackage{graphicx}                    % include pictures
+\usepackage{color}
+\usepackage[shell]{gnuplottex}           % gnuplot in latex
+\usepackage{pstricks}                    % post script tricks
+\usepackage{listings}                    % enter programming code
+\usepackage{fancyhdr}                    % make quite nice header/footer
+%\usepackage[version=3]{mhchem}           % chemistry stuff
+\usepackage{relsize}
+\usepackage{afterpage}
+\usepackage{gensymb}
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{multirow,booktabs,colortbl,tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{lastpage}
+
+\usepackage{pgfplots}
+\usepackage{tikz}                        % beautiful plots
+\pgfplotsset{compat = newest}
+\usepackage{units}                       % easy to use number-unit-package
+\usepackage[section]{placeins}           % Float barrier for sections.
+
+
+\usepackage{listings}					% erlaubt Quellcode mit Zeilenumbruechen
+
+\usepackage{parskip}                    % keine Einrückung nach Absatz
+
+%----------------
+% PDF properties
+%----------------
+\usepackage[
+  pdftitle={\docAuthor~\docSubTitle~\docTitle}
+ ,pdfsubject={\docSubject}
+ ,pdfauthor={\docAuthor}
+ ,pdfkeywords={\docKeywords}
+ ,pdfcreator={\docAuthor}
+ ,pdfstartview=Fit                       % startseite ganz anzeigen
+ ,pdfborder={0 0 0}                      % links ohne umrandungen
+ ,pdfdisplaydoctitle=true                % pdftitle statt dateinamen anzeigen
+ ,pdfcenterwindow=true                   % position pdf in center of the screen
+ ,setpagesize=true
+]{hyperref}
+
+%-------------------
+% Header und Footer
+%-------------------
+
+% Information in the header
+\fancyhead[r]{
+  \begin{minipage}[l]{0.125\textwidth}
+    \includegraphics[width=0.8\textwidth]{../general/logo_black.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[r]{0.8\textwidth}
+    {\LARGE \textbf{\textsf{Allgemeine Lieferbedingungen f\"ur\\ Erzeugnisse und Leistungen}}}
+  \end{minipage}
+  \vspace{1pt}
+}
+
+% Information in the footer
+\newcommand*{\footbox}{
+\usekomafont{pagenumber}%
+\hspace*{-8mm}
+\parbox[t]{\textwidth}{\scriptsize %\footnotesize
+  \begin{tabular}[t]{l@{}}%
+    TTI GmbH - Zentrale\\%
+    Nobelstraße 15\\%
+    D-70569 Stuttgart%
+  \end{tabular}%
+  \hspace*{0.6cm}%
+  \begin{tabular}[t]{l@{}}%
+    Geschäftsführung:\\%
+    Prof. Dr.-Ing. Bernd Bertsche\\%
+    Dipl.-Ing., MBA Peter Heinke%
+  \end{tabular}%
+  \hspace*{0.6cm}%
+  \begin{tabular}[t]{l@{}}%
+    Bankverbindung:\\
+    BW-Bank Stuttgart\\
+    BIC SOLADEST\\
+    IBAN DE91 600501017871504477
+  \end{tabular}%
+  \hspace*{0.5cm}%
+  \begin{tabular}[t]{r@{}}%
+      Amtsgericht Stuttgart\\%
+      HRB 19455\\%
+      USt-IdNr. DE 194532993\\%
+      Steuer-Nr. 99039/02378%
+  \end{tabular}%
+}%
+}%
+%\firstfoot{\footbox}
+\fancyfoot[C]{\footbox}
+
+
+\pagestyle{fancy}
+
+
+%---------------------
+% My code definitions
+%---------------------
+
+\newtheorem{envdefinition}{Definition}[section]
+\newtheorem{envsatz}{Satz}
+
+% special numbers and letters
+\renewcommand{\i}{\mathrm{i}}                  % complex i
+\newcommand{\e}{\mathrm{e}}                    % Eulers number
+\renewcommand{\phi}{\varphi}                   % nicer phi
+\renewcommand{\epsilon}{\varepsilon}           % nicer epsilon
+\renewcommand{\theta}{\vartheta}               % nicer theta
+\renewcommand{\rho}{\varrho}                   % nicer rho
+%\newcommand{\degree}{^{\circ}}                 % degree-circle
+
+% vectors and matrices
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\Vek}[3]{\left(\begin{array}{c}#1\\#2 
+\ifthenelse{\equal{#3}{}}{}{\\#3}\end{array}\right)}
+
+% integral and derivative stuff:
+\renewcommand{\d}[1]{\;\mathrm{d}#1}           % integeration d
+% total derivative
+\newcommand{\td}[1]{\frac{\mathrm{d}}{\mathrm{d}#1}\,}
+\newcommand{\pd}[1]{\partial_{#1}\,}             % partial derivative
+
+% Braket notation
+\renewcommand{\bra}{\Bra}
+\renewcommand{\ket}{\Ket}
+\renewcommand{\braket}{\Braket}
+\renewcommand{\set}{\Set}
+
+% plus-minus with braces
+\newcommand{\PM}{\ensuremath{\substack{+\\[-0.25em]-}\,}}
+\renewcommand{\pm}{\PM}
+\newcommand{\pmp}{\ensuremath{\substack{\mathsmaller{(}+\mathsmaller{)}\\[-0.25em]-}\,}}
+\newcommand{\pmm}{\ensuremath{\substack{+\\[-0.25em]\mathsmaller{(}-\mathsmaller{)}}\,}}
+
+\setlength{\columnsep}{40.0pt}
+
+%----------------------------------------------------------
+% let the party start
+%----------------------------------------------------------
+\begin{document}
+
+%\vspace*{4mm}
+\vspace*{1pt}
+
+  \begin{minipage}[l]{0.6\textwidth}
+    \hspace*{-3.5mm}
+    \footnotesize
+    \begin{tabular}[t]{l@{}}
+      zur Verwendung im Geschäftsverkehr\\
+      gegenüber Unternehmern\\
+      \\
+      \\
+      \\
+      Stand: 01/2016\\
+      \\
+      \\
+    \end{tabular}
+    \footnotesize    
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.3\textwidth}
+    \begin{flushright}
+      \footnotesize
+      \begin{tabular}[t]{l@{}}
+      TTI GmbH\\
+      TGU LK-Instruments\\
+      Unterbrüdener Str. 14\\
+      71549 Auenwald\\
+      \\
+      Tel.: +49 (0)7191 59120\\
+      \href{mailto:info@lk-instruments.com}{info@lk-instruments.com}\\
+      \href{http://www.lk-instruments.com}{www.lk-instruments.com}\\
+    \end{tabular}
+    \end{flushright}
+  \end{minipage}
+  
+%\vspace*{4mm}
+\vspace*{1pt}
+
+\begin{multicols}{2}
+\section{Geltungsbereich}
+1. Diese allgemeinen Lieferbedingungen für Erzeugnisse und Leistungen gelten ausschließlich gegenüber Unternehmern, juristischen Personen des öffentlichen Rechts oder öffentlich-rechtlichen Sondervermögen im Sinne von § 310 Absatz 1 BGB. Entgegenstehende oder von unseren Lieferbedingungen abweichende Bedingungen des Bestellers erkennen wir nur an, wenn wir ausdrücklich schriftlich der Geltung zustimmen.
+  
+2. Diese Lieferbedingungen gelten auch für alle zukünftigen Geschäfte mit dem Besteller, soweit es sich um Rechtsgeschäfte verwandter Art handelt.
+
+\section{Angebot und Vertragsabschluss}
+Sofern eine Bestellung als Angebot gemäß § 145 BGB anzusehen ist, können wir diese innerhalb von zwei Wochen annehmen.
+
+\section{Überlassene Unterlagen}
+An allen in Zusammenhang mit der Auftragserteilung dem Besteller überlassenen Unterlagen, wie z. B. Kalkulationen, Zeichnungen etc., behalten wir uns Eigentums- und Urheberrechte vor. Diese Unterlagen dürfen Dritten nicht
+zugänglich gemacht werden, es sei denn, wir erteilen dazu dem Besteller unsere ausdrückliche schriftliche Zustimmung. Soweit wir das Angebot des Bestellers nicht innerhalb der Frist von § 2 annehmen, sind diese Unterlagen uns unverzüglich zurückzusenden.
+
+\section{Preise und Zahlung}
+1. Sofern nichts Gegenteiliges schriftlich vereinbart wird, gelten unsere Preise ab Werk ausschließlich Verpackung und zuzüglich Mehrwertsteuer in jeweils gültiger Höhe. Kosten der Verpackung werden gesondert in Rechnung gestellt.
+
+2. Die Zahlung des Kaufpreises hat ausschließlich auf das auf der Rechnung genannte Konto zu erfolgen. Der Abzug von Skonto ist nur bei schriftlicher besonderer Vereinbarung zulässig.
+
+3. Sofern nichts anderes vereinbart wird, ist der Kaufpreis innerhalb von 14 Tagen nach Rechnungsstellung zahlbar. Verzugszinsen werden in Höhe von 8 \% über dem jeweiligen Basiszinssatz p.a. berechnet. Die Geltendmachung eines höheren Verzugsschadens bleibt vorbehalten.
+
+4. Sofern keine Festpreisabrede getroffen wurde, bleiben angemessene Preisänderungen wegen veränderter Lohn-, Material- und Vertriebskosten für Lieferungen, die 3 Monate oder später nach Vertragsabschluss erfolgen, vorbehalten.
+
+\section{Zurückbehaltungsrechte}
+Zur Ausübung eines Zurückbehaltungsrechts ist der Besteller nur insoweit befugt, als sein Gegenanspruch auf dem gleichen Vertragsverhältnis beruht.
+
+\section{Lieferzeit}
+1. Der Beginn der von uns angegebenen Lieferzeit setzt die rechtzeitige und ordnungsgemäße Erfüllung der Verpflichtungen des Bestellers voraus. Die Einrede des nicht erfüllten Vertrages bleibt vorbehalten.
+
+2. Kommt der Besteller in Annahmeverzug oder verletzt er schuldhaft sonstige Mitwirkungspflichten, so sind wir berechtigt, den uns insoweit entstehenden Schaden, einschließlich etwaiger Mehraufwendungen ersetzt zu verlangen. Weitergehende Ansprüche bleiben vorbehalten. Sofern vorstehende Voraussetzungen vorliegen, geht die Gefahr eines zufälligen Untergangs oder einer zufälligen Verschlechterung der Kaufsache in dem Zeitpunkt auf den Besteller über, in dem dieser in Annahme- oder Schuldnerverzug geraten ist.
+
+3. Wir haften im Fall des von uns nicht vorsätzlich oder grob fahrlässig herbeigeführten Lieferverzugs für jede vollendete Woche Verzug im Rahmen einer pauschalierten Verzugsentschädigung in Höhe von 3 \% des Lieferwertes, maximal jedoch nicht mehr als 15 \% des Lieferwertes.
+
+4. Weitere gesetzliche Ansprüche und Rechte des Bestellers wegen eines Lieferverzuges bleiben unberührt.
+
+\section{Gefahrübergang bei Versendung}
+Wird die Ware auf Wunsch des Bestellers an diesen versandt, so geht mit der Absendung an den Besteller, spätestens mit Verlassen des Werks/Lagers die Gefahr des zufälligen Untergangs oder der zufälligen Verschlechterung der Ware auf den Besteller über. Dies gilt unabhängig davon, ob die Versendung der Ware vom Erfüllungsort erfolgt oder wer die Frachtkosten trägt.
+
+\section{Eigentumsvorbehalt}
+1. Wir behalten uns das Eigentum an der gelieferten Sache bis zur vollständigen Zahlung sämtlicher Forderungen aus dem Liefervertrag vor. Dies gilt auch für alle zukünftigen Lieferungen, auch wenn wir uns nicht stets ausdrücklich hierauf berufen. Wir sind berechtigt, die Kaufsache zurückzunehmen, wenn der Besteller sich vertragswidrig verhält.
+
+2. Der Besteller ist verpflichtet, solange das Eigentum noch nicht auf ihn übergegangen ist, die Kaufsache pfleglich zu behandeln. Insbesondere ist er verpflichtet, diese auf eigene Kosten gegen Diebstahl-, Feuer- und Wasserschäden ausreichend zum Neuwert zu versichern. Müssen Wartungs- und Inspektionsarbeiten durchgeführt werden, hat der Besteller diese auf eigene Kosten rechtzeitig auszuführen. Solange das Eigentum noch nicht übergegangen ist, hat uns der Besteller unverzüglich schriftlich zu benachrichtigen, wenn der gelieferte Gegenstand gepfändet oder sonstigen Eingriffen Dritter ausgesetzt ist. Soweit der Dritte nicht in der Lage ist, uns die gerichtlichen und außergerichtlichen Kosten einer Klage gemäß § 771 ZPO zu erstatten, haftet der Besteller für den uns entstandenen Ausfall.
+
+3. Der Besteller ist zur Weiterveräußerung der Vorbehaltsware im normalen Geschäftsverkehr berechtigt. Die Forderungen des Abnehmers aus der Weiterveräußerung der Vorbehaltsware tritt der Besteller schon jetzt an uns in Höhe des mit uns vereinbarten Faktura-Endbetrages ab. Diese Abtretung gilt unabhängig davon, ob die Kaufsache ohne oder nach Verarbeitung weiterverkauft worden ist. Der Besteller bleibt zur Einziehung der Forderung auch nach der Abtretung ermächtigt. Unsere Befugnis, die Forderung selbst einzuziehen, bleibt davon unberührt. Wir werden jedoch die Forderung nicht einziehen, solange der Besteller seinen Zahlungsverpflichtungen aus den vereinnahmten Erlösen nachkommt, nicht in Zahlungsverzug ist und insbesondere kein Antrag auf Eröffnung eines Insolvenzverfahrens gestellt ist oder Zahlungseinstellung vorliegt.
+
+4. Die Be- und Verarbeitung oder Umbildung der Kaufsache durch den Besteller erfolgt stets Namens und im Auftrag für uns. In diesem Fall setzt sich das Anwartschaftsrecht des Bestellers an der Kaufsache an der umgebildeten Sache fort. Sofern die Kaufsache mit anderen, uns nicht gehörenden Gegenständen verarbeitet wird, erwerben wir das Miteigentum an der neuen Sache im Verhältnis des objektiven Wertes unserer Kaufsache zu den anderen bearbeiteten Gegenständen zur Zeit der Verarbeitung. Dasselbe gilt für den Fall der Vermischung. Sofern die Vermischung in der Weise erfolgt, dass die Sache des Bestellers als Hauptsache anzusehen ist, gilt als vereinbart, dass der Besteller uns anteilmäßig Miteigentum überträgt und das so entstandene Alleineigentum oder Miteigentum für uns verwahrt. Zur Sicherung unserer Forderungen gegen den Besteller tritt der Besteller auch solche Forderungen an uns ab, die ihm durch die Verbindung der Vorbehaltsware mit einem Grundstück gegen einen Dritten erwachsen; wir nehmen diese Abtretung schon jetzt an.
+
+5. Wir verpflichten uns, die uns zustehenden Sicherheiten auf Verlangen des Bestellers freizugeben, soweit ihr Wert die zu sichernden Forderungen um mehr als 20 \% übersteigt.
+
+\section{Gewährleistung und Mängelrüge sowie Rückgriff/Herstellerregress}
+1. Gewährleistungsrechte des Bestellers setzen voraus, dass dieser seinen nach § 377 HGB geschuldeten Untersuchungs- und Rügeobliegenheiten ordnungsgemäß nachgekommen ist.
+
+2. Mängelansprüche verjähren in 12 Monaten nach erfolgter Ablieferung der von uns gelieferten Ware bei unserem Besteller. Für Schadensersatzansprüche bei Vorsatz und grober Fahrlässigkeit sowie bei Verletzung von Leben, Körper und Gesundheit, die auf einer vorsätzlichen oder fahrlässigen Pflichtverletzung des Verwenders beruhen, gilt die gesetzliche Verjährungsfrist. Soweit das Gesetz gemäß § 438 Abs. 1 Nr. 2 BGB, § 479 Absatz 1 BGB und § 634a Absatz 1 BGB längere Fristen zwingend vorschreibt, gelten diese Fristen. Vor etwaiger Rücksendung der Ware ist unsere Zustimmung einzuholen.
+
+3. Sollte trotz aller aufgewendeter Sorgfalt die gelieferte Ware einen Mangel aufweisen, der bereits zum Zeitpunkt des Gefahrübergangs vorlag, so werden wir die Ware, vorbehaltlich fristgerechter Mängelrüge nach unserer Wahl nachbessern oder Ersatzware liefern. Es ist uns stets Gelegenheit zur Nacherfüllung innerhalb angemessener Frist zu geben. Rückgriffsansprüche bleiben von vorstehender Regelung ohne Einschränkung unberührt.
+
+4. Schlägt die Nacherfüllung fehl, kann der Besteller — unbeschadet etwaiger Schadensersatzansprüche — vom Vertrag zurücktreten oder die Vergütung mindern.
+
+5. Mängelansprüche bestehen nicht bei nur unerheblicher Abweichung von der vereinbarten Beschaffenheit, bei nur unerheblicher Beeinträchtigung der Brauchbarkeit, bei natürlicher Abnutzung oder Verschleiß, wie bei Schäden, die nach dem Gefahrübergang infolge fehlerhafter oder nachlässiger Behandlung, übermäßiger Beanspruchung, ungeeigneter Betriebsmittel, mangelhafter Bauarbeiten, ungeeigneten Baugrundes oder aufgrund besonderer äußerer Einflüsse entstehen, die nach dem Vertrag nicht vorausgesetzt sind. Werden vom Besteller oder Dritten unsachgemäß Instandsetzungsarbeiten oder Änderungen vorgenommen, so bestehen für diese und die daraus entstehenden Folgen ebenfalls keine Mängelansprüche.
+
+6. Ansprüche des Bestellers wegen der zum Zweck der Nacherfüllung erforderlichen Aufwendungen, insbesondere Transport-, Wege-, Arbeits- und Materialkosten, sind ausgeschlossen, soweit die Aufwendungen sich erhöhen, weil die von uns gelieferte Ware nachträglich an einen anderen Ort als die Niederlassung des Bestellers verbracht worden ist, es sei denn, die Verbringung entspricht ihrem bestimmungsgemäßen Gebrauch.
+
+7. Rückgriffsansprüche des Bestellers gegen uns bestehen nur insoweit, als der Besteller mit seinem Abnehmer keine über die gesetzlich zwingenden Mängelansprüche hinausgehenden Vereinbarungen getroffen hat. Für den Umfang des Rückgriffsanspruches des Bestellers gegen den Lieferer gilt ferner Absatz 6 entsprechend.
+
+\section{Sonstiges}
+1. Dieser Vertrag und die gesamten Rechtsbeziehungen der Parteien unterliegen dem Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).
+
+2. Erfüllungsort und ausschließlicher Gerichtsstand und für alle Streitigkeiten aus diesem Vertrag ist unser Geschäftssitz, sofern sich aus der Auftragsbestätigung nichts anderes ergibt.
+
+3. Alle Vereinbarungen, die zwischen den Parteien zwecks Ausführung dieses Vertrages getroffen werden, sind in diesem Vertrag schriftlich niedergelegt.
+
+\end{multicols}
+
+
+\end{document}
