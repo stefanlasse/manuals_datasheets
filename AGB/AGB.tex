@@ -32,10 +32,12 @@
 \usepackage{braket}                      % Dirac braket notation
 \usepackage{graphicx}                    % include pictures
 \usepackage{color}
-\usepackage[shell]{gnuplottex}           % gnuplot in latex
+%\usepackage[shell]{gnuplottex}           % gnuplot in latex
 \usepackage{pstricks}                    % post script tricks
 \usepackage{listings}                    % enter programming code
 \usepackage{fancyhdr}                    % make quite nice header/footer
+\usepackage[hmargin=3cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
+
 %\usepackage[version=3]{mhchem}           % chemistry stuff
 \usepackage{relsize}
 \usepackage{afterpage}
@@ -80,6 +82,8 @@
 % Header und Footer
 %-------------------
 
+\pagestyle{fancy}
+
 % Information in the header
 \fancyhead{
   \begin{minipage}[l]{0.125\textwidth}
@@ -94,41 +98,38 @@
 
 % Information in the footer
 \newcommand*{\footbox}{
-\usekomafont{pagenumber}%
-\hspace*{-8mm}
-\parbox[t]{\textwidth}{\scriptsize %\footnotesize
-  \begin{tabular}[t]{l@{}}%
+\hspace*{-4mm}
+{\scriptsize %\footnotesize
+  \begin{tabular}{l@{}}%
     TTI GmbH - Zentrale\\%
     Nobelstraße 15\\%
-    D-70569 Stuttgart%
+    D-70569 Stuttgart \\
   \end{tabular}%
   \hspace*{0.6cm}%
-  \begin{tabular}[t]{l@{}}%
+  \begin{tabular}{l@{}}%
     Geschäftsführung:\\%
     Prof. Dr.-Ing. Bernd Bertsche\\%
-    Dipl.-Ing., MBA Peter Heinke%
+    Dipl.-Ing., MBA Peter Heinke \\
   \end{tabular}%
   \hspace*{0.6cm}%
-  \begin{tabular}[t]{l@{}}%
+  \begin{tabular}{l@{}}%
     Bankverbindung:\\
     BW-Bank Stuttgart\\
     BIC SOLADEST\\
-    IBAN DE91 600501017871504477
+    IBAN DE91 600501017871504477 \\
   \end{tabular}%
   \hspace*{0.5cm}%
-  \begin{tabular}[t]{r@{}}%
+  \begin{tabular}{r@{}}%
       Amtsgericht Stuttgart\\%
       HRB 19455\\%
       USt-IdNr. DE 194532993\\%
-      Steuer-Nr. 99039/02378%
+      Steuer-Nr. 99039/02378 \\
   \end{tabular}%
-}%
-}%
-%\firstfoot{\footbox}
+}
+}
+
+\fancyfoot[CE,CO,LE,LO,RE,RO]{} %% clear out all footers
 \fancyfoot[C]{\footbox}
-
-
-\pagestyle{fancy}
 
 
 %---------------------
@@ -177,8 +178,7 @@
 %----------------------------------------------------------
 \begin{document}
 
-%\vspace*{4mm}
-\vspace*{1pt}
+\thispagestyle{fancy}
 
   \begin{minipage}[l]{0.6\textwidth}
     \hspace*{-3.5mm}
@@ -202,19 +202,16 @@
       \begin{tabular}[t]{l@{}}
       TTI GmbH\\
       TGU LK-Instruments\\
-      Unterbrüdener Str. 14\\
-      71549 Auenwald\\
+      Welzheimer Str. 49\\
+      71554 Weissach im Tal\\
       \\
-      Tel.: +49 (0)7191 59120\\
+      Tel.: +49 (0)7191 2104768-0\\
       \href{mailto:info@lk-instruments.com}{info@lk-instruments.com}\\
       \href{http://www.lk-instruments.com}{www.lk-instruments.com}\\
     \end{tabular}
     \end{flushright}
   \end{minipage}
   
-%\vspace*{4mm}
-\vspace*{1pt}
-
 \begin{multicols}{2}
 \section{Allgemeine Vorschriften}
 Die TTI GmbH TGU LK-Instruments erbringt ihre Leistungen ausschließlich gemäß den nachfolgenden allgemeinen Geschäftsbedingungen, soweit nicht in einem schriftlichen Vertrag etwas anderes vereinbart ist. Anderslautenden Bedingungen des Auftraggebers wird hiermit widersprochen.
