@@ -35,7 +35,7 @@ other menu.
 \begin{tikzpicture}[node distance=2cm]
 \node (start) [menu_style] {
 \begin{minipage}[h]{5cm}
-\LCD{2}{16}|Motor Driver|
+\LCD{2}{16}|LK-Instruments|
 |SMC4242|
 \end{minipage}
  \hfill
@@ -81,19 +81,7 @@ Define the displayed unit.
 \end{minipage}
 };
 
-\node (optical_zero) [menu_style, below of=step_unit] {
-\begin{minipage}[h]{5cm}
-\LCD{2}{16}|Define optical|
-|zero position|
-\end{minipage}
- \hfill
-\begin{minipage}[h]{\textWidth}
-%Menu: Define optical zero position\\
-Edit the zero offset.
-\end{minipage}
-};
-
-\node (internal_prog) [menu_style, below of=optical_zero] {
+\node (internal_prog) [menu_style, below of=step_unit] {
 \begin{minipage}[h]{5cm}
 \LCD{2}{16}|Run internal|
 |program|
@@ -107,8 +95,8 @@ Step through the program list.
 
 \node (const_speed) [menu_style, below of=internal_prog] {
 \begin{minipage}[h]{5cm}
-\LCD{2}{16}|Set constant|
-|angular speed|
+\LCD{2}{16}|Run with|
+|constant speed|
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
@@ -117,59 +105,19 @@ Start/Stop continuous movement.
 \end{minipage}
 };
 
-\node (step_wait_time) [menu_style, below of=const_speed] {
+\node (optical_zero) [menu_style, below of=const_speed] {
 \begin{minipage}[h]{5cm}
-\LCD{2}{16}|Change step|
-|wait time|
+\LCD{2}{16}|Define zero|
+|position|
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Change step wait time\\
-Edit time between steps.
+%Menu: Define optical zero position\\
+Edit the zero offset.
 \end{minipage}
 };
 
-\node (substep) [menu_style, below of=step_wait_time] {
-\begin{minipage}[h]{5cm}
-\LCD{2}{16}|Change motor|
-|substep|
-\end{minipage}
- \hfill
-\begin{minipage}[h]{\textWidth}
-%Menu: Change motor substep\\
-Edit number of substeps.
-\end{minipage}
-};
-
-%----------------------------------------------------------------------
-% zusaetzliche Menues hier einfuegen!
-%----------------------------------------------------------------------
-
-\node (save) [menu_style, below of=substep] {
-\begin{minipage}[h]{5cm}
-\LCD{2}{16}|Save all current|
-|configurations|
-\end{minipage}
- \hfill
-\begin{minipage}[h]{\textWidth}
-%Menu: Save all current configurations\\
-Save configurations to EEPROM.
-\end{minipage}
-};
-
-\node (load) [menu_style, below of=save] {
-\begin{minipage}[h]{5cm}
-\LCD{2}{16}|Load last|
-|configuration|
-\end{minipage}
- \hfill
-\begin{minipage}[h]{\textWidth}
-%Menu: Load last configuration\\
-Load configuration from EEPROM.
-\end{minipage}
-};
-
-\node (zero_cal) [menu_style, below of=load] {
+\node (zero_cal) [menu_style, below of=optical_zero] {
 \begin{minipage}[h]{5cm}
 \LCD{2}{16}|Run zero|
 |calibration|
@@ -181,19 +129,28 @@ Find mechanical zero position.
 \end{minipage}
 };
 
+\node (settings) [menu_style, below of=zero_cal] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Enter|
+|settings menu|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Enter the settings menu.
+\end{minipage}
+};
+
+
+
 \draw [arrow] (start) -- (motor_pos);
 \draw [arrow] (motor_pos) -- (step_multiplier);
 \draw [arrow] (step_multiplier) -- (step_unit);
-\draw [arrow] (step_unit) -- (optical_zero);
-\draw [arrow] (optical_zero) -- (internal_prog);
+\draw [arrow] (step_unit) -- (internal_prog);
 \draw [arrow] (internal_prog) -- (const_speed);
-\draw [arrow] (const_speed) -- (step_wait_time);
-\draw [arrow] (step_wait_time) -- (substep);
-%------------------------------------------
-\draw [arrow] (substep) -- (save);
-\draw [arrow] (save) -- (load);
-\draw [arrow] (load) -- (zero_cal);
-\draw [arrow] (zero_cal.east) -- +(1,0) |- (start.east);
+\draw [arrow] (const_speed) -- (optical_zero);
+\draw [arrow] (optical_zero) -- (zero_cal);
+\draw [arrow] (zero_cal) -- (settings);
+\draw [arrow] (settings.east) -- +(1,0) |- (start.east);
 \end{tikzpicture}
 \caption[Overview of the available menus.]{Overview of the available menus. By turning
 the rotary button one can navigate through the menus as indicated by the arrows.}
@@ -292,8 +249,33 @@ are three possible choices for each motor:
              |{rarrow}step    degree|
 \end{center}
 
+\subsection{Internal programs}
+\index{internal programs}
+This menu allows the user to step through the internal program list
+with the rotary button.
+This function is only available if a program has previously been
+defined (see \ref{section_instruction_set}).
+Internal programs are also saved to the device when the current
+configuration is saved, see \ref{menu_save}.
+\begin{center}
+  \LCD{2}{16}|Program running|
+             |Step 0|
+\end{center}
 
-\subsection{Optical zero position}
+\subsection{Constant movement}
+Here the motors can be set into an infinite moving state in clockwise
+(CW) or counter clockwise (CCW) direction. To get the motors moving
+with different velocities one needs to change the wait times between
+two steps (see \ref{menu_step_wait_time}).
+STOP means that the motor is not moving. Constant angular speed for a
+certain motor can not be activated if a forbidden zone is configured to
+this motor (see \ref{chp:forbidden_zone}).
+\begin{center}
+  \LCD{2}{16}|{rarrow}CW     {rarrow}CCW|
+             | STOP    STOP|
+\end{center}
+
+\subsection{Zero position}
 \index{optical zero position}
 In this menu one can define the optical zero position. This is
 necessary due to a mostly unknown placement of the optical element
@@ -310,48 +292,101 @@ the zero position will be the defined optical zero position.
              | 0st     0st|
 \end{center}
 
-
-\subsection{Internal programs}
-\index{internal programs}
-This menu allows the user to step through the internal program list
-with the rotary button.
-This function is only available if a program has previously been
-defined (see \ref{section_instruction_set}).
-Internal programs are also saved to the device when the current
-configuration is saved, see \ref{menu_save}.
+\subsection{Zero calibration}
+\label{menu_zero_cal}
+\index{motor!zero calibration}
+Here one can calibrate the motor zero position for each motor. To
+perform a zero calibration select the motors to be calibrated and
+turn the rotary encoder. Note, that during zero calibration no actions
+can be done on the device, even serial commands will not be accepted.
+The zero calibration will automatically deselect a motor when its
+calibration is finished. The zero calibration menu will be automatically
+leaved when calibration is finished.
 \begin{center}
-  \LCD{2}{16}|Program running|
-             |Step 0|
+  \LCD{2}{16}|{rarrow}Mot 0  {rarrow}Mot 1|
+             | Mot 2   Mot 3|
 \end{center}
 
+\subsection{Settings menu}
+The settings menu contains several submenus that allow the user to adjust some of the settings right at the device itself.
 
-\subsection{Constant angular movement}
-Here the motors can be set into an infinite moving state in clockwise
-(CW) or counter clockwise (CCW) direction. To get the motors moving
-with different velocities one needs to change the wait times between
-two steps (see \ref{menu_step_wait_time}).
-STOP means that the motor is not moving. Constant angular speed for a
-certain motor can not be activated if a forbidden zone is configured to
-this motor (see \ref{chp:forbidden_zone}).
-\begin{center}
-  \LCD{2}{16}|{rarrow}CW     {rarrow}CCW|
-             | STOP    STOP|
-\end{center}
+Turning the rotary encoder serves to scroll through the settings menus (see figure~\ref{settings_menu}). Pressing the rotary encoder enters the selected settings menu. Pressing the menu-escape-button leaves the settings menu.
+
+\begin{figure}[H]
+\begin{tikzpicture}[node distance=2cm]
+\node (substep) [menu_style] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Change motor|
+|substep|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+%Menu: Change motor substep\\
+Edit number of substeps.
+\end{minipage}
+};
+
+\node (motor_curr) [menu_style, below of=substep] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Change motor|
+|current|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Adjust the maximum motor current.
+\end{minipage}
+};
+
+\node (step_wait_time) [menu_style, below of=motor_curr] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Change step|
+|wait time|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+%Menu: Change step wait time\\
+Edit time between steps.
+\end{minipage}
+};
+
+\node (save) [menu_style, below of=step_wait_time] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Save current|
+|configuration|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+%Menu: Save all current configurations\\
+Save configuration to EEPROM.
+\end{minipage}
+};
+
+\node (load) [menu_style, below of=save] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Load last|
+|configuration|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+%Menu: Load last configuration\\
+Load configuration from EEPROM.
+\end{minipage}
+};
+
+\draw [arrow] (substep) -- (motor_curr);
+\draw [arrow] (motor_curr) -- (step_wait_time);
+\draw [arrow] (step_wait_time) -- (save);
+\draw [arrow] (save) -- (load);
+\draw [arrow] (load.east) -- +(1,0) |- (substep.east);
+\end{tikzpicture}
+\caption[Overview of the settings menus.]{Overview of the settings menus. By turning
+the rotary button one can navigate through the settings menus as indicated by the arrows.}
+\label{settings_menu}
+\end{figure}
 
 
-\subsection{Step wait time}
-\label{menu_step_wait_time}
-\index{change!step wait time}
-Here the wait time between two steps can be changed. This results in
-faster or slower motor movements. The default value is 3 milliseconds.
-We do not recommend to use shorter wait times as 3 milliseconds.
-\begin{center}
-  \LCD{2}{16}|{rarrow}3 ms   {rarrow}5 ms|
-             |{rarrow}18 ms   3 ms|
-\end{center}
 
-
-\subsection{Motor substeps}
+\subsubsection{Motor substeps}
 \index{change!substeps}
 \index{change!microstepping}
 In this menu one can change the motor substeps. Possible values are 1,
@@ -399,12 +434,25 @@ table \ref{tab:microstepping_holding_torque}.
   \label{tab:microstepping_holding_torque}
 \end{table}
 
+\subsubsection{Motor current}
+In this menu the user can change the maximum current that is used to drive the corresponding motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor. 
+\begin{center}
+  \LCD{2}{16}| 1.0 A  {rarrow}1.3 A|
+             |{rarrow}0.9 A   0.5 A|
+\end{center}
 
-%----------------------------------------------------------------------
-% zusaetzliche Menues hier einfuegen!
-%----------------------------------------------------------------------
+\subsubsection{Step wait time}
+\label{menu_step_wait_time}
+\index{change!step wait time}
+Here the wait time between two steps can be changed. This results in
+faster or slower motor movements. The default value is 3 milliseconds.
+We do not recommend to use shorter wait times as 3 milliseconds.
+\begin{center}
+  \LCD{2}{16}|{rarrow}3 ms   {rarrow}5 ms|
+             |{rarrow}18 ms   3 ms|
+\end{center}
 
-\subsection{Save current configuration}
+\subsubsection{Save current configuration}
 \label{menu_save}
 To save the current \productName ~configurations enter this menu and
 turn the rotary encoder in any direction. The menu will be automatically
@@ -417,7 +465,7 @@ possible to save the configuration for a single motor.
 \end{center}
 
 
-\subsection{Load configuration}
+\subsubsection{Load configuration}
 \label{chp:menu_load}
 To load the last saved \productName ~configurations enter this menu
 and turn the rotary encoder in any direction. The menu will be leaved
@@ -429,22 +477,6 @@ Note: There is just one memory space for a configuration.
 \begin{center}
   \LCD{2}{16}|Load all saved|
              |configurations|
-\end{center}
-
-
-\subsection{Zero calibration}
-\label{menu_zero_cal}
-\index{motor!zero calibration}
-Here one can calibrate the motor zero position for each motor. To
-perform a zero calibration select the motors to be calibrated and
-turn the rotary encoder. Note, that during zero calibration no actions
-can be done on the device, even serial commands will not be accepted.
-The zero calibration will automatically deselect a motor when its
-calibration is finished. The zero calibration menu will be automatically
-leaved when calibration is finished.
-\begin{center}
-  \LCD{2}{16}|{rarrow}Mot 0  {rarrow}Mot 1|
-             | Mot 2   Mot 3|
 \end{center}
 
 
