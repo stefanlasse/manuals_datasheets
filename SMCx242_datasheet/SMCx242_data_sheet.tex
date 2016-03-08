@@ -30,7 +30,7 @@
 \usepackage{braket}                      % Dirac braket notation
 \usepackage{graphicx}                    % include pictures
 \usepackage{color}
-\usepackage[shell]{gnuplottex}           % gnuplot in latex
+%\usepackage[shell]{gnuplottex}           % gnuplot in latex
 \usepackage{pstricks}                    % post script tricks
 \usepackage{listings}                    % enter programming code
 \usepackage{fancyhdr}                    % make quite nice header/footer
@@ -53,6 +53,7 @@
 \usepackage{units}                       % easy to use number-unit-package
 \usepackage[section]{placeins}           % Float barrier for sections.
 
+\usetikzlibrary{trees,positioning}
 
 \usepackage{listings}					% erlaubt Quellcode mit Zeilenumbruechen
 
@@ -181,7 +182,7 @@ The LK-Instruments SMC2242/SMC4242 is a universal Stepper Motor Controller for t
 \noindent\rule{\textwidth}{0.4pt}
 \vspace*{0.5cm}
 
-%\centerline{\includegraphics[width=0.6\textwidth]{./drawings/???}}
+\centerline{\includegraphics[width=0.7\textwidth]{./drawings/SMC_1400.jpg}}
 
 \vfill
 \begin{minipage}{\textwidth}
@@ -228,7 +229,6 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noted.
     Current &  & 0 & & 2.5 & 0 & & 2.5 & A/Phase\\ \midrule
     Gear ratio &  & & & & & & &  \\ \midrule
     Temperature range &  & 0 &  & 40 & 0 &  & 40 & $^{\circ}$C \\ \midrule
-    Dimensions &  & & ??? & & & ??? & & mm \\ \midrule
     Weight &  & & ??? & & & ??? & & kg \\ \midrule
     Operating voltage &  & & 24 & 36 & & 24 & 36 & VDC \\ \midrule
     Power consumption &  & & ??? & ??? & & ??? & ??? & W \\
@@ -238,12 +238,13 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noted.
 \vfill
 
 \FloatBarrier
+\newpage
 
 \subsection*{Outer Dimensions}
 All dimensions in millimeters.
 \begin{figure}[!htp]
   \centering
-  %\includegraphics[angle=0,origin=c,width=0.69\textwidth]{./drawings/M101_outline_dimensions.pdf}
+  \includegraphics[angle=0,origin=c,width=0.7\textwidth]{./drawings/MG22131_outline2.pdf}
 \end{figure}
 %\vfill
 \FloatBarrier
@@ -280,29 +281,60 @@ All dimensions in millimeters.
 \FloatBarrier
 
 \subsection*{Ordering Information}
-\begin{table}[!hp]
- % \centering
-  %\begin{tabular}{C{2cm} C{3cm}}
-  \begin{tabular}{ll}
-    \toprule
-    \textbf{Model} & \textbf{Description}\\
-    \toprule
-    M101A   & $\unit[66]{Ncm}$ holding torque, with rotary knob \\
-    M101ANK & $\unit[66]{Ncm}$ holding torque, without rotary knob \\
-    M101B   & $\unit[132]{Ncm}$ holding torque, with rotary knob \\
-    M101BNK & $\unit[132]{Ncm}$ holding torque, without rotary knob \\
-    \bottomrule
-  \end{tabular}
-\end{table}
 
-
-
-
-
-
-
-
-
+\tikzstyle{every node}=[anchor=west,align=left]
+\begin{tikzpicture}[
+  grow via three points={one child at (0.5,-0.7) and
+  two children at (0.5,-0.7) and (0.5,-1.4)},
+  edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
+  \node (SMC) {\textbf{SMC}};
+  \hspace{-10mm}
+  \node (motors) [right= of SMC] {\textbf{4}}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child { node {\textbf{Number of channels}}}
+    child { node {2 - two channels} edge from parent[draw=none] }
+    child { node {4 - four channels} edge from parent[draw=none] };
+  \hspace{-10mm}
+  \node (voltage) [right= of motors] {\textbf{24}}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child { node {24 - Supply voltage}};
+  \hspace{-10mm}
+  \node (motorType) [right= of voltage] {\textbf{2}}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child [missing] {}
+    child { node {2 - Bipolar Stepper Motor}};
+  \hspace{-10mm}
+  \node (color) [right= of motorType] {\textbf{W}}
+    child { node {\textbf{OLED display color}}}		
+    child { node {W - white} edge from parent[draw=none] }
+    child { node {R - red} edge from parent[draw=none] }
+    child { node {G - green} edge from parent[draw=none] }
+    child { node {B - blue} edge from parent[draw=none] }
+    child { node {Y - yellow} edge from parent[draw=none] };
+\end{tikzpicture}
 
 
 
