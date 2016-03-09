@@ -23,6 +23,7 @@
 \usepackage{slantsc}
 \usepackage[urw-garamond]{mathdesign}
 \usepackage{garamondx}
+\usepackage[sfdefault]{sourcesanspro}    % SourceSan­sPro als serifenlose Schrift
 \usepackage[T1]{fontenc}
 
 \usepackage[english]{babel}              % For the hyphenations in different languages
@@ -53,7 +54,7 @@
 \usepackage{units}                       % easy to use number-unit-package
 \usepackage[section]{placeins}           % Float barrier for sections.
 
-\usetikzlibrary{trees,positioning}
+\usetikzlibrary{trees,positioning}      % for tree in ordering information
 
 \usepackage{listings}					% erlaubt Quellcode mit Zeilenumbruechen
 
@@ -137,10 +138,12 @@
 % let the party start
 %----------------------------------------------------------
 \begin{document}
+\setlength{\parindent}{0pt}
+
 \thispagestyle{empty}
 
 \begin{minipage}{\textwidth}
-  \begin{minipage}[h]{0.125\textwidth}
+  \begin{minipage}[h]{0.11\textwidth}
       \includegraphics[width=1\textwidth]{../general/logo_black.pdf}
   \end{minipage}
   \hfill
@@ -164,6 +167,7 @@
   \item Up to \unit[2.5]{A} of output current
   \item 24 V operating voltage
   \item Up to 1/32 microstepping
+  \item Selectable decay modes
   \item Up to three limit/home switches per channel
 \end{itemize}
 \FloatBarrier
@@ -226,12 +230,16 @@ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noted.
     Min & Typ & Max &
     Min & Typ & Max &\\
     \toprule
-    Current &  & 0 & & 2.5 & 0 & & 2.5 & A/Phase\\ \midrule
-    Gear ratio &  & & & & & & &  \\ \midrule
+    Number of outputs & & & & 2 & & & 4 & \\ \midrule
+    Output current & & 0 & & 2.5 & 0 & & 2.5 & A/Phase\\ \midrule
+    PWM frequency & & & 30 & & & 30 & & kHz\\ \midrule
+    Microsteps & & 1 & & 32 & 1 & & 32 &  \\ \midrule
+    Step frequency & & & & 10 & & & 10 & kHz \\ \midrule
+    Limit/Home switches per motor & & & & 3 & & & 3&  \\ \midrule
     Temperature range &  & 0 &  & 40 & 0 &  & 40 & $^{\circ}$C \\ \midrule
     Weight &  & & ??? & & & ??? & & kg \\ \midrule
-    Operating voltage &  & & 24 & 36 & & 24 & 36 & VDC \\ \midrule
-    Power consumption &  & & ??? & ??? & & ??? & ??? & W \\
+    Supply voltage &  & 10 & 24 & 36 & 10 & 24 & 36 & VDC \\ \midrule
+    Power consumption & $\unit[24]{VDC}$ & & & 100 & & & 200 & W \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -249,7 +257,23 @@ All dimensions in millimeters.
 %\vfill
 \FloatBarrier
 
+\subsection*{Front view}
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[angle=0,origin=c,width=0.8\textwidth]{./drawings/MG22131_front.pdf}
+\end{figure}
+%\vfill
+
+\subsection*{Rear view}
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[angle=0,origin=c,width=0.8\textwidth]{./drawings/MG22131_back.pdf}
+\end{figure}
+%\vfill
+\FloatBarrier
+
 \subsection*{Pin Configuration}
+\subsubsection*{Motor connectors}
 \begin{minipage}{\textwidth}
   \begin{minipage}[b]{0.49\textwidth}
     \centering
@@ -273,6 +297,32 @@ All dimensions in millimeters.
       7 & Sens 1 \\ \midrule
       8 & Sens 2 \\ \midrule
       9 & Sens 3 \\ \midrule
+      Shield & NC \\
+      \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{minipage}
+\FloatBarrier
+
+\subsubsection*{Power connector}
+\begin{minipage}{\textwidth}
+  \begin{minipage}[h]{0.49\textwidth}
+    \centering
+    R7B female connector\\
+    \includegraphics[width=0.4\textwidth]{./drawings/R7B.pdf}\\
+    Front view
+  \end{minipage}
+  \hfill
+  \begin{minipage}[h]{0.49\textwidth}
+    \centering
+    \begin{tabular}{cc}
+      \toprule
+      \textbf{Pin} & \textbf{Function} \\
+      \toprule
+      1 & + 24V \\ \midrule
+      2 & Ground\\ \midrule
+      3 & Ground \\ \midrule
+      4 & + 24V  \\ \midrule
       Shield & NC \\
       \bottomrule
     \end{tabular}
@@ -336,10 +386,29 @@ All dimensions in millimeters.
     child { node {Y - yellow} edge from parent[draw=none] };
 \end{tikzpicture}
 
+\vspace{10pt}
 
+An optional TTL trigger input via a BNC connector is available. For version with trigger input please add "-T" to the order number, Example.: SMC4242W-T.
 
+\subsection*{Accessories}
 
+\begin{table}[!hp]
+  \begin{tabular}{ll}
+    \toprule
+    \textbf{Model} & \textbf{Description}\\
+    \toprule
+    GS120A24   & $\unit[120]{W}$ external desktop power supply unit \\
+    GS160A24   & $\unit[160]{W}$ external desktop power supply unit \\
+    GS220A24   & $\unit[220]{W}$ external desktop power supply unit \\
+    %MC3M05   & motor connecting cable \unit[3]{m}, shielded, up to \unit[2.5]{A} \\ % 0.5mm^2 cable
+    %MC5M05   & motor connecting cable \unit[5]{m}, shielded, up to \unit[2.5]{A} \\ % 0.5mm^2 cable
+    MGA12020   & 19"-Adapter\footnotemark[1]\\
+    MGA13020   & spacer for 19" installation\footnotemark[1] \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
+\footnotetext[1]{Using the 19"-Adapter MGA12020 and a spacer MGA13020, two SMCx242 can be mounted into a 19" rack.}
 
 \FloatBarrier
 \vfill

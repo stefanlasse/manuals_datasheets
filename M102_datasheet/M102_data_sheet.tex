@@ -23,6 +23,7 @@
 \usepackage{slantsc}
 \usepackage[urw-garamond]{mathdesign}
 \usepackage{garamondx}
+\usepackage[sfdefault]{sourcesanspro}    % SourceSan­sPro als serifenlose Schrift
 \usepackage[T1]{fontenc}
 
 \usepackage[english]{babel}              % For the hyphenations in different languages
@@ -136,10 +137,23 @@
 % let the party start
 %----------------------------------------------------------
 \begin{document}
+\setlength{\parindent}{0pt}
+
 \thispagestyle{empty}
-\includegraphics[width=0.1\textwidth]{../general/logo_black.pdf}
-\hfill {\Huge \textbf{\textsf{\productName}}} \hfill {\Huge \textbf{\textsf{\productNumber}}}\\
-\noindent\rule{\textwidth}{0.4pt}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[h]{0.11\textwidth}
+      \includegraphics[width=1\textwidth]{../general/logo_black.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[h]{0.7\textwidth}
+      {\huge \textbf{\textsf{\productName}}} \hfill
+      {\huge \textbf{\textsf{\productNumber}}}
+  \end{minipage}
+\end{minipage} 
+
+\vspace*{5pt}
+\rule{\textwidth}{0.4pt}
 
 \begin{multicols}{2}
 \subsection*{Features}
