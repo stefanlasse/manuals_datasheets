@@ -15,35 +15,65 @@ Motor Current: & \multicolumn{2}{c|}{up to \unit[2.5]{A} peak or \unit[1.75]{A} 
 \end{tabular}
 \end{table}
 
-
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \begin{table}[htbp]
-\label{features_of_versions}
-\caption[Features of different versions.]{Features of different versions.}
-\centering
-\begin{tabular}{|l|c|c|c|}
-\hline 
- & SMCx242-R & SMCx242-L & SMCx242-U \\ \hline 
-Units: & $\degree$, $\pi$, steps & m, cm, mm, steps & $\degree$, $\pi$, m, cm, mm, steps, user-defined \\ \hline
-Substeps: & \multicolumn{3}{c|}{1, 2, 4, 8, 16, 32} \\ \hline
-Steps per Revolution: & \multicolumn{3}{c|}{200, 400} \\ \hline
-Gear Ratio: & \multicolumn{3}{c|}{???} \\ \hline
-Reference/Limit Switches: & 1 & \multicolumn{2}{c|}{3} \\ \hline
-\end{tabular}
+  \label{specs}
+  \caption[Specifications of \productNumber ~\productName .]{Specifications of \productNumber ~\productName . With $V_{\textrm{Supply}}=\unit[24]{VDC}, $ $T_A = \unit[25]{^{\circ}C}$ and 50\% RH unless otherwise noted.}
+  \centering
+  \begin{tabular}{C{1.95cm} *{3}{C{0.9cm}} *{3}{C{0.9cm}} C{1.25cm} }
+    \toprule
+    \textbf{Parameter} & 
+    \multicolumn{3}{p{2.7cm}}{\centering\textbf{SMC2242}} &
+    \multicolumn{3}{p{2.7cm}}{\centering\textbf{SMC4242}} &
+    \textbf{Unit} \\
+    \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+    &
+    Min & Typ & Max &
+    Min & Typ & Max &\\
+    \toprule
+    Number of outputs & & & 2 & & & 4 & \\ \midrule
+    Output current & 0 & & 2.5 & 0 & & 2.5 & A/Phase\\ \midrule
+    PWM frequency & & 30 & & & 30 & & kHz\\ \midrule
+    Microsteps & 1 & & 32 & 1 & & 32 &  \\ \midrule
+    Step frequency & & & 1 & & & 1 & kHz \\ \midrule
+    Limit/Home switches per motor & & & 3 & & & 3&  \\ \midrule
+    Temperature range & 0 &  & 40 & 0 &  & 40 & $^{\circ}$C \\ \midrule
+    Weight & & 1.7 & & & 1.8 & & kg \\ \midrule
+    Supply voltage & 10 & 24 & 36 & 10 & 24 & 36 & VDC \\ \midrule
+    Power consumption & & & 100 & & & 200 & W \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 
-\begin{table}[htbp]
-\label{motor_specs}
-\caption[Technical Specifications.]{Technical Specifications.}
-\centering
-\begin{tabular}{|l|c|}
-\hline 
-Power requirements: & ? \\ \hline 
-Power consumption: & \unit[]{W} \\ \hline 
-Dimensions: & \unit[245]{mm} (W) x \unit[85]{mm} (H) x \unit[260]{mm} (D) \\ \hline 
-Weight (without package): & \unit[]{kg} \\ \hline 
-\end{tabular}
-\end{table}
+%\begin{table}[htbp]
+%\label{features_of_versions}
+%\caption[Features of different versions.]{Features of different versions.}
+%\centering
+%\begin{tabular}{|l|c|c|c|}
+%\hline 
+% & SMCx242-R & SMCx242-L & SMCx242-U \\ \hline 
+%Units: & $\degree$, $\pi$, steps & m, cm, mm, steps & $\degree$, $\pi$, m, cm, mm, steps, user-defined \\ \hline
+%Substeps: & \multicolumn{3}{c|}{1, 2, 4, 8, 16, 32} \\ \hline
+%Steps per Revolution: & \multicolumn{3}{c|}{200, 400} \\ \hline
+%Gear Ratio: & \multicolumn{3}{c|}{???} \\ \hline
+%Reference/Limit Switches: & 1 & \multicolumn{2}{c|}{3} \\ \hline
+%\end{tabular}
+%\end{table}
+
+
+%\begin{table}[htbp]
+%\label{motor_specs}
+%\caption[Technical Specifications.]{Technical Specifications.}
+%\centering
+%\begin{tabular}{|l|c|}
+%\hline 
+%Power requirements: & ? \\ \hline 
+%Power consumption: & \unit[]{W} \\ \hline 
+%Dimensions: & \unit[245]{mm} (W) x \unit[85]{mm} (H) x \unit[260]{mm} (D) \\ \hline 
+%Weight (without package): & \unit[]{kg} \\ \hline 
+%\end{tabular}
+%\end{table}
 
 
 
@@ -51,35 +81,65 @@ Weight (without package): & \unit[]{kg} \\ \hline
 The connectors for the stepper motors are 9-Pin D-Type, female connectors. Please refer to figure~\ref{pin_out} for their pinout.
 
 \begin{figure}[h]
-\begin{center}
-\begin{minipage}[h]{5cm}
-\includegraphics[width=5cm]{grafiken/Numbered_DE9_female_Diagram.pdf}
-\end{minipage}
-%\hspace{1cm}
-\hfill
-\begin{minipage}[h]{5cm}
-\begin{tabular}{|c|c|}
-\hline 
-\textbf{Pin} & \textbf{Description} \\ \hline 
-1 & Bridge B output 1 \\ \hline 
-2 & Bridge B output 2 \\ \hline 
-3 & Bridge A output 2 \\ \hline 
-4 & Bridge A output 1 \\ \hline 
-5 & Ground \\ \hline 
-6 & \unit[+5]{V} \\ \hline 
-7 & Reference/Limit Switch 1 \\ \hline 
-8 & Reference/Limit Switch 2 \\ \hline 
-9 & Reference/Limit Switch 3 \\ \hline 
-\end{tabular}
-\end{minipage}
-\end{center}
-\caption[Pinout of the Motor Connector.]{Pinout of the Motor Connector.}
+\begin{minipage}[b]{0.49\textwidth}
+    \centering
+    %D-SUB-9 female connector\\
+    \includegraphics[width=1\textwidth]{grafiken/Numbered_DE9_female_Diagram.pdf}\\
+    Front view
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \centering
+    \begin{tabular}{cc}
+      \toprule
+      \textbf{Pin} & \textbf{Function} \\
+      \toprule
+      1 & Phase B1 \\ \midrule
+      2 & Phase B2\\ \midrule
+      3 & Phase A2 \\ \midrule
+      4 & Phase A1 \\ \midrule
+      5 & Ground \\ \midrule
+      6 & +5V \\ \midrule
+      7 & Sens 1 \\ \midrule
+      8 & Sens 2 \\ \midrule
+      9 & Sens 3 \\ \midrule
+      Shield & NC \\
+      \bottomrule
+    \end{tabular}
+  \end{minipage}
+\caption[Pinout of the motor connectors.]{Pinout of the motor connectors.}
 \label{pin_out}
 \end{figure}
 
+The power connector is a R7B female connector. Please refer to figure~\ref{pin_out_power} for its pinout.
 
-
-
+\begin{figure}[h]
+\begin{center}
+\begin{minipage}[h]{0.49\textwidth}
+    \centering
+    %R7B female connector\\
+    \includegraphics[width=0.55\textwidth]{grafiken/R7B.pdf}\\
+    Front view
+  \end{minipage}
+  \hfill
+  \begin{minipage}[h]{0.49\textwidth}
+    \centering
+    \begin{tabular}{cc}
+      \toprule
+      \textbf{Pin} & \textbf{Function} \\
+      \toprule
+      1 & + 24V \\ \midrule
+      2 & Ground\\ \midrule
+      3 & Ground \\ \midrule
+      4 & + 24V  \\ \midrule
+      Shield & NC \\
+      \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{center}
+\caption[Pinout of the power connector.]{Pinout of the power connector.}
+\label{pin_out_power}
+\end{figure}
 
 
 

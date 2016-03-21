@@ -33,7 +33,7 @@ either \texttt{SPACE} or ``,'' or ``;'' or \texttt{TAB}. The
 command is completed by sending a  Carriage Return + Line Feed
 (\texttt{CRLF}) or Line Feed (\texttt{LF}).
 
-\def \vdistace {3ex}
+\def \vdistace {2ex}
 \vspace{\vdistace}
 
 \begin{table}[h]
@@ -155,14 +155,13 @@ command is completed by sending a  Carriage Return + Line Feed
 \end{table}
 
 \vspace{\vdistace}
-\clearpage
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{GETOPTZEROPOS <mot>}\\
-    Function: & Returns the optical zero position of motor \texttt{<mot>}.\\
-    Note:     & Optical zero positions are only available in steps.\\
-    Example:  & \texttt{GETOPTZEROPOS 3}\\
+    Command:  & \texttt{GETZEROPOS <mot>}\\
+    Function: & Returns the zero position of motor \texttt{<mot>}.\\
+    Note:     & Zero positions are only available in steps.\\
+    Example:  & \texttt{GETZEROPOS 3}\\
               & Returns the optical zero position of motor 3.
   \end{tabularx}
 \end{table}
@@ -171,11 +170,129 @@ command is completed by sending a  Carriage Return + Line Feed
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{SETOPTZEROPOS <mot>}\\
-    Function: & Set the optical zero position for motor \texttt{<mot>}.\\
-    Note:     & For the optical zero position the unit is always steps.\\
-    Example:  & \texttt{SETOPTZEROPOS 3 574}\\
-              & Sets the optical zero position of motor 3 to 574 steps.
+    Command:  & \texttt{SETZEROPOS <mot>}\\
+    Function: & Set the zero position for motor \texttt{<mot>}.\\
+    Note:     & For the zero position the unit is always steps.\\
+    Example:  & \texttt{SETZEROPOS 3 574}\\
+              & Sets the zero position of motor 3 to 574 steps.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{GETGEARRATIO <mot>}\\
+    Function: & Returns the gear ratio of a motor.\\
+    Example:  & \texttt{GETGEARRATIO 0}\\
+              & Returns the gear ratio of motor 0.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{SETGEARRATIO <mot> <val>}\\
+    Function: & Sets the gear ratio of motor \texttt{<mot>} to a gear ratio
+                of \texttt{<val>}.\\
+    Example:  & \texttt{SETGEARRATIO 2 3.0}\\
+              & Sets the gear ratio of motor 2 to a value of 3.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{GETFULLROT <mot>}\\
+    Function: & Returns the number of steps per full rotation without microsteps of a motor. Typical values for stepper motors are 200 or 400 steps per full rotation.\\
+    Example:  & \texttt{GETFULLROT 0}\\
+              & Returns the number of steps per full rotation of motor 0.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{SETFULLROT <mot> <val>}\\
+    Function: & Sets the number of steps per full rotation of motor \texttt{<mot>} to \texttt{<val>} steps.\\
+    Example:  & \texttt{SETFULLROT 1 400}\\
+              & Sets the number of steps per full rotation of motor 1 to 400 steps.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{GETSUBSTEPS <mot>}\\
+    Function: & Returns the number of substeps of a motor.\\
+    Example:  & \texttt{GETSUBSTEPS 0}\\
+              & Returns the number of substeps of motor 0.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{SETSUBSTEPS <mot> <val>}\\
+    Function: & Sets the number of substeps of motor \texttt{<mot>} to \texttt{<val>} substeps.\\
+    Note:     & Possible values for substeps are 1, 2, 4, 8, 16, 32.\\
+    Example:  & \texttt{SETSUBSTEPS 1 4}\\
+              & Sets the number of substeps of motor 1 to 4 substeps.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{GETCURR <mot>}\\
+    Function: & Returns the motor current of a motor in ampere.\\
+    Example:  & \texttt{GETCURR 0}\\
+              & Returns the motor current of motor 0.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{SETCURR <mot> <val>}\\
+    Function: & Sets the motor current of motor \texttt{<mot>} to \texttt{<val>} ampere.\\
+    Note:     & The current can be adjusted between 0 and \unit[2.5]{A}. The unit for the current is always ampere.\\
+    Example:  & \texttt{SETCURR 0 1.0}\\
+              & Sets the motor current of motor 0 to \unit[1]{A}.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{GETDECAY <mot>}\\
+    Function: & Returns the setting of the decay mode of motor \texttt{<mot>}.\\
+    Example:  & \texttt{GETDECAY 0}\\
+              & Returns 0 if decay mode of motor 0 is set to slow, returns 1 if set to fast and returns 2 if set to mixed.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{SETDECAY <mot> <val>}\\
+    Function: & Sets the decay mode of motor \texttt{<mot>} to slow \texttt{<val=0>}, fast \texttt{<val=1>} or mixed \texttt{<val=2>}.\\
+    Note:     & For microstepping fast decay should be preferred. However if audible noise is an issue, one might consider using slow decay mode to reduce the noise.\\
+    Example:  & \texttt{SETDECAY 1 0}\\
+              & Sets decay mode of motor 1 to slow.\\
+              & \texttt{SETDECAY 1 1}\\
+              & Sets decay mode of motor 1 to fast.\\
+              & \texttt{SETDECAY 1 2}\\
+              & Sets decay mode of motor 1 to mixed.
   \end{tabularx}
 \end{table}
 
@@ -208,16 +325,6 @@ command is completed by sending a  Carriage Return + Line Feed
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{STOPALL}\\
-    Function: & Stops all motor movements immediately.\\
-    Example:  & \texttt{STOPALL}
-  \end{tabularx}
-\end{table}
-
-\vspace{\vdistace}
-
-\begin{table}[h]
-  \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{FACTORYRESET}\\
     Function: & Resets the \productName ~to factory state.\\
     Example:  & \texttt{FACTORYRESET}
@@ -240,10 +347,21 @@ command is completed by sending a  Carriage Return + Line Feed
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{STOPALL}\\
+    Function: & Stops all motor movements immediately.\\
+    Example:  & \texttt{STOPALL}
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETCONSTSPEED <mot> <dir> <time>}\\
     Function: & Enables motor \texttt{<mot>} to move infinite in direction \texttt{<dir>}.
                 Possible values for \texttt{<dir>} are clock wise \texttt{CW} or
                 counter clock wise \texttt{CCW}. \\
+    Note:     & That the wait time between two steps is overwritten in order to move with the desired speed.\\
     Example:  & \texttt{SETCONSTSPEED 1 CW 10.0}\\
               & Moves motor 1 infinite in clockwise direction.
                 One full rotation takes 10 seconds.
