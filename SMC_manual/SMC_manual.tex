@@ -40,8 +40,11 @@
 \usepackage{gensymb}
 \usepackage{textcomp}
 \usepackage{listings}					 % erlaubt Quellcode mit Zeilenumbruechen
+
 \usepackage{makeidx}                     % create index
   \makeindex
+\usepackage[totoc]{idxlayout}            % index in contents
+  
 \usepackage{lcd}						 % Character LCD
 %\usepackage[paperheight=210mm,paperwidth=210mm,margin=20mm,heightrounded]{geometry}
 \usepackage{multirow}
@@ -144,7 +147,7 @@
 \definecolor{darkgrey}{rgb}{0.2,0.2,0.2}
 \definecolor{black}{rgb}{0,0,0}
 \LCDcolors{black}{lightgrey}
-
+\DefineLCDchar{degree}{11100101001110000000000000000000000}
 
 %---------------------
 % Index
@@ -178,8 +181,8 @@
 
 \input{inhalt/introduction}
 \clearpage
-%\input{inhalt/basic_setup}
-%\clearpage
+\input{inhalt/basic_setup}
+\clearpage
 \input{inhalt/general_operation}
 \clearpage
 \input{inhalt/remote_programming}
@@ -188,7 +191,7 @@
 \clearpage
 
 
-\newpage
+%\newpage
 \printindex
 
 \end{document}

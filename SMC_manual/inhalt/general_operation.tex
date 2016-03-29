@@ -1,11 +1,12 @@
 \section{General Operation}
+\label{chp:general_operation}
 The \productNumber ~\productName ~features two operation modes. It can be
 either operated using the manual user interface or remote controlled by a
 computer. In this section the manual operation of the device is explained.
 
 After turning on the \productName ~it comes up with its start screen.
-Turning the rotary encoder serves to scroll through the menus (see
-figure~\ref{main_menu}). Pressing the rotary encoder enters the selected
+Turning the rotary knob serves to scroll through the menus (see
+figure~\ref{main_menu}). Pressing the rotary knob enters the selected
 menu. Pressing the menu-escape-button leaves the menu again.
 
 \subsection{Display structure}
@@ -19,13 +20,7 @@ selected menu the values correspond to different quantities. Where
 \end{itemize}
 
 \subsection{Motor selection}
-To select a motor there are four buttons. Motor selection can solely be
-done in an entered menu. To select a motor, press the respective motor-selection
-button. A selected motor is signed with an arrow on the display. Pressing the
-selection-button again deselects the motor. Once a motor is selected its
-appropriate value can be changed by turning the rotary encoder. By leaving
-a menu without motor deselection the selected motor(s) stay selected in any
-other menu.
+To select a motor there are four buttons. Motor selection can solely be done in an entered menu. To select a motor, press the respective motor-selection button. A selected motor is signed with an arrow on the display and by a color change of the corresponding motor-selection button. Pressing the selection-button again deselects the motor. Once a motor is selected its appropriate value can be changed by turning the rotary knob. If multiple motors are selected at the same time, there values will be changed simultaneously. By leaving a menu without motor deselection the selected motor(s) stay selected in any other menu.
 
 \tikzstyle{menu_style} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black]
 \tikzstyle{arrow} = [thick,<->,>=latex]
@@ -65,7 +60,7 @@ Position is displayed and can be changed.
  \hfill
 \begin{minipage}[h]{\textWidth}
 %Set step multiplier\\
-Edit multiplier for rotary encoder.
+Edit multiplier for rotary knob.
 \end{minipage}
 };
 
@@ -153,7 +148,7 @@ Enter the settings menu.
 \draw [arrow] (settings.east) -- +(1,0) |- (start.east);
 \end{tikzpicture}
 \caption[Overview of the available menus.]{Overview of the available menus. By turning
-the rotary button one can navigate through the menus as indicated by the arrows.}
+the rotary knob one can navigate through the menus as indicated by the arrows.}
 \label{main_menu}
 \end{figure}
 
@@ -162,83 +157,66 @@ the rotary button one can navigate through the menus as indicated by the arrows.
 
 
 \subsection{Start screen}
-By pressing the rotary button while the start screen is active the
+By pressing the rotary knob while the start screen is active the
 firmware version will be displayed.
 \begin{center}
   \LCD{2}{16}|SMCx242|
-             |Firmware 1.4|
+             |Firmware 1.5|
 \end{center}
 Firmware updates are available at \url{http://www.lk-instruments.com} on
 the corresponding product website.
 
+%\begin{macrocode}
+%\DefineLCDchar{degree}{11100101001110000000000000000000000}
+%\end{macrocode}
+
 \subsection{Motor position}
 \label{menu_motor_pos}
 \index{change!position}
-This menu displays the current motor positions. The position of any motor can be
-changed by the operator separately. The default display unit is degree, which
-can be changed to the users preferred unit, see \ref{chp:change_step_unit}. The
-position of a selected motor can be changed by turning the rotary
-button. Default steps for the available units are:
+This menu displays the current motor positions and allows them to be changed. The default display unit is degree, which can be changed to the users preferred unit, see \ref{chp:change_step_unit}. The position of a selected motor can be changed by turning the rotary knob.\\
+Default steps for the available units are:
 \begin{itemize}
 \item $1\degree$ if unit is degree
 \item $\frac{\pi}{8}$ if unit is radian
 \item 1 step if unit is steps
 \end{itemize}
 \begin{center}
-  \LCD{2}{16}|{rarrow}0.0{pi}   {rarrow}0.0|
-             |{rarrow}0st    {rarrow}0.0|
+  \LCD{2}{16}|{rarrow}0.0{pi}   {rarrow}0.0{degree} |
+             |{rarrow}0st    {rarrow}0.0{degree} |
 \end{center}
 
 
 \paragraph{Fast moving mode}
-\index{Fast moving mode}
-When pressing the rotary button inside the change-motor-position-menu one
-enters the fast moving mode. Pressing the rotary button again disables the
-fast moving mode. The fast moving mode is indicated by another marking arrow
-for the corresponding motor. The fast moving mode will only be enabled or
-disabled for selected motors.
+\index{fast moving mode}
+When pressing the rotary knob inside the change-motor-position-menu one enters the fast moving mode. Pressing the rotary knob again disables the fast moving mode. The fast moving mode is indicated by another marking arrow for the corresponding motor.\\
+%The fast moving mode will only be enabled or disabled for selected motors.
 Default steps in this mode are:
 \begin{itemize}
   \item $10\degree$ if unit is degree
   \item $\frac{\pi}{8}$ if unit is radian
   \item 100 steps if unit is steps
 \end{itemize}
-The snapped display shows the different indicating arrows. Here, motor 1
-and motor 3 are in fast moving mode, motor 2 and 4 are in normal moving mode.
+The snapped display shows the different indicating arrows.
 \begin{center}
-  \LCD{2}{16}|>17.4  {rarrow}0.0|
-             |>0.0   {rarrow}0.0|
+  \LCD{2}{16}|>10.0{degree} >0.0{degree} |
+             |>0.0{degree}  >0.0{degree} |
 \end{center}
 
 
 \subsection{Step multiplier}
 \index{step multiplier}
-Step multipliers give the possibility to let the motors move in different
-step widths by turning the rotary button one click. It is also possible
-to turn the motors in different directions by applying a negative step
-multiplier to a motor.
-
-A step multiplier can only be applied if the step unit is degree or radians.
-The factory default value for all motors is 1.0.
-
-In this menu one can adjust a step multiplier. The step multiplier is
-applied if the step unit is degree or radian. The standard value is 1.0.
-If the step multiplier differs from 1.0 the corresponding motor will
-rotate more or less steps with each rotation of the rotary encoder.\\
-For example: if the step multiplier for motor 0 is 1.0 and the step
-multiplier for motor 2 is 4.0, motor 2 will move four times more steps
-than motor 0 when changing the motors positions. Negative values are
-allowed as well. This will result in counter direction movements.
+In this menu the step multipliers can be adjusted. If the step multiplier differs from 1.0 the corresponding motor will rotate more or less steps with each click of the rotary knob. It is also possible to turn the motors in different directions by applying a negative step multiplier to a motor. A step multiplier can only be applied if the step unit is degree or radians. The factory default value for all motors is 1.0.\\
+Example: If the step multiplier for motor 1 is 1.0, the step multiplier for motor 2 is 4.0 and the step multiplier for motor 3 is -2.0, when changing the motors positions motor 2 will move four times more steps than motor 1 and motor 3 will move twice as many steps as motor 1, but in the opposite direction. 
+%Negative values are allowed as well. This will result in counter direction movements.
 \begin{center}
-  \LCD{2}{16}|{rarrow}1.0x   {rarrow}-0.5x|
-             |{rarrow}2.0x    1.0x|
+  \LCD{2}{16}|{rarrow}1.0x   {rarrow}4.0x|
+             |{rarrow}-2.0x   1.0x|
 \end{center}
 
 \subsection{Step unit}
 \label{chp:change_step_unit}
 \index{change!unit}
-In this menu one can choose the unit of the displayed position. There
-are three possible choices for each motor:
+In this menu one can choose the unit of the displayed position. Note, that changing the unit will also affect the step width, see~\ref{menu_motor_pos}. There are three possible choices for each motor:
 \begin{itemize}
 \item degree
 \item radian
@@ -249,44 +227,29 @@ are three possible choices for each motor:
              |{rarrow}step    degree|
 \end{center}
 
-\subsection{Internal programs}
-\index{internal programs}
-This menu allows the user to step through the internal program list
-with the rotary button.
-This function is only available if a program has previously been
-defined (see \ref{section_instruction_set}).
-Internal programs are also saved to the device when the current
-configuration is saved, see \ref{menu_save}.
+\subsection{Internal program}
+\index{internal program}
+This menu allows the user to step through the internal program list with the rotary knob.
+This function is only available if a program has previously been defined (see \ref{section_instruction_set}).
+Internal programs are also saved to the device when the current configuration is saved, see \ref{menu_save}.
 \begin{center}
   \LCD{2}{16}|Program running|
              |Step 0|
 \end{center}
 
 \subsection{Constant movement}
-Here the motors can be set into an infinite moving state in clockwise
-(CW) or counter clockwise (CCW) direction. To get the motors moving
-with different velocities one needs to change the wait times between
-two steps (see \ref{menu_step_wait_time}).
-STOP means that the motor is not moving. Constant angular speed for a
-certain motor can not be activated if a forbidden zone is configured to
-this motor (see \ref{chp:forbidden_zone}).
+Here the motors can be set into an infinite moving state in clockwise (CW) or counter clockwise (CCW) direction. To get the motors moving with different velocities one needs to change the wait times between two steps (see \ref{menu_step_wait_time}).
+STOP means that the motor is not moving. Constant speed for a certain motor can not be activated if a forbidden zone is configured for this motor (see \ref{chp:forbidden_zone}).
 \begin{center}
   \LCD{2}{16}|{rarrow}CW     {rarrow}CCW|
              | STOP    STOP|
 \end{center}
 
 \subsection{Zero position}
-\index{optical zero position}
-In this menu one can define the optical zero position. This is
-necessary due to a mostly unknown placement of the optical element
-mounted to the motor. Here one can once adjust the desired optical
-zero position manually. The optical zero position is always
-defined in steps. In this menu there is also a fast mode available
-(please refer to \ref{menu_motor_pos} for details about the fast mode).
-After adjustment it is recommended to save this configuration
-(see \ref{menu_save}).
-When performing a zero calibration, as explained in \ref{menu_zero_cal},
-the zero position will be the defined optical zero position.
+\index{zero!position}
+In this menu one can define an offset for the zero position. This is necessary due to a mostly unknown placement of the load mounted to a stage. 
+%Here one can once adjust the desired optical zero position manually. 
+The zero position is always defined in steps. In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode). After adjustment it is recommended to save this configuration (see \ref{menu_save}). When performing a zero calibration, as explained in \ref{menu_zero_cal}, the zero position will have the defined offset form the mechanical zero position.
 \begin{center}
   \LCD{2}{16}|{rarrow}122st   0st|
              | 0st     0st|
@@ -294,23 +257,18 @@ the zero position will be the defined optical zero position.
 
 \subsection{Zero calibration}
 \label{menu_zero_cal}
-\index{motor!zero calibration}
-Here one can calibrate the motor zero position for each motor. To
-perform a zero calibration select the motors to be calibrated and
-turn the rotary encoder. Note, that during zero calibration no actions
-can be done on the device, even serial commands will not be accepted.
-The zero calibration will automatically deselect a motor when its
-calibration is finished. The zero calibration menu will be automatically
-leaved when calibration is finished.
+\index{zero!calibration}
+Here one can calibrate the motor zero position for each motor. To perform a zero calibration select the motors to be calibrated and turn the rotary knob. Note, that during zero calibration no actions can be done on the device, even serial commands will not be accepted. The zero calibration will automatically deselect a motor when its calibration is finished. The zero calibration menu will be automatically leaved when calibration is finished.
 \begin{center}
-  \LCD{2}{16}|{rarrow}Mot 0  {rarrow}Mot 1|
-             | Mot 2   Mot 3|
+  \LCD{2}{16}|{rarrow}Mot 1  {rarrow}Mot 2|
+             | Mot 3   Mot 4|
 \end{center}
 
 \subsection{Settings menu}
-The settings menu contains several submenus that allow the user to adjust some of the settings right at the device itself.
-
-Turning the rotary encoder serves to scroll through the settings menus (see figure~\ref{settings_menu}). Pressing the rotary encoder enters the selected settings menu. Pressing the menu-escape-button leaves the settings menu.
+\label{menu_settings}
+\index{settings}
+The settings menu contains several submenus that allow the user to adjust some of the settings.\\
+Turning the rotary knob serves to scroll through the settings menus (see figure~\ref{settings_menu}). Pressing the rotary knob enters the selected settings menu. Pressing the menu-escape-button leaves the settings menu.
 
 \begin{figure}[H]
 \begin{tikzpicture}[node distance=2cm]
@@ -322,7 +280,7 @@ Turning the rotary encoder serves to scroll through the settings menus (see figu
  \hfill
 \begin{minipage}[h]{\textWidth}
 %Menu: Change motor substep\\
-Edit number of substeps.
+Edit number of substeps\\ used for microstepping.
 \end{minipage}
 };
 
@@ -380,41 +338,35 @@ Load configuration from EEPROM.
 \draw [arrow] (load.east) -- +(1,0) |- (substep.east);
 \end{tikzpicture}
 \caption[Overview of the settings menus.]{Overview of the settings menus. By turning
-the rotary button one can navigate through the settings menus as indicated by the arrows.}
+the rotary knob one can navigate through the settings menus as indicated by the arrows.}
 \label{settings_menu}
 \end{figure}
 
 
 
 \subsubsection{Motor substeps}
+\label{menu_substeps}
 \index{change!substeps}
 \index{change!microstepping}
-In this menu one can change the motor substeps. Possible values are 1,
-2, 4, 8, 16 or 32.
+In this menu one can change the number of substeps used for microstepping. Possible values are 1, 2, 4, 8, 16 or 32.\\
+Note, that a value of 1 is equivalent to full step operation. So no microstepping is used to drive the stepper motor. If the adjusted value differs from 1, microstepping is used to obtain finer positioning resolution. Values above 8 are not recommended because of the decreasing motor torque.
 \begin{center}
   \LCD{2}{16}|{rarrow}1      {rarrow}2|
              | 4      {rarrow}8|
 \end{center}
-This adjustments result in a finer angular resolution. Values above
-16 are not recommended.
-
 
 \paragraph{A note on microstepping.}
 \index{microstepping}
-When increasing the the number of microsteps per full step the incremental
-torque per microstep decreases heavily. The expression for calculating
-the incremental tourque $\tau_{\text{inc}}$ is
+When increasing the number of substeps (microsteps per full step) the incremental torque per microstep decreases heavily. The expression for calculating the incremental tourque $\tau_{\text{inc}}$ is
 \begin{equation*}
   \tau_{\text{inc}} = \tau_{\text{H}} \cdot \sin \left( \frac{90}{\mu} \right),
 \end{equation*}
-where $\tau_{\text{H}}$ is the holding torque per full step (without
-microstepping) and $\mu$ is the number of microsteps per full step.\\
+where $\tau_{\text{H}}$ is the holding torque per full step (without microstepping) and $\mu$ is the number of microsteps per full step.\\
 The incremental torque $\tau_{\text{N}}$ for $N$ microsteps is
 \begin{equation*}
   \tau_{\text{N}} = \tau_{\text{H}} \cdot \sin \left( \frac{90\cdot N}{\mu} \right).
 \end{equation*}
-So, the holding torque per microstep decreases as shown in
-table \ref{tab:microstepping_holding_torque}.
+So, the holding torque per microstep decreases as shown in table \ref{tab:microstepping_holding_torque}.
 \begin{table}
   \centering
   \begin{tabular}{cc}
@@ -429,13 +381,14 @@ table \ref{tab:microstepping_holding_torque}.
     32 & 4.9 \% \\
     \bottomrule
   \end{tabular}
-  \caption{Decrease of motor holding torque in dependence of the number of
-           adjusted microsteps.}
+  \caption{Decrease of motor holding torque in dependence of the number of adjusted microsteps.}
   \label{tab:microstepping_holding_torque}
 \end{table}
 
 \subsubsection{Motor current}
-In this menu the user can change the maximum current that is used to drive the corresponding motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor. 
+\label{menu_motor_current}
+\index{change!current}
+In this menu the user can change the maximum current that is used to drive the corresponding stepper motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor. 
 \begin{center}
   \LCD{2}{16}| 1.0 A  {rarrow}1.3 A|
              |{rarrow}0.9 A   0.5 A|
@@ -444,9 +397,9 @@ In this menu the user can change the maximum current that is used to drive the c
 \subsubsection{Step wait time}
 \label{menu_step_wait_time}
 \index{change!step wait time}
-Here the wait time between two steps can be changed. This results in
-faster or slower motor movements. The default value is 3 milliseconds.
-We do not recommend to use shorter wait times as 3 milliseconds.
+Here the wait time between two steps can be changed. This results in faster or slower movements of the stepper motor. The default value is 3 milliseconds.\\
+Note, that a very short wait time and therefore fast movement speed can lead to stalling of the stepper motor.
+%We do not recommend to use shorter wait times as 3 milliseconds.
 \begin{center}
   \LCD{2}{16}|{rarrow}3 ms   {rarrow}5 ms|
              |{rarrow}18 ms   3 ms|
@@ -454,11 +407,10 @@ We do not recommend to use shorter wait times as 3 milliseconds.
 
 \subsubsection{Save current configuration}
 \label{menu_save}
-To save the current \productName ~configurations enter this menu and
-turn the rotary encoder in any direction. The menu will be automatically
-leaved when saving is finished.\\
-Note, that always the configurations for all motors will be saved. It is not
-possible to save the configuration for a single motor.
+\index{save}
+To save the current \productName ~configuration enter this menu and turn the rotary knob in any direction.\\
+%The menu will be automatically leaved when saving is finished.
+Note, that always the configuration for all motors will be saved. It is not possible to save the configuration for a single motor only.
 \begin{center}
   \LCD{2}{16}|Save all current|
              |configurations|
@@ -467,12 +419,10 @@ possible to save the configuration for a single motor.
 
 \subsubsection{Load configuration}
 \label{chp:menu_load}
-To load the last saved \productName ~configurations enter this menu
-and turn the rotary encoder in any direction. The menu will be leaved
-automatically when loading has
-finished.\\
-Note: The last saved configuration is loaded automatically when
-powering on the \productName.\\
+\index{load}
+To load the last saved \productName ~configuration enter this menu and turn the rotary knob in any direction.\\
+%The menu will be leaved automatically when loading has finished.
+Note: The last saved configuration is loaded automatically when powering on or resetting the \productName.\\
 Note: There is just one memory space for a configuration.
 \begin{center}
   \LCD{2}{16}|Load all saved|
@@ -480,17 +430,14 @@ Note: There is just one memory space for a configuration.
 \end{center}
 
 
-\subsection{Forbidden zones}
-\label{chp:forbidden_zone}
+%\subsection{Forbidden zones}
+%\label{chp:forbidden_zone}
 
-\subsection{Positioning procedures}
-\label{chp:positioning_procedure}
-
-
+%\subsection{Positioning procedures}
+%\label{chp:positioning_procedure}
 
 
 
 
 
-
-\newpage
+%\newpage

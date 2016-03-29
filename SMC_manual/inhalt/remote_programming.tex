@@ -2,19 +2,13 @@
 \section{Remote Programming}
 \label{chp:remote_programming}
 \subsection{Communication Settings}
-In order to remote control the \productName ~from a computer, it
-needs to be connected to the computer via the USB cable. The
-\productName ~will show up as a new Virtual COM Port (VCP). In some
-cases it might be necessary to install some drivers, which can be
-found at
+\index{communication settings}
+\index{COM port}
+In order to remote control the \productName ~from a computer, connect it to a free USB port of the computer. The \productName ~will show up as a new Virtual COM Port (VCP). In some cases it might be necessary to install drivers, which can be found at
 \begin{center}
   \url{http://www.lk-instruments.com/smc_software.html}
 \end{center}
-Once the Virtual COM Port has been installed successfully, the
-\productName ~can be controlled by sending commands via a serial
-terminal. A list of all available commands can be found in
-section~\ref{section_instruction_set}. The serial terminal needs
-to be configured as
+Once the Virtual COM Port has been installed successfully, the \productName ~can be controlled by sending commands via a serial terminal. A list of all available commands can be found in section~\ref{section_instruction_set}. The serial terminal needs to be configured as
 \begin{itemize}
 \item 57600 Baud
 \item 8 bit character size
@@ -25,21 +19,24 @@ to be configured as
 
 \subsection{Instruction set}
 \label{section_instruction_set}
-
-The \productName ~has the following commands which can be used.
+\index{instruction set}
+The following commands are available on the \productName .
 Note, that the command parser is case sensitive. The command
 parameters, denoted by \texttt{<xxx>}, must be separated by
 either \texttt{SPACE} or ``,'' or ``;'' or \texttt{TAB}. The
 command is completed by sending a  Carriage Return + Line Feed
-(\texttt{CRLF}) or Line Feed (\texttt{LF}).
+(\texttt{CRLF}) or Line Feed (\texttt{LF}).\\
+Note, that in order to simplify writing programs for the \productName , the remote interface uses a different numbering for the motors. On the device itself the motor channels are labeled with "Motor 1" to "Motor 4", but the remote interface starts counting at 0. Therefore in the following we will refer to the stepper motor connected to the first channel as "motor 0", to the motor connected to the second channel as "motor 1" and so on.
+
+\clearpage
 
 \def \vdistace {2ex}
-\vspace{\vdistace}
+%\vspace{\vdistace}
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{*RST}\\
-    Function: & Resets the \productName ~to the initial state.\\
+    Function: & Resets the \productName ~to the initial state and loads the last saved configuration.\\
     Example:  & \texttt{*RST}
   \end{tabularx}
 \end{table}
@@ -62,6 +59,20 @@ command is completed by sending a  Carriage Return + Line Feed
     Function: & Returns whether motor \texttt{<mot>} is turned on or off.\\
     Example:  & \texttt{GETMOTSTATE 3} \\
               & Returns 1 if motor 3 is turned on or 0 if motor 3 is turned off.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{ENABLE <mot> <on/off>}\\
+    Function: & Turns motor \texttt{<mot>} on (1) or off (0).\\
+    Note:     & Both for enabeling and disabeling of a motor the same command is used.\\
+    Example:  & \texttt{ENABLE 2 1} \\
+              & Turns motor 2 on. \\
+              & \texttt{ENABLE 3 0} \\
+              & Turns motor 3 off.
   \end{tabularx}
 \end{table}
 
@@ -111,13 +122,10 @@ command is completed by sending a  Carriage Return + Line Feed
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{ENABLE <mot> <on/off>}\\
-    Function: & Turns motor \texttt{<mot>} on (1) or off (0).\\
-    Note:     & Both for enabeling and disabeling of a motor the same command is used.\\
-    Example:  & \texttt{ENABLE 2 1} \\
-              & Turns motor 2 on. \\
-              & \texttt{ENABLE 3 0} \\
-              & Turns motor 3 off.
+    Command:  & \texttt{GETPOS <mot> <unit>}\\
+    Function: & Returns the actual motor position in the given unit.\\
+    Example:  & \texttt{GETPOS 1 deg} \\
+              & Returns the current position of motor 1 in degree.
   \end{tabularx}
 \end{table}
 
@@ -125,10 +133,12 @@ command is completed by sending a  Carriage Return + Line Feed
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{GETPOS <mot> <unit>}\\
-    Function: & Returns the actual motor position in the given unit.\\
-    Example:  & \texttt{GETPOS 1 deg} \\
-              & Returns the current position of motor 1 in degree.
+    Command:  & \texttt{ISMOVING <mot>}\\
+    Function: & Returns the motor moving state.\\
+              & 1: motor \texttt{<mot>} is moving.\\
+		      & 0: motor \texttt{<mot>} is not moving.\\
+    Example:  & \texttt{ISMOVING 0}\\
+              & Returns 1 if motor 0 is moving and 0 if it is currently not moving.
   \end{tabularx}
 \end{table}
 
@@ -162,7 +172,7 @@ command is completed by sending a  Carriage Return + Line Feed
     Function: & Returns the zero position of motor \texttt{<mot>}.\\
     Note:     & Zero positions are only available in steps.\\
     Example:  & \texttt{GETZEROPOS 3}\\
-              & Returns the optical zero position of motor 3.
+              & Returns the zero position of motor 3.
   \end{tabularx}
 \end{table}
 
@@ -263,7 +273,7 @@ command is completed by sending a  Carriage Return + Line Feed
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETCURR <mot> <val>}\\
     Function: & Sets the motor current of motor \texttt{<mot>} to \texttt{<val>} ampere.\\
-    Note:     & The current can be adjusted between 0 and \unit[2.5]{A}. The unit for the current is always ampere.\\
+    Note:     & The current can be adjusted between 0 and \unit[2.5]{A} with 8-bit resolution. The unit for the current is always ampere.\\
     Example:  & \texttt{SETCURR 0 1.0}\\
               & Sets the motor current of motor 0 to \unit[1]{A}.
   \end{tabularx}
@@ -318,28 +328,6 @@ command is completed by sending a  Carriage Return + Line Feed
                 is always milliseconds.\\
     Example:  & \texttt{SETWAITTIME 1 5}\\
               & Sets the wait time of motor 1 to 5 milliseconds.
-  \end{tabularx}
-\end{table}
-
-\vspace{\vdistace}
-
-\begin{table}[h]
-  \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{FACTORYRESET}\\
-    Function: & Resets the \productName ~to factory state.\\
-    Example:  & \texttt{FACTORYRESET}
-  \end{tabularx}
-\end{table}
-
-\vspace{\vdistace}
-
-\begin{table}[h]
-  \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{ISMOVING <mot>}\\
-    Function: & Returns the motor moving state.\\
-              & 1: motor \texttt{<mot>} is moving.\\
-		          & 0: motor \texttt{<mot>} doesn't move.\\
-    Example:  & \texttt{ISMOVING 0}
   \end{tabularx}
 \end{table}
 
@@ -404,7 +392,7 @@ command is completed by sending a  Carriage Return + Line Feed
     Function: & Defines an internal program step for all motors. \texttt{<step>}
                 is the program sequence number. The position for all motors 
                 \texttt{<M0...4>} must be given in steps. Mode defines if
-                the movement to an absolute position \texttt{<mode=ABS>}
+                the movement is to an absolute position \texttt{<mode=ABS>}
                 or a movement relative to the current position \texttt{<mode=REL>}.\\
     Example:  & \texttt{SETPROGSTEP 0 112 294 0 12 ABS}\\
               & Defines the program step 0. Motor 0 moves to 112,
@@ -416,5 +404,13 @@ command is completed by sending a  Carriage Return + Line Feed
   \end{tabularx}
 \end{table}
 
-\newpage
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{FACTORYRESET}\\
+    Function: & Resets the \productName ~to factory state.\\
+    Example:  & \texttt{FACTORYRESET}
+  \end{tabularx}
+\end{table}
 

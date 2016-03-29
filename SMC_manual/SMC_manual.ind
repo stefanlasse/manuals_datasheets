@@ -1,0 +1,39 @@
+\begin{theindex}
+
+  \item change
+    \subitem current, \hyperpage{9}
+    \subitem microstepping, \hyperpage{8}
+    \subitem position, \hyperpage{5}
+    \subitem step wait time, \hyperpage{9}
+    \subitem substeps, \hyperpage{8}
+    \subitem unit, \hyperpage{6}
+
+  \indexspace
+
+  \item Fast moving mode, \hyperpage{5}
+
+  \indexspace
+
+  \item internal program, \hyperpage{6}
+
+  \indexspace
+
+  \item load, \hyperpage{10}
+
+  \indexspace
+
+  \item microstepping, \hyperpage{8}
+
+  \indexspace
+
+  \item save, \hyperpage{9}
+  \item settings, \hyperpage{7}
+  \item step multiplier, \hyperpage{5}
+
+  \indexspace
+
+  \item zero
+    \subitem calibration, \hyperpage{7}
+    \subitem position, \hyperpage{6}
+
+\end{theindex}

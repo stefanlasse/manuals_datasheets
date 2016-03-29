@@ -1,4 +1,85 @@
 \section{Basic setup}
 
+\subsection{Stepper motor setup}
+Before a stepper motor is connected to the \productName , please ensure, that the following parameters are set according to the specifications of you stepper motor.
 
-\newpage
+\begin{itemize}
+\item maximum motor current
+\item current decay mode
+\item gear ratio
+\item steps per full rotation
+\item number of substeps
+\item wait time between steps
+\end{itemize}
+
+\textbf{Warning:} Take especially care, that the maximum motor current does not exceed the maximum ratings of your stepper motor. Because a high current might damage the stepper motor or the \productName .
+
+The parameters can be set to the desired value either using the manual user interface (see chapter \ref{chp:general_operation}) or via remote control using a computer (see chapter \ref{chp:remote_programming}).
+
+\subsection{Example setup for M101A}
+In the following configuration example it is assumed, that four LK-Instruments M101A rotation stages shall be connected to the \productName . In case different stepper motors shall be connected to the \productName , the same procedure applies, but take care to change the values according to the data sheet of the stepper motor used.
+
+\subsubsection{Motor current}
+Before any of the stepper motors or rotation stages are connected to the \productName ~the maximum motor current needs to be adjusted. In the data sheet of the M101A rotation stage a typical motor current of \unit[1.3]{A} is specified.\\
+In order to adjust the settings of the \productNumber ~\productName ~to this value, connect it to an appropriate power source and turn it on using the switch on its back panel.
+
+There are two possible ways of adjusting the current setting either using the manual user interface or via remote control.\\
+To adjust the setting using the manual user interface, navigate to the settings menu by rotating the rotary knob until the settings menu shows up (see \ref{chp:general_operation}). Enter this menu by pressing the rotary knob and navigate to the motor current menu by rotating the rotary knob (see \ref{menu_settings}). Enter the current menu by pressing the rotary knob (see \ref{menu_motor_current}). Now select all motors by pressing the corresponding motor-selection buttons and adjust the the motor current to the desired value of \unit[1.3]{A} by turning the rotary knob.\\
+The next step is to save the settings to the EEPROM. To do so, exit the current menu by pressing the menu-escape-button once. Navigate to the save current configuration menu and enter it by pressing the rotary knob (see \ref{menu_save}). To save the configuration turn the rotary knob in any direction. If successful the word saved will show up on the display.
+
+To adjust the settings using the remote interface, connect the \productName ~to a free USB port of a computer and connect to it, as described in chapter \ref{chp:remote_programming}, using a serial terminal. To set the motor current of all four motors to \unit[1.3]{A} and save the settings to the EEPROM issue the following commands:
+
+\texttt{SETCURR 0 1.3}\\
+\texttt{SETCURR 1 1.3}\\
+\texttt{SETCURR 2 1.3}\\
+\texttt{SETCURR 3 1.3}\\
+\texttt{SAVECONF}
+
+Now one may already connect the stepper motors to the \productName . To do so, first turn of the \productName , connect the stepper motors to its outputs and once connected, turn it back on.
+
+\subsubsection{Current decay mode}
+The \productNumber ~\productName ~allows the user to select between three different current decay modes, namely fast, slow and mixed decay. In this example we would like to set to decay mode to slow. Therefore the following commands need to be send:
+
+\texttt{SETDECAY 0 0}\\
+\texttt{SETDECAY 1 0}\\
+\texttt{SETDECAY 2 0}\\
+\texttt{SETDECAY 3 0}
+
+\subsubsection{Gear ratio}
+The M101A rotation stage uses a gear with 20 teeth on the motor shaft and a gear with 60 teeth for the load. Therefore this stage has a gear ratio of $\frac{60}{20} = 3.0$. To set this gear ratio for all four motor channels send the following commands to the \productName :
+
+\texttt{SETGEARRATIO 0 3.0}\\
+\texttt{SETGEARRATIO 1 3.0}\\
+\texttt{SETGEARRATIO 2 3.0}\\
+\texttt{SETGEARRATIO 3 3.0}
+
+\subsubsection{Steps per full rotation}
+The stepper motor used in the M101A rotation stage has a step angle of \unit[0.9]{°} and therefore 400 steps per full rotation. To set this value for all four motor channels send the following commands to the \productName :
+
+\texttt{SETFULLROT 0 400}\\
+\texttt{SETFULLROT 1 400}\\
+\texttt{SETFULLROT 2 400}\\
+\texttt{SETFULLROT 3 400}
+
+\subsubsection{Number of substeps}
+In this example we would like to benefit from the higher resolution, that microstepping can provide to us. Therefore the number of substeps shall be set to 4. To do so, navigate to the motor substeps menu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_substeps}) or send the following commands to the \productName :
+
+\texttt{SETSUBSTEPS 0 4}\\
+\texttt{SETSUBSTEPS 1 4}\\
+\texttt{SETSUBSTEPS 2 4}\\
+\texttt{SETSUBSTEPS 3 4}
+
+\subsubsection{Wait time between steps}
+In order to rotate the M101A rotation stage with a desired speed of $\unit[25]{\nicefrac{^{\circ}}{s}}$, according to the previously specified parameters it is necessary to set the wait time between steps to $\frac{360^{\circ}}{3 \cdot 400 \cdot 4} \frac{1}{\unit[25]{\nicefrac{^{\circ}}{s}}} =  \unit[3]{ms}$. In order to do that, navigate to the step wait time menu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_step_wait_time}) or send the following commands to the \productName : 
+
+\texttt{SETWAITTIME 0 3}\\
+\texttt{SETWAITTIME 1 3}\\
+\texttt{SETWAITTIME 2 3}\\
+\texttt{SETWAITTIME 3 3}
+
+\subsubsection{Save configuration}
+Once all the parameters are set to the desired values, it is recommended to save the configuration to the EEPROM, because the \productNumber ~\productName ~will load the last saved configuration when powering on or resetting the device. To save the configuration either navigate to the save current configuration menu inside the settings menu and turn the rotary knob while in this menu (see \ref{menu_save}) or send the following command to the \productName : 
+
+\texttt{SAVECONF}
+
+%\newpage
