@@ -1,39 +1,42 @@
 \begin{theindex}
 
   \item change
-    \subitem current, \hyperpage{9}
-    \subitem microstepping, \hyperpage{8}
-    \subitem position, \hyperpage{5}
-    \subitem step wait time, \hyperpage{9}
-    \subitem substeps, \hyperpage{8}
-    \subitem unit, \hyperpage{6}
+    \subitem current, \hyperpage{13}
+    \subitem microstepping, \hyperpage{12}
+    \subitem position, \hyperpage{9}
+    \subitem step wait time, \hyperpage{13}
+    \subitem substeps, \hyperpage{12}
+    \subitem unit, \hyperpage{10}
+  \item COM port, \hyperpage{15}
+  \item communication settings, \hyperpage{15}
 
   \indexspace
 
-  \item Fast moving mode, \hyperpage{5}
+  \item fast moving mode, \hyperpage{9}
 
   \indexspace
 
-  \item internal program, \hyperpage{6}
+  \item instruction set, \hyperpage{15}
+  \item internal program, \hyperpage{10}
 
   \indexspace
 
-  \item load, \hyperpage{10}
+  \item load, \hyperpage{14}
 
   \indexspace
 
-  \item microstepping, \hyperpage{8}
+  \item microstepping, \hyperpage{12}
 
   \indexspace
 
-  \item save, \hyperpage{9}
-  \item settings, \hyperpage{7}
-  \item step multiplier, \hyperpage{5}
+  \item save, \hyperpage{13}
+  \item settings, \hyperpage{11}
+  \item step multiplier, \hyperpage{9}
 
   \indexspace
 
   \item zero
-    \subitem calibration, \hyperpage{7}
-    \subitem position, \hyperpage{6}
+    \subitem calibration, \hyperpage{11}
+    \subitem position, \hyperpage{10}
 
 \end{theindex}
