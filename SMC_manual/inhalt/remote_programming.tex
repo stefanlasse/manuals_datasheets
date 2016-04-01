@@ -80,6 +80,19 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \begin{table}[h]
   \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{ISCON <mot>}\\
+    Function: & Returns if a motor is connected to the output.\\
+              & 1: a motor \texttt{<mot>} is connected.\\
+		      & 0: no motor \texttt{<mot>} is connected.\\
+    Example:  & \texttt{ISCON 2}\\
+              & Returns 1 if a motor is connected to the motor 2 output and 0 if not.
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{MOVEABS <mot> <pos> <unit>}\\
     Function: & Moves motor \texttt{<mot>} to the absolute position \texttt{<pos> <unit>}.\\
               & The units can be steps, degree or radians.\\
