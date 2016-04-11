@@ -1,0 +1,205 @@
+
+
+%------------------
+% General Settings
+%------------------
+
+\def \docTitle {Lieferschein}
+\def \invoiceNumber {4052-15-01}
+\def \docAuthor {LK-Instruments}
+
+\documentclass[DIN,
+               paper=a4,
+               fontsize=11pt,
+               addrfield=on,
+               enlargefirstpage=on,
+               foldmarks=on,
+               pagenumber=off,
+               firsthead=on,
+               firstfoot=on,
+               parskip=full,
+               addrfield=on,
+               fromalign=right,
+            %   fromfax=true,
+               fromemail=true,
+               fromphone=true,
+               fromurl=true,
+               fromlogo=on,
+               fromrule=off,
+               numericaldate=off,
+            %   subject=titled,
+              ]{scrlttr2}
+
+%----------
+% Packages
+%----------
+\usepackage{etex}
+\reserveinserts{30}
+\usepackage[utf8]{inputenc}
+
+\usepackage{slantsc}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}                    % math symbols
+\usepackage{graphicx}            	      % include pictures
+\usepackage[rgb]{xcolor}
+\usepackage{lastpage}
+\usepackage{multirow,booktabs,colortbl,tabularx,array}
+
+
+%----------------
+% PDF properties
+%----------------
+\usepackage[
+  pdftitle={\docTitle~\invoiceNumber}
+ ,pdfsubject={not specified}
+ ,pdfauthor={\docAuthor}
+ ,pdfkeywords={}
+ ,pdfcreator={TeXlive on GNU/Linux}
+ ,pdfstartview=Fit 					        % startseite ganz anzeigen
+ ,pdfborder={0 0 0} 				        % links ohne umrandungen
+ ,pdfdisplaydoctitle 				        % pdftitle statt dateinamen anzeigen
+]{hyperref}
+
+%----------------
+% header/footer
+%----------------
+\makeatletter
+\@addtoplength{firstheadvpos}{8mm}
+\@addtoplength{firstfootvpos}{-5mm}
+\@setplength{firstheadwidth}{\paperwidth}
+\@addtoplength{firstheadwidth}{-36mm}
+\@setplength{firstfootwidth}{\useplength{firstheadwidth}}
+\makeatother
+
+% Information in the header
+\newcommand*{\headbox}{
+\usekomafont{pagenumber}
+  \begin{minipage}[c]{0.35\textwidth}
+     \usekomavar{fromname}
+     \usekomavar{fromaddress}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.15\textwidth}
+    \includegraphics[width=2.5cm]{../../general/logo_black.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.35\textwidth}
+    \begin{flushright}
+      \usekomavar*{fromphone}\usekomavar{fromphone}\\
+      \usekomavar{fromemail}\\
+      \usekomavar{fromurl}
+    \end{flushright}
+  \end{minipage}
+}
+\firsthead{\headbox}
+
+% Information in the footer
+\newcommand*{\footbox}{
+\usekomafont{pagenumber}%
+\parbox[t]{\textwidth}{\footnotesize%
+  \begin{tabular}[t]{l@{}}%
+    TTI GmbH - Zentrale\\%
+    Nobelstraße 15\\%
+    D-70569 Stuttgart%
+  \end{tabular}%
+  \hspace*{0.7cm}%
+  \begin{tabular}[t]{l@{}}%
+    Geschäftsführung:\\%
+    Prof. Dr.-Ing. Bernd Bertsche\\%
+    Dipl.-Ing., MBA Peter Heinke%
+  \end{tabular}%
+  \hspace*{0.7cm}%
+  \begin{tabular}[t]{l@{}}%
+    \usekomavar*{frombank}:\\%
+    \usekomavar{frombank}%
+  \end{tabular}%
+  \hspace*{0.5cm}%
+  \begin{tabular}[t]{r@{}}%
+      Amtsgericht Stuttgart\\%
+      HRB 19455\\%
+      USt-IdNr. DE 194532993\\%
+      Steuer-Nr. 99039/02378%
+  \end{tabular}%
+}%
+}%
+\firstfoot{\footbox}
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+  align=tl,
+  hoffset=\dimexpr.5\paperwidth-.5\useplength{firstfootwidth}\relax,
+  voffset=\useplength{firstfootvpos},
+  width=\useplength{firstfootwidth},
+  height=\dimexpr\paperheight-\useplength{firstfootvpos},
+  foreground,
+  contents={\parbox{\layerwidth}{\usekomavar{firstfoot}}}
+]{TTIfooter}
+\DeclarePageStyleByLayers{LKletter}{TTIfooter}
+\pagestyle{LKletter}
+
+
+%----------------------------------------------------------
+\begin{document}
+%----------------
+% KOMA variables
+%----------------
+\setkomavar{fromname}{}
+
+\setkomavar{fromaddress}{TTI GmbH\\
+                         TGU LK-Instruments\\
+                         Unterbrüdener Str. 14\\
+                         71549 Auenwald}
+\setkomavar{backaddress}{\textbf{LK}-Instruments\\
+                         Unterbrüdener Str. 14\\
+                         71549 Auenwald}
+\setkomavar{fromphone}{+49 (0)7191 59120}
+\setkomavar{fromfax}{}
+\setkomavar{fromemail}{\href{mailto:info@lk-instruments.com}{info@lk-instruments.com}}
+\setkomavar{fromurl}{\href{http://www.lk-instruments.com}{www.lk-instruments.com}}
+
+\setkomavar{frombank}{BW-Bank Stuttgart\\
+                      BIC SOLADEST\\
+                      IBAN DE91 600501017871504477}
+
+%----------------
+% to be edited
+%----------------
+\setkomavar{yourref}[Ihre Bestellung]{T3-5563}
+%\setkomavar{yourmail}{}
+%\setkomavar{myref}{ }
+\setkomavar{customer}{10001}
+\setkomavar{invoice}{\invoiceNumber}
+\setkomavar{date}{\today}
+\setkomavar{signature}{Kim D. Kafenda}
+%\setkomavar{title}{Angebot}
+\setkomavar{subject}{\docTitle}
+
+\begin{letter}{Universität Stuttgart\\
+               3. Physikalisches Institut\\             
+               Pfaffenwaldring 57\\
+               70569 Stuttgart}
+\opening{}
+
+\begin{tabular}{rp{8.5cm}cc}
+  \toprule
+  \textbf{Pos.}&\textbf{Artikel/Bezeichnung}&\textbf{Liefermenge}&\textbf{Restmenge}\\
+  \toprule
+  1 &  & 1 Stück & 0 \\
+	& & & \\
+  \bottomrule
+
+\end{tabular}
+
+%\closing{Mit freundlichen Grüßen}
+%\encl{Anlage 1 \\ Anlage 2}
+%\ps{}
+
+\end{letter}
+\end{document}
