@@ -6,8 +6,10 @@
 \index{COM port}
 In order to remote control the \productName ~from a computer, connect it to a free USB port of the computer. The \productName ~will show up as a new Virtual COM Port (VCP). In some cases it might be necessary to install drivers, which can be found at
 \begin{center}
-  \url{http://www.lk-instruments.com/smc_software.html}
+  \url{http://www.lk-instruments.com}
+  %\url{http://www.lk-instruments.com/smc_software.html}
 \end{center}
+on the corresponding product website.
 Once the Virtual COM Port has been installed successfully, the \productName ~can be controlled by sending commands via a serial terminal. A list of all available commands can be found in section~\ref{section_instruction_set}. The serial terminal needs to be configured as
 \begin{itemize}
 \item 57600 Baud
@@ -33,7 +35,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 \def \vdistace {2ex}
 %\vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{*RST}\\
     Function: & Resets the \productName ~to the initial state and loads the last saved configuration.\\
@@ -43,7 +45,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{*IDN?}\\
     Function: & Returnes the identification name of the \productName.\\
@@ -53,7 +55,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETMOTSTATE <mot>}\\
     Function: & Returns whether motor \texttt{<mot>} is turned on or off.\\
@@ -64,7 +66,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{ENABLE <mot> <on/off>}\\
     Function: & Turns motor \texttt{<mot>} on (1) or off (0).\\
@@ -78,7 +80,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{ISCON <mot>}\\
     Function: & Returns if a motor is connected to the output.\\
@@ -91,7 +93,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{MOVEABS <mot> <pos> <unit>}\\
     Function: & Moves motor \texttt{<mot>} to the absolute position \texttt{<pos> <unit>}.\\
@@ -100,27 +102,27 @@ Note, that in order to simplify writing programs for the \productName , the remo
     Example:  & \texttt{MOVEABS 1 0 deg} \\
               & \texttt{MOVEABS 1 0 pi} \\
               & \texttt{MOVEABS 1 0 steps} \\
-              & The examples do the same in different units.
+              %& The examples do the same in different units.
+              & All three examples move motor 1 to the zero position, but in different units.
   \end{tabularx}
 \end{table}
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{MOVEREL <mot> <pos> <unit>}\\
-    Function: & Moves motor \texttt{<mot>}relative to the current position.
-                The units can be steps, degree or radians.\\
+    Function: & Moves motor \texttt{<mot>} relative to the current position. The units can be steps, degree or radians.\\
     Note:     & The unit must be written in lower case letters.\\
     Example:  & \texttt{MOVEREL 2 22.5 deg} \\
               & \texttt{MOVEREL 2 0.125 pi} \\
-              & Both examples do the same in different units.
+              & Both examples move motor 2 by the same angle, but in different units.
   \end{tabularx}
 \end{table}
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{ZERORUN <mot>}\\
     Function: & Finds the mechanical zero position of the motor.\\
@@ -133,7 +135,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETPOS <mot> <unit>}\\
     Function: & Returns the actual motor position in the given unit.\\
@@ -144,7 +146,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{ISMOVING <mot>}\\
     Function: & Returns the motor moving state.\\
@@ -157,7 +159,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SAVECONF}\\
     Function: & Saves all current configurations for all motors.\\
@@ -169,17 +171,17 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{LOADCONF}\\
-    Function: & Loads all saved configurations for all motors.\\
+    Function: & Load saved configuration for all motors.\\
     Example:  & \texttt{LOADCONF}
   \end{tabularx}
 \end{table}
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETZEROPOS <mot>}\\
     Function: & Returns the zero position of motor \texttt{<mot>}.\\
@@ -191,7 +193,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETZEROPOS <mot>}\\
     Function: & Set the zero position for motor \texttt{<mot>}.\\
@@ -203,7 +205,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETGEARRATIO <mot>}\\
     Function: & Returns the gear ratio of a motor.\\
@@ -214,7 +216,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETGEARRATIO <mot> <val>}\\
     Function: & Sets the gear ratio of motor \texttt{<mot>} to a gear ratio
@@ -226,7 +228,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETFULLROT <mot>}\\
     Function: & Returns the number of steps per full rotation without microsteps of a motor. Typical values for stepper motors are 200 or 400 steps per full rotation.\\
@@ -237,7 +239,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETFULLROT <mot> <val>}\\
     Function: & Sets the number of steps per full rotation of motor \texttt{<mot>} to \texttt{<val>} steps.\\
@@ -248,7 +250,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETSUBSTEPS <mot>}\\
     Function: & Returns the number of substeps of a motor.\\
@@ -259,7 +261,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETSUBSTEPS <mot> <val>}\\
     Function: & Sets the number of substeps of motor \texttt{<mot>} to \texttt{<val>} substeps.\\
@@ -271,7 +273,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETCURR <mot>}\\
     Function: & Returns the motor current of a motor in ampere.\\
@@ -282,7 +284,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETCURR <mot> <val>}\\
     Function: & Sets the motor current of motor \texttt{<mot>} to \texttt{<val>} ampere.\\
@@ -294,7 +296,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETDECAY <mot>}\\
     Function: & Returns the setting of the decay mode of motor \texttt{<mot>}.\\
@@ -305,7 +307,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETDECAY <mot> <val>}\\
     Function: & Sets the decay mode of motor \texttt{<mot>} to slow \texttt{<val=0>}, fast \texttt{<val=1>} or mixed \texttt{<val=2>}.\\
@@ -321,7 +323,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{GETWAITTIME <mot>}\\
     Function: & Returns the wait time between two steps of a motor.\\
@@ -332,7 +334,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETWAITTIME <mot> <time>}\\
     Function: & Sets the wait time between two steps to \texttt{<time>} milliseconds
@@ -346,7 +348,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{STOPALL}\\
     Function: & Stops all motor movements immediately.\\
@@ -356,7 +358,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETCONSTSPEED <mot> <dir> <time>}\\
     Function: & Enables motor \texttt{<mot>} to move infinite in direction \texttt{<dir>}.
@@ -371,7 +373,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETFORBZONE <mot> <start> <stop>}\\
     Function: & Defines a forbidden zone for motor \texttt{<mot>}.
@@ -385,7 +387,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{ENABFORBZONE <mot> <val>}\\
     Function: & Enables \texttt{<val=1>} or disables \texttt{<val=0>} the
@@ -399,7 +401,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETPROGSTEP <step> <M0> <M1> <M2> <M3> <mode>}\\
     Function: & Defines an internal program step for all motors. \texttt{<step>}
@@ -419,7 +421,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \vspace{\vdistace}
 
-\begin{table}[h]
+\begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{FACTORYRESET}\\
     Function: & Resets the \productName ~to factory state.\\

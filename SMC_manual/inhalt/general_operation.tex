@@ -161,10 +161,13 @@ By pressing the rotary knob while the start screen is active the
 firmware version will be displayed.
 \begin{center}
   \LCD{2}{16}|SMCx242|
-             |Firmware 1.5|
+             |Firmware 1.5.1|
 \end{center}
-Firmware updates are available at \url{http://www.lk-instruments.com} on
-the corresponding product website.
+Firmware updates are available at
+\begin{center}
+  \url{http://www.lk-instruments.com}
+\end{center}
+on the corresponding product website.
 
 %\begin{macrocode}
 %\DefineLCDchar{degree}{11100101001110000000000000000000000}
@@ -206,7 +209,7 @@ The snapped display shows the different indicating arrows.
 \subsection{Step multiplier}
 \index{step multiplier}
 In this menu the step multipliers can be adjusted. If the step multiplier differs from 1.0 the corresponding motor will rotate more or less steps with each click of the rotary knob. It is also possible to turn the motors in different directions by applying a negative step multiplier to a motor. A step multiplier can only be applied if the step unit is degree or radians. The factory default value for all motors is 1.0.\\
-Example: If the step multiplier for motor 1 is 1.0, the step multiplier for motor 2 is 4.0 and the step multiplier for motor 3 is -2.0, when changing the motors positions motor 2 will move four times more steps than motor 1 and motor 3 will move twice as many steps as motor 1, but in the opposite direction. 
+Example: If the step multiplier for motor 1 is 1.0, the step multiplier for motor 2 is 4.0 and the step multiplier for motor 3 is -2.0, when changing all motor positions, motor 2 will move four times more steps than motor 1 and motor 3 will move twice as many steps as motor 1, but in the opposite direction. 
 %Negative values are allowed as well. This will result in counter direction movements.
 \begin{center}
   \LCD{2}{16}|{rarrow}1.0x   {rarrow}4.0x|
@@ -239,7 +242,7 @@ Internal programs are also saved to the device when the current configuration is
 
 \subsection{Constant movement}
 Here the motors can be set into an infinite moving state in clockwise (CW) or counter clockwise (CCW) direction. To get the motors moving with different velocities one needs to change the wait times between two steps (see \ref{menu_step_wait_time}).
-STOP means that the motor is not moving. Constant speed for a certain motor can not be activated if a forbidden zone is configured for this motor (see \ref{chp:forbidden_zone}).
+STOP means that the motor is not moving. Constant speed for a certain motor can not be activated if a forbidden zone is configured for this motor.
 \begin{center}
   \LCD{2}{16}|{rarrow}CW     {rarrow}CCW|
              | STOP    STOP|
@@ -249,7 +252,7 @@ STOP means that the motor is not moving. Constant speed for a certain motor can 
 \index{zero!position}
 In this menu one can define an offset for the zero position. This is necessary due to a mostly unknown placement of the load mounted to a stage. 
 %Here one can once adjust the desired optical zero position manually. 
-The zero position is always defined in steps. In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode). After adjustment it is recommended to save this configuration (see \ref{menu_save}). When performing a zero calibration, as explained in \ref{menu_zero_cal}, the zero position will have the defined offset form the mechanical zero position.
+The zero position is always defined in steps. In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode). After adjustment it is recommended to save the configuration (see \ref{menu_save}). When performing a zero calibration, as explained in \ref{menu_zero_cal}, the zero position will have the defined offset form the mechanical zero position.
 \begin{center}
   \LCD{2}{16}|{rarrow}122st   0st|
              | 0st     0st|
@@ -258,7 +261,7 @@ The zero position is always defined in steps. In this menu there is also a fast 
 \subsection{Zero calibration}
 \label{menu_zero_cal}
 \index{zero!calibration}
-Here one can calibrate the motor zero position for each motor. To perform a zero calibration select the motors to be calibrated and turn the rotary knob. Note, that during zero calibration no actions can be done on the device, even serial commands will not be accepted. The zero calibration will automatically deselect a motor when its calibration is finished. The zero calibration menu will be automatically leaved when calibration is finished.
+Here one can calibrate the motor zero position for each motor. To perform a zero calibration select the motors to be calibrated and turn the rotary knob. Note, that during zero calibration no actions can be done on the device, even serial commands will not be accepted. The zero calibration will automatically deselect a motor when its calibration is finished. The zero calibration menu will be left automatically when calibration is finished.
 \begin{center}
   \LCD{2}{16}|{rarrow}Mot 1  {rarrow}Mot 2|
              | Mot 3   Mot 4|
@@ -280,7 +283,7 @@ Turning the rotary knob serves to scroll through the settings menus (see figure~
  \hfill
 \begin{minipage}[h]{\textWidth}
 %Menu: Change motor substep\\
-Edit number of substeps\\ used for microstepping.
+Edit the number of substeps\\ used for microstepping.
 \end{minipage}
 };
 
@@ -303,7 +306,7 @@ Adjust the maximum motor current.
  \hfill
 \begin{minipage}[h]{\textWidth}
 %Menu: Change step wait time\\
-Edit time between steps.
+Edit wait time between steps.
 \end{minipage}
 };
 
@@ -367,7 +370,9 @@ The incremental torque $\tau_{\text{N}}$ for $N$ microsteps is
   \tau_{\text{N}} = \tau_{\text{H}} \cdot \sin \left( \frac{90\cdot N}{\mu} \right).
 \end{equation*}
 So, the holding torque per microstep decreases as shown in table \ref{tab:microstepping_holding_torque}.
-\begin{table}
+\begin{table}[h]
+  \caption[Holding torque vs. number of microsteps]{Decrease of motor holding torque in dependence of the number of adjusted microsteps.}
+  \label{tab:microstepping_holding_torque}
   \centering
   \begin{tabular}{cc}
     \toprule
@@ -381,8 +386,6 @@ So, the holding torque per microstep decreases as shown in table \ref{tab:micros
     32 & 4.9 \% \\
     \bottomrule
   \end{tabular}
-  \caption{Decrease of motor holding torque in dependence of the number of adjusted microsteps.}
-  \label{tab:microstepping_holding_torque}
 \end{table}
 
 \subsubsection{Motor current}

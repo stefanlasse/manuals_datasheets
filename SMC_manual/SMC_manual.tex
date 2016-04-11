@@ -61,6 +61,7 @@
 \usepackage[section]{placeins}           % Float barrier for sections.
 
 \usepackage{float}                       % lädt das Paket zum erzwingen der Grafikposition
+\usepackage{morefloats} 
 
 \usetikzlibrary{shapes.geometric, arrows}	% Flow chart
 
@@ -160,7 +161,10 @@
 %----------------------------------------------------------
 \begin{document}
 
-\input{../general/title}
+\thispagestyle{empty}
+
+\input{../general/title_black}
+%\input{../general/title_white}
 \input{../general/notices}
 \input{../general/tech_assistance}
 \clearpage
@@ -182,9 +186,9 @@
 
 \input{inhalt/introduction}
 \clearpage
-\input{inhalt/basic_setup}
-\clearpage
 \input{inhalt/general_operation}
+\clearpage
+\input{inhalt/basic_setup}
 \clearpage
 \input{inhalt/remote_programming}
 \clearpage
