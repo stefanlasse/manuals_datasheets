@@ -163,8 +163,15 @@
 
 \thispagestyle{empty}
 
-\input{../general/title_black}
-%\input{../general/title_white}
+%\input{../general/title_black}
+\input{../general/title_white}
+\clearpage
+
+% to get an empty page
+\newpage\null
+\thispagestyle{empty}
+\newpage
+
 \input{../general/notices}
 \input{../general/tech_assistance}
 \clearpage
@@ -177,12 +184,14 @@
 \listoffigures
 \listoftables
 
+% to get an empty page
+\newpage\null
+\thispagestyle{empty}
 \newpage
-\clearpage
+
 \pagenumbering{arabic}  % now arabic page numbering
                         % for the rest of the document
 \newpage
-
 
 \input{inhalt/introduction}
 \clearpage
@@ -192,12 +201,24 @@
 \clearpage
 \input{inhalt/remote_programming}
 \clearpage
+%\cleardoublepage
+
+% to get an empty page
+\newpage\null
+\thispagestyle{empty}
+\newpage
+
 \input{inhalt/specifications}
 \clearpage
 
 
 %\newpage
 \printindex
+
+% to get an empty page
+\newpage\null
+\thispagestyle{empty}
+\newpage
 
 \end{document}
 
