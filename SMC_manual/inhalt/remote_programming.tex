@@ -37,6 +37,16 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{*IDN?}\\
+    Function: & Returnes the identification name of the \productName.\\
+    Example:  & \texttt{*IDN?} 
+  \end{tabularx}
+\end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[!htbp]
+  \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{*RST}\\
     Function: & Resets the \productName ~to the initial state and loads the last saved configuration.\\
     Example:  & \texttt{*RST}
@@ -47,9 +57,9 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{*IDN?}\\
-    Function: & Returnes the identification name of the \productName.\\
-    Example:  & \texttt{*IDN?} 
+    Command:  & \texttt{FACTORYRESET}\\
+    Function: & Resets the \productName ~to factory state.\\
+    Example:  & \texttt{FACTORYRESET}
   \end{tabularx}
 \end{table}
 
@@ -423,9 +433,42 @@ Note, that in order to simplify writing programs for the \productName , the remo
 
 \begin{table}[!htbp]
   \begin{tabularx}{\textwidth}{lX}
-    Command:  & \texttt{FACTORYRESET}\\
-    Function: & Resets the \productName ~to factory state.\\
-    Example:  & \texttt{FACTORYRESET}
+    Command:  & \texttt{LED <mode> <red> <green> <blue>}\\
+    Function: & Using this command the color and brightness of the buttons can be adjusted. The first parameter indicates the mode, that should be changed. The available modes correspond to the following buttons:\\
+              & \texttt{<mode=0>} menu-escape button, \\
+              & \texttt{<mode=1>} deselected motor-selection button, \\
+              & \texttt{<mode=2>} selected motor-selection button, \\
+              & \texttt{<mode=3>} disabled and deselected motor-selection button and \\
+              & \texttt{<mode=4>} disabled and selected motor-selection button. \\
+              & The color and brightness are controlled by the parameters \texttt{<red> <green> <blue>}. Each of the parameters accepts a value in the range of 0 to 255. Where larger values represent a higher brightness of the respective color.\\
+%              & It is recommended to use the \texttt{SAVECONF} command, after all desired changes to the color pattern are applied. This will save the new color pattern to the EEPROM.\\
+              & Use the \texttt{SAVECONF} command to save the new color pattern to the EEPROM.\\
+    Example:  & \texttt{LED 0 15 0 0}\\
+              & Sets the color of the menu-escape button to red with medium brightness.\\
+              & \texttt{LED 1 0 15 0}\\
+              & Sets the color of a deselected motor-selection button to green with medium brightness.\\
+              & \texttt{LED 2 8 15 15}\\
+              & Sets the color of a selected motor-selection button to white with medium brightness.
   \end{tabularx}
 \end{table}
+
+\vspace{\vdistace}
+
+\begin{table}[!htbp]
+  \begin{tabularx}{\textwidth}{lX}
+    Command:  & \texttt{DISPLAY <val>}\\
+    Function: & Sets the brightness of the OLED display to the value \texttt{<val>}. Possible values are:\\
+              & \texttt{<val=0>} display is turned off, \\
+              & \texttt{<val=1>} reduced display brightness, \\
+              & \texttt{<val=2>} normal display brightness. \\
+    Example:  & \texttt{DISPLAY 0}\\
+              & Turns off the OLED display.\\
+              & \texttt{DISPLAY 1}\\
+              & OLED display set to reduced brightness.\\
+              & \texttt{DISPLAY 2}\\
+              & OLED display set to normal brightness.\\
+  \end{tabularx}
+\end{table}
+
+
 
