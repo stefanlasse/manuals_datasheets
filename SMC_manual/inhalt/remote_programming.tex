@@ -2,6 +2,7 @@
 \section{Remote Programming}
 \label{chp:remote_programming}
 \subsection{Communication Settings}
+\label{chp:communication_settings}
 \index{communication settings}
 \index{COM port}
 In order to remote control the \productName ~from a computer, connect it to a free USB port of the computer. The \productName ~will show up as a new Virtual COM Port (VCP). In some cases it might be necessary to install drivers, which can be found at
@@ -321,7 +322,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
   \begin{tabularx}{\textwidth}{lX}
     Command:  & \texttt{SETDECAY <mot> <val>}\\
     Function: & Sets the decay mode of motor \texttt{<mot>} to slow \texttt{<val=0>}, fast \texttt{<val=1>} or mixed \texttt{<val=2>}.\\
-    Note:     & For microstepping fast decay should be preferred. However if audible noise is an issue, one might consider using slow decay mode to reduce the noise.\\
+%    Note:     & For microstepping fast decay should be preferred. However if audible noise is an issue, one might consider using slow decay mode to reduce the noise.\\
     Example:  & \texttt{SETDECAY 1 0}\\
               & Sets decay mode of motor 1 to slow.\\
               & \texttt{SETDECAY 1 1}\\

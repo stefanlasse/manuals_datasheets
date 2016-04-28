@@ -20,6 +20,7 @@ The parameters can be set to the desired value either using the manual user inte
 In the following configuration example it is assumed, that four LK-Instruments M101A rotation stages shall be connected to the \productName . In case different stepper motors shall be connected to the \productName , the same procedure applies, but you need to take care to change the values according to the data sheet of the stepper motor used.
 
 \subsubsection{Motor current}
+\index{current}
 Before any of the stepper motors or rotation stages are connected to the \productName ~the maximum motor current needs to be adjusted. In the data sheet of the M101A rotation stage a typical motor current of \unit[1.3]{A} is specified.\\
 In order to adjust the settings of the \productNumber ~\productName ~to this value, connect it to an appropriate power source and turn it on using the switch on its back panel.
 
@@ -38,7 +39,8 @@ To adjust the settings using the remote interface, connect the \productName ~to 
 Now one may already connect the stepper motors to the \productName . To do so, first turn of the \productName , connect the stepper motors to its outputs and once connected, turn it back on.
 
 \subsubsection{Current decay mode}
-The \productNumber ~\productName ~allows the user to select between three different current decay modes, namely fast, slow and mixed decay. In this example we would like to set to decay mode to slow. Therefore the following commands need to be send:
+\index{current!decay}
+In this example we would like to set the current decay mode to slow. Therefore navigate to the current decay submenu inside the settings menu and select the slow decay mode using the rotary knob (see \ref{menu_current_decay}) or send the following commands to the \productName :
 
 \texttt{SETDECAY 0 0}\\
 \texttt{SETDECAY 1 0}\\
@@ -46,7 +48,9 @@ The \productNumber ~\productName ~allows the user to select between three differ
 \texttt{SETDECAY 3 0}
 
 \subsubsection{Gear ratio}
-The M101A rotation stage uses a gear with 20 teeth on the motor shaft and a gear with 60 teeth for the load. Therefore this stage has a gear ratio of $n_{\textrm{gear}} = \frac{60}{20} = 3.0$. To set this gear ratio for all four motor channels send the following commands to the \productName :
+\label{example_gear_ratio}
+\index{gear ratio}
+The M101A rotation stage uses a gear with 20 teeth on the motor shaft and a gear with 60 teeth for the load. Therefore this stage has a gear ratio of $n_{\textrm{gear}} = \frac{60}{20} = 3.0$. To set this gear ratio for the motor channels navigate to the gear ratio submenu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_gear_ratio}) or send the following commands to the \productName :
 
 \texttt{SETGEARRATIO 0 3.0}\\
 \texttt{SETGEARRATIO 1 3.0}\\
@@ -54,7 +58,8 @@ The M101A rotation stage uses a gear with 20 teeth on the motor shaft and a gear
 \texttt{SETGEARRATIO 3 3.0}
 
 \subsubsection{Steps per full rotation}
-The stepper motor used in the M101A rotation stage has a step angle of \unit[0.9]{°} and therefore 400 steps per full rotation. To set this value for all four motor channels send the following commands to the \productName :
+\index{steps per full rotation}
+The stepper motor used in the M101A rotation stage has a step angle of \unit[0.9]{°} and therefore 400 steps per full rotation. To set this value for the motor channels navigate to the steps per full rotation submenu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_full_rotation}) or send the following commands to the \productName :
 
 \texttt{SETFULLROT 0 400}\\
 \texttt{SETFULLROT 1 400}\\
@@ -62,6 +67,7 @@ The stepper motor used in the M101A rotation stage has a step angle of \unit[0.9
 \texttt{SETFULLROT 3 400}
 
 \subsubsection{Number of substeps}
+\index{substep}
 In this example we would like to benefit from the higher resolution, that microstepping can provide to us. Therefore the number of substeps shall be set to 4. To do so, navigate to the motor substeps menu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_substeps}) or send the following commands to the \productName :
 
 \texttt{SETSUBSTEPS 0 4}\\
@@ -70,12 +76,13 @@ In this example we would like to benefit from the higher resolution, that micros
 \texttt{SETSUBSTEPS 3 4}
 
 \subsubsection{Wait time between steps}
+\index{step!wait time}
 In order to rotate the M101A rotation stage with a desired speed of $\omega = \unit[25]{\nicefrac{^{\circ}}{s}}$, according to the previously specified parameters, the wait time between steps $\tau$ is given by:
 \[
 \tau = \frac{360^{\circ}}{n_{\textrm{gear}} \cdot n_{\textrm{fullrot}} \cdot n_{\textrm{substeps}}} \frac{1}{\omega} = \frac{360^{\circ}}{3 \cdot 400 \cdot 4} \frac{1}{\unit[25]{\nicefrac{^{\circ}}{s}}} =  \unit[3]{ms}
 \]
 with the gear ratio $n_{\textrm{gear}}$, the number of steps per full rotation $n_{\textrm{fullrot}}$ and the number of substeps $n_{\textrm{substeps}}$.\\
-In order to set this value, navigate to the step wait time menu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_step_wait_time}) or send the following commands to the \productName : 
+In order to set these values, navigate to the step wait time submenu inside the settings menu and adjust the values using the rotary knob (see \ref{menu_step_wait_time}) or send the following commands to the \productName : 
 
 \texttt{SETWAITTIME 0 3}\\
 \texttt{SETWAITTIME 1 3}\\
@@ -83,6 +90,7 @@ In order to set this value, navigate to the step wait time menu inside the setti
 \texttt{SETWAITTIME 3 3}
 
 \subsubsection{Save configuration}
+\index{save}
 Once all the parameters are set to the desired values, it is recommended to save the configuration to the EEPROM, because the \productNumber ~\productName ~will load the last saved configuration when powering on or resetting the device. To save the configuration either navigate to the save current configuration menu inside the settings menu and turn the rotary knob while in this menu (see \ref{menu_save}) or send the following command to the \productName : 
 
 \texttt{SAVECONF}

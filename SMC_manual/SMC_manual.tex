@@ -10,7 +10,7 @@
 \def \docKeywords   {LK-Instruments, Stepper Motor Controller, SMC2242, SMC4242}
 
 %\documentclass[a4paper, final, 12pt, twoside]{scrartcl}
-\documentclass[a4paper, final, 12pt, oneside]{refart}
+\documentclass[a4paper, final, 12pt, twoside]{refart}
 
 %----------
 % Packages
@@ -95,8 +95,9 @@
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \renewcommand{\subsectionmark}[1]{\markright{#1}}
 \fancyhead[LE,RO]{\textbf{\thepage}}
-\fancyhead[CE]{\footnotesize{\textit{\nouppercase{\rightmark}}}}
-\fancyhead[CO]{\footnotesize{\scshape{\nouppercase{\leftmark}}}}
+\fancyhead[CE,CO]{\footnotesize{\scshape{\nouppercase{\leftmark}}}}
+%\fancyhead[CE]{\footnotesize{\textit{\nouppercase{\rightmark}}}}
+%\fancyhead[CO]{\footnotesize{\scshape{\nouppercase{\leftmark}}}}
 
 % number equations with sections before equation-index
 \numberwithin{equation}{section}
@@ -162,11 +163,14 @@
 %----------------------------------------------------------
 \begin{document}
 
+\pagenumbering{roman}   % small roman page numbering
+
 \thispagestyle{empty}
 
 %\input{../general/title_black}
 \input{../general/title_white}
-\clearpage
+%\clearpage
+%\cleardoublepage
 
 % to get an empty page
 \newpage\null
@@ -177,8 +181,6 @@
 \input{../general/tech_assistance}
 \clearpage
 
-\pagenumbering{roman}   % small roman page numbering
-
 \tableofcontents
 \newpage
 
@@ -188,32 +190,28 @@
 % to get an empty page
 \newpage\null
 \thispagestyle{empty}
-\newpage
+\cleardoublepage
 
 \pagenumbering{arabic}  % now arabic page numbering
                         % for the rest of the document
 \newpage
 
 \input{inhalt/introduction}
-\clearpage
+\cleardoublepage
 \input{inhalt/general_operation}
-\clearpage
+\cleardoublepage
 \input{inhalt/basic_setup}
-\clearpage
+\cleardoublepage
 \input{inhalt/remote_programming}
-\clearpage
-%\cleardoublepage
+\cleardoublepage
+\input{inhalt/firmware_update}
+\cleardoublepage
 
-% to get an empty page
-%\newpage\null
-%\thispagestyle{empty}
-%\newpage
 
 \input{inhalt/specifications}
-\clearpage
+%\clearpage
+\cleardoublepage
 
-
-%\newpage
 \printindex
 
 % to get an empty page

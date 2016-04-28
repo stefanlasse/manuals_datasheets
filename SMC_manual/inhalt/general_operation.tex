@@ -47,7 +47,6 @@ Display firmware version.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Change motor position:\\
 Position is displayed and can be changed.
 \end{minipage}
 };
@@ -59,7 +58,6 @@ Position is displayed and can be changed.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Set step multiplier\\
 Edit multiplier for rotary knob.
 \end{minipage}
 };
@@ -71,19 +69,28 @@ Edit multiplier for rotary knob.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Change step unit\\
 Define the displayed unit.
 \end{minipage}
 };
 
-\node (internal_prog) [menu_style, below of=step_unit] {
+\node (enable) [menu_style, below of=step_unit] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Turn output|
+|on / off|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Enable or disable motor\\ outputs.
+\end{minipage}
+};
+
+\node (internal_prog) [menu_style, below of=enable] {
 \begin{minipage}[h]{5cm}
 \LCD{2}{16}|Run internal|
 |program|
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Run internal program\\
 Step through the program list.
 \end{minipage}
 };
@@ -95,7 +102,6 @@ Step through the program list.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Set constant angular speed\\
 Start/Stop continuous\\ movement.
 \end{minipage}
 };
@@ -107,7 +113,6 @@ Start/Stop continuous\\ movement.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Define optical zero position\\
 Edit the zero offset.
 \end{minipage}
 };
@@ -119,7 +124,6 @@ Edit the zero offset.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Run zero calibration\\
 Find mechanical zero\\ position.
 \end{minipage}
 };
@@ -140,7 +144,8 @@ Enter the settings menu.
 \draw [arrow] (start) -- (motor_pos);
 \draw [arrow] (motor_pos) -- (step_multiplier);
 \draw [arrow] (step_multiplier) -- (step_unit);
-\draw [arrow] (step_unit) -- (internal_prog);
+\draw [arrow] (step_unit) -- (enable);
+\draw [arrow] (enable) -- (internal_prog);
 \draw [arrow] (internal_prog) -- (const_speed);
 \draw [arrow] (const_speed) -- (optical_zero);
 \draw [arrow] (optical_zero) -- (zero_cal);
@@ -161,13 +166,10 @@ By pressing the rotary knob while the start screen is active the
 firmware version will be displayed.
 \begin{center}
   \LCD{2}{16}|SMCx242|
-             |Firmware 1.5.1|
+             |Firmware 1.5.2|
 \end{center}
-Firmware updates are available at
-\begin{center}
-  \url{http://www.lk-instruments.com}
-\end{center}
-on the corresponding product website.
+
+For information about firmware updates refer to \ref{firmware_update}.
 
 %\begin{macrocode}
 %\DefineLCDchar{degree}{11100101001110000000000000000000000}
@@ -175,7 +177,7 @@ on the corresponding product website.
 
 \subsection{Motor position}
 \label{menu_motor_pos}
-\index{change!position}
+\index{position}
 This menu displays the current motor positions and allows them to be changed. The default display unit is degree, which can be changed to the users preferred unit, see \ref{chp:change_step_unit}. The position of a selected motor can be changed by turning the rotary knob.\\
 Default steps for the available units are:
 \begin{itemize}
@@ -207,7 +209,7 @@ The snapped display shows the different indicating arrows.
 
 
 \subsection{Step multiplier}
-\index{step multiplier}
+\index{step!multiplier}
 In this menu the step multipliers can be adjusted. If the step multiplier differs from 1.0 the corresponding motor will rotate more or less steps with each click of the rotary knob. It is also possible to turn the motors in different directions by applying a negative step multiplier to a motor. A step multiplier can only be applied if the step unit is degree or radians. The factory default value for all motors is 1.0.\\
 Example: If the step multiplier for motor 1 is 1.0, the step multiplier for motor 2 is 4.0 and the step multiplier for motor 3 is -2.0, when changing all motor positions, motor 2 will move four times more steps than motor 1 and motor 3 will move twice as many steps as motor 1, but in the opposite direction. 
 %Negative values are allowed as well. This will result in counter direction movements.
@@ -218,7 +220,8 @@ Example: If the step multiplier for motor 1 is 1.0, the step multiplier for moto
 
 \subsection{Step unit}
 \label{chp:change_step_unit}
-\index{change!unit}
+\index{unit}
+\index{step!unit}
 In this menu one can choose the unit of the displayed position. Note, that changing the unit will also affect the step width, see~\ref{menu_motor_pos}. There are three possible choices for each motor:
 \begin{itemize}
 \item degree
@@ -230,17 +233,29 @@ In this menu one can choose the unit of the displayed position. Note, that chang
              |{rarrow}step    degree|
 \end{center}
 
+\subsection{Enable output}
+\index{output!enable}
+\index{output!disable}
+It is possible to enable or disable the output for each stepper motor separately. An enabled output will be indicated by the word on and a disabled output by the word off. In addition the corresponding motor-selection button will light up in the specified color (see command \texttt{LED} in section~\ref{section_instruction_set} for details).
+\begin{center}
+  \LCD{2}{16}|{rarrow}on      on|
+             |{rarrow}on      off|
+\end{center}
+
+\textbf{Note:} During startup the \productName ~will automatically detect if a stepper motor is connected to an output. If no stepper motor is connected to a certain output it will be automatically disabled.
+
 \subsection{Internal program}
 \index{internal program}
 This menu allows the user to step through the internal program list with the rotary knob.
 This function is only available if a program has previously been defined (see \ref{section_instruction_set}).
-Internal programs are also saved to the device when the current configuration is saved, see \ref{menu_save}.
+Internal programs are also saved to the EEPROM when the current configuration is saved, see \ref{menu_save}.
 \begin{center}
   \LCD{2}{16}|Program running|
              |Step 0|
 \end{center}
 
 \subsection{Constant movement}
+\index{constant movement}
 Here the motors can be set into an infinite moving state in clockwise (CW) or counter clockwise (CCW) direction. To get the motors moving with different velocities one needs to change the wait times between two steps (see \ref{menu_step_wait_time}).
 STOP means that the motor is not moving. Constant speed for a certain motor can not be activated if a forbidden zone is configured for this motor.
 \begin{center}
@@ -252,7 +267,8 @@ STOP means that the motor is not moving. Constant speed for a certain motor can 
 \index{zero!position}
 In this menu one can define an offset for the zero position. This is necessary due to a mostly unknown placement of the load mounted to a stage. 
 %Here one can once adjust the desired optical zero position manually. 
-The zero position is always defined in steps. In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode). After adjustment it is recommended to save the configuration (see \ref{menu_save}). When performing a zero calibration, as explained in \ref{menu_zero_cal}, the zero position will have the defined offset form the mechanical zero position.
+The zero position is always defined in steps.\\ 
+In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode). After adjustment it is recommended to save the configuration (see \ref{menu_save}). When performing a zero calibration, as explained in \ref{menu_zero_cal}, the zero position will have the defined offset form the mechanical zero position.
 \begin{center}
   \LCD{2}{16}|{rarrow}122st   0st|
              | 0st     0st|
@@ -275,14 +291,36 @@ Turning the rotary knob serves to scroll through the settings menus (see figure~
 
 \begin{figure}[H]
 \begin{tikzpicture}[node distance=2cm]
-\node (substep) [menu_style] {
+
+\node (gearratio) [menu_style] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Set motor|
+|gear ratio|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Set the gear ratio of the\\ motors.
+\end{minipage}
+};
+
+\node (fullrotation) [menu_style, below of=gearratio] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Set steps per|
+|full rotation|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Set steps per full rotation of the stepper motors.
+\end{minipage}
+};
+
+\node (substep) [menu_style, below of=fullrotation] {
 \begin{minipage}[h]{5cm}
 \LCD{2}{16}|Change motor|
 |substep|
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Change motor substep\\
 Edit the number of substeps\\ used for microstepping.
 \end{minipage}
 };
@@ -298,14 +336,24 @@ Adjust the maximum motor current.
 \end{minipage}
 };
 
-\node (step_wait_time) [menu_style, below of=motor_curr] {
+\node (decay) [menu_style, below of=motor_curr] {
+\begin{minipage}[h]{5cm}
+\LCD{2}{16}|Set current|
+|decay mode|
+\end{minipage}
+ \hfill
+\begin{minipage}[h]{\textWidth}
+Set the mode used for\\ current decay.
+\end{minipage}
+};
+
+\node (step_wait_time) [menu_style, below of=decay] {
 \begin{minipage}[h]{5cm}
 \LCD{2}{16}|Change step|
 |wait time|
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Change step wait time\\
 Edit wait time between steps.
 \end{minipage}
 };
@@ -317,7 +365,6 @@ Edit wait time between steps.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Save all current configurations\\
 Save configuration to\\ EEPROM.
 \end{minipage}
 };
@@ -329,28 +376,51 @@ Save configuration to\\ EEPROM.
 \end{minipage}
  \hfill
 \begin{minipage}[h]{\textWidth}
-%Menu: Load last configuration\\
-Load configuration from EEPROM.
+Load configuration from\\ EEPROM.
 \end{minipage}
 };
 
+\draw [arrow] (gearratio) -- (fullrotation);
+\draw [arrow] (fullrotation) -- (substep);
 \draw [arrow] (substep) -- (motor_curr);
-\draw [arrow] (motor_curr) -- (step_wait_time);
+\draw [arrow] (motor_curr) -- (decay);
+\draw [arrow] (decay) -- (step_wait_time);
 \draw [arrow] (step_wait_time) -- (save);
 \draw [arrow] (save) -- (load);
-\draw [arrow] (load.east) -- +(1,0) |- (substep.east);
+\draw [arrow] (load.east) -- +(1,0) |- (gearratio.east);
 \end{tikzpicture}
 \caption[Overview of the settings menus.]{Overview of the settings menus. By turning
 the rotary knob one can navigate through the settings menus as indicated by the arrows.}
 \label{settings_menu}
 \end{figure}
 
+\subsubsection{Gear ratio}
+\label{menu_gear_ratio}
+\index{gear ratio}
+This menu allows the user to adjust the gear ratio according to the specifications of the connected stage. See~\ref{example_gear_ratio} for an example of how to determine the correct gear ratio of a stage.
+In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode).
+\index{gear ratio}
+\begin{center}
+  \LCD{2}{16}|{rarrow}1.000   3.000|
+             | 3.000   3.000|
+\end{center}
+
+
+\subsubsection{Steps per full rotation}
+\label{menu_full_rotation}
+\index{steps per full rotation}
+In this menu it can be specified how many steps (in full step mode) are needed for one full rotation of the connected stepper motor. Common values are 200 steps per full rotation for a stepper motor with a step angle of \unit[1.8]{°} and 400 steps per full rotation for a stepper motor with a step angle of \unit[0.9]{°}. 
+In this menu there is also a fast mode available (please refer to  \ref{menu_motor_pos} for details about the fast mode).
+\index{steps per full rotation}
+\begin{center}
+  \LCD{2}{16}| 400     400|
+             |{rarrow}200     400|
+\end{center}
 
 
 \subsubsection{Motor substeps}
 \label{menu_substeps}
-\index{change!substeps}
-\index{change!microstepping}
+\index{substep}
 In this menu one can change the number of substeps used for microstepping. Possible values are 1, 2, 4, 8, 16 or 32.\\
 Note, that a value of 1 is equivalent to full step operation. So no microstepping is used to drive the stepper motor. If the adjusted value differs from 1, microstepping is used to obtain finer positioning resolution. Values above 8 are not recommended because of the decreasing motor torque.
 \begin{center}
@@ -360,6 +430,7 @@ Note, that a value of 1 is equivalent to full step operation. So no microsteppin
 
 \paragraph{A note on microstepping.}
 \index{microstepping}
+\index{torque}
 When increasing the number of substeps (microsteps per full step) the incremental torque per microstep decreases heavily. The expression for calculating the incremental tourque $\tau_{\text{inc}}$ is
 \begin{equation*}
   \tau_{\text{inc}} = \tau_{\text{H}} \cdot \sin \left( \frac{90}{\mu} \right),
@@ -390,16 +461,27 @@ So, the holding torque per microstep decreases as shown in table \ref{tab:micros
 
 \subsubsection{Motor current}
 \label{menu_motor_current}
-\index{change!current}
+\index{current}
 In this menu the user can change the maximum current that is used to drive the corresponding stepper motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor. 
 \begin{center}
   \LCD{2}{16}| 1.0 A  {rarrow}1.3 A|
              |{rarrow}0.9 A   0.5 A|
 \end{center}
 
+\subsubsection{Current decay mode}
+\label{menu_current_decay}
+\index{current!decay}
+The \productName ~allows the user to select between three different current decay modes, namely fast, slow and mixed decay. For microstepping fast decay should be preferred. However if audible noise is an issue, one might consider using slow decay mode to reduce the noise.
+\index{current!decay}
+\begin{center}
+  \LCD{2}{16}| slow   {rarrow}fast|
+             | slow   {rarrow}mixed|
+\end{center}
+
+
 \subsubsection{Step wait time}
 \label{menu_step_wait_time}
-\index{change!step wait time}
+\index{step!wait time}
 Here the wait time between two steps can be changed. This results in faster or slower movements of the stepper motor. The default value is 3 milliseconds.\\
 Note, that a very short wait time and therefore fast movement speed can lead to stalling of the stepper motor.
 %We do not recommend to use shorter wait times as 3 milliseconds.

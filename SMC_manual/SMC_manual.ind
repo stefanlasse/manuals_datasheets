@@ -1,37 +1,65 @@
 \begin{theindex}
 
-  \item change
-    \subitem current, \hyperpage{9}
-    \subitem microstepping, \hyperpage{8}
-    \subitem position, \hyperpage{5}
-    \subitem step wait time, \hyperpage{9}
-    \subitem substeps, \hyperpage{8}
-    \subitem unit, \hyperpage{6}
-  \item COM port, \hyperpage{15}
-  \item communication settings, \hyperpage{15}
+  \item COM port, \hyperpage{17}
+  \item communication settings, \hyperpage{17}
+  \item connector, \hyperpage{28}
+  \item constant movement, \hyperpage{7}
+  \item current, \hyperpage{10}, \hyperpage{13}
+    \subitem decay, \hyperpage{10}, \hyperpage{14}
 
   \indexspace
 
   \item fast moving mode, \hyperpage{5}
+  \item firmware update, \hyperpage{25}
 
   \indexspace
 
-  \item instruction set, \hyperpage{15}
+  \item gear ratio, \hyperpage{9}, \hyperpage{14}
+
+  \indexspace
+
+  \item instruction set, \hyperpage{17}
   \item internal program, \hyperpage{6}
 
   \indexspace
 
-  \item load, \hyperpage{10}
+  \item load, \hyperpage{11}
 
   \indexspace
 
-  \item microstepping, \hyperpage{8}
+  \item microstepping, \hyperpage{9}
 
   \indexspace
 
-  \item save, \hyperpage{9}
-  \item settings, \hyperpage{7}
-  \item step multiplier, \hyperpage{5}
+  \item output
+    \subitem disable, \hyperpage{6}
+    \subitem enable, \hyperpage{6}
+
+  \indexspace
+
+  \item pinout, \hyperpage{28}
+  \item position, \hyperpage{5}
+
+  \indexspace
+
+  \item save, \hyperpage{11}, \hyperpage{16}
+  \item settings, \hyperpage{8}
+  \item specifications, \hyperpage{27}
+  \item step
+    \subitem multiplier, \hyperpage{5}
+    \subitem unit, \hyperpage{6}
+    \subitem wait time, \hyperpage{10}, \hyperpage{15}
+  \item steps per full rotation, \hyperpage{9}, \hyperpage{15}
+  \item substep, \hyperpage{9}, \hyperpage{15}
+
+  \indexspace
+
+  \item torque, \hyperpage{9}
+
+  \indexspace
+
+  \item unit, \hyperpage{6}
+  \item update, \hyperpage{25}
 
   \indexspace
 
