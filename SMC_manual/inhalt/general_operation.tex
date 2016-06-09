@@ -462,11 +462,12 @@ So, the holding torque per microstep decreases as shown in table \ref{tab:micros
 \subsubsection{Motor current}
 \label{menu_motor_current}
 \index{current}
-In this menu the user can change the maximum current that is used to drive the corresponding stepper motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor. 
+In this menu the user can change the maximum current that is used to drive the corresponding stepper motor. Please ensure, that the value set here does not exceed the maximum ratings of your motor.\\
 \begin{center}
   \LCD{2}{16}| 1.0 A  {rarrow}1.3 A|
              |{rarrow}0.9 A   0.5 A|
 \end{center}
+\textbf{Note:} High current will generate heat. The output stage of the \productName ~is protected against overcurrent and overtemperature events. If the temperature of an output stage exceeds safe limits, it will be disabled. Once the temperature has fallen to a safe level operation will automatically resume.
 
 \subsubsection{Current decay mode}
 \label{menu_current_decay}
@@ -486,8 +487,8 @@ Here the wait time between two steps can be changed. This results in faster or s
 Note, that a very short wait time and therefore fast movement speed can lead to stalling of the stepper motor.
 %We do not recommend to use shorter wait times as 3 milliseconds.
 \begin{center}
-  \LCD{2}{16}|{rarrow}3 ms   {rarrow}5 ms|
-             |{rarrow}18 ms   3 ms|
+  \LCD{2}{16}|{rarrow}3.00ms {rarrow}5.25ms|
+             |{rarrow}1.50ms  3.00ms|
 \end{center}
 
 \subsubsection{Save current configuration}

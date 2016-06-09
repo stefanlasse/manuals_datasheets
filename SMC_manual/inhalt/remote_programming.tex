@@ -350,7 +350,7 @@ Note, that in order to simplify writing programs for the \productName , the remo
     Command:  & \texttt{SETWAITTIME <mot> <time>}\\
     Function: & Sets the wait time between two steps to \texttt{<time>} milliseconds
                 for motor \texttt{<mot>}\\
-    Note:     & The wait time must be an integer. The unit for the wait time
+    Note:     & The wait time must be a multiple of \unit[0.25]{ms}. The unit for the wait time
                 is always milliseconds.\\
     Example:  & \texttt{SETWAITTIME 1 5}\\
               & Sets the wait time of motor 1 to 5 milliseconds.
